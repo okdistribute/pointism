@@ -1,0 +1,30 @@
+<!doctype html>
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>alexr</title>
+
+  <style>
+    body {
+      margin-left: 6em;
+      margin-right: 6em;
+    }
+  </style>
+
+</head>
+<body>
+  <h1>hello student.</h1>
+
+    <form action="">
+    <select name="assignment">
+    {% for assignment in assignments %}
+        <option value="{{assignment}}">{{assignment}}</option>
+    {% endfor %}
+    </select>
+
+    <input type="submit" value="Upload!"/>
+    </form>
+
+</body>
+</html>
