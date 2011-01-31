@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:py="http://genshi.edgewall.org/">
+  <xi:include href="layout.html" />
+<head>
+  <title>List By Question</title>
+</head>
+<body>
+<h2>You have selected "Assignment ${focused} in term ${term} "</h2>
+<table border ="1" cellpadding="10">
+<tr>
+<th>List of Questions</th>
+</tr>
+<tr py:for="question in questions">
+   <td><a
+   href="question_answers?q_id=${question['name']}">${question['name']}</a></td>
+</tr>
+<!--<tr>
+<td><a href = "grading">Question 2</a></td>
+</tr>
+
+<tr>
+<td><a href = "grading">Question 3</a></td>
+</tr>-->
+</table>
+</body>
+</html>

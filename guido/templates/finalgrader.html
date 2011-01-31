@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:py="http://genshi.edgewall.org/">
+  <xi:include href="layout.html" />
+<head>
+  <title>Setting Final Grader</title>
+</head>
+<body>
+<b>This is the new assignment(${new_assmt['name']}) in ${new_assmt['g_term']}: </b>
+<font color="red">${new_assmt['name']} has ${new_assmt['count']} questions</font>
+<py:if test="new_assmt['check_final'] != None ">
+<table><tr>
+<td rowspan="2" valign="top">NOTE:</td><td><i>You have already
+setup the final grader for ${new_assmt['name']}</i></td></tr>
+<tr><td>
+If you want to update the final grader of ${new_assmt['name']}, push the
+below the submit button again<br />
+</td></tr>
+</table>
+</py:if>
+<FORM METHOD="post" ACTION="">
+<br /><br />
+Final Grader: 
+<select name="user_id">
+  <option py:for="ta in new_assmt['tas']" value="${ta.user_id}"
+    selected='${ta.final}' >${ta.name}</option>
+</select>
+<br /><br />
+<INPUT TYPE="submit" VALUE="Submit" /> 
+</FORM>
+</body>
+</html>

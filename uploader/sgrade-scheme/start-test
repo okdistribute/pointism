@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# Fire the grader manually
+# Used for testing purposes (04-13-05) Suzanne
+echo "(start \"$1\" \"$2\" \"$3\")" | scheme sg.ss
+

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:py="http://genshi.edgewall.org/">
+  <xi:include href="layout.html" />
+<head>
+  <title>Code Search</title>
+</head>
+<body>
+
+  <div py:if="codeblocks == []">
+    <h1>no matching code found</h1>
+  </div>
+
+  <div style="padding 1em;"
+       py:for="codeblock in codeblocks">
+    <div
+      style="border: 2px solid darkgreen; margin 1em;"
+      class="code"><div class="linenumbers">${codeblock.linenumbers}</div>${codeblock.text} </div>
+  </div>
+
+</body>
+</html>

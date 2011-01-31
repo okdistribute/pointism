@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:py="http://genshi.edgewall.org/">
+  <xi:include href="layout.html" />
+<head>
+  <title>Add TA</title>
+</head>
+<body>
+<h2>Please Enter the details of the new TA </h2>
+<br />
+<FORM method="POST" action="">
+<table border='0'>
+<tr>
+<td>User ID:</td>
+<td><input type = "text" name="S_ID"/>
+  <font color="red"><span py:if="'S_ID' in errors"
+  class="error">${errors.S_ID}</span></font></td>
+</tr>
+<tr>
+<td>Name:</td>
+<td><input type = "text" name="Name"/>
+  <font color="red"><span py:if="'Name' in errors"
+  class="error">${errors.Name}</span></font></td>
+</tr>
+<tr>
+<td>E-Mail:</td>
+<td><input type = "text" name="E_mail"/>
+  <font color="red"><span py:if="'E_mail' in errors" class="error">${errors.E_mail}</span></font></td>
+</tr>
+</table>
+<br/><br/><br/>
+<table border = '0'>
+<tr><td>
+<input type="submit" value="Add"/></td>
+<td>
+<button type="button" onclick="window.location='./ta_details'">cancel</button></td></tr>
+</table>
+</FORM>
+</body>
+</html>

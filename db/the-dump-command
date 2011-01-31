@@ -1,0 +1,2 @@
+mysqldump --extended-insert=FALSE --socket=/var/lib/mysql/mysql.sock -u guido
+-p guidodb > otherguidodump

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:py="http://genshi.edgewall.org/">
+  <xi:include href="layout.html" />
+<head>
+  <title>Give a final grade</title>
+</head>
+<body>
+<h2>The current assignment is "${current_assmt['a_name']}"</h2>
+
+<table border ="1" cellpadding="10">
+<tr>
+<th colspan="2" align="center" >${final_grade.user_id}'s questions</th>
+</tr>
+<tr py:for="question in questions">
+<td><a href = "${question['q_no']}">${question['name']}</a></td><td>${question['score']}</td>
+</tr>
+</table>
+<br />
+&nbsp;Average grade: ${final_grade.avg_score}
+<br /><br />
+<FORM method="POST" Action="">
+Final grade: 
+    <select name="f_grade" >
+      <option value=""></option>
+      <option py:for="g, v in sorted(grades.iteritems())" value="${g}"
+        selected="${v}" >${g}</option>
+    </select>
+    <input type="hidden" name="user_id" value="${final_grade.user_id}" />
+    <input type="Submit" value="Submit" />
+</FORM>
+<p>
+<py:if test="f_grade">
+Note: <i>You have given a final score for ${current_assmt['a_name']} successfully</i>
+</py:if>
+</p>
+<br />
+<br /><br />
+<table width="300" border="0">
+<tr>
+<td width="150" align="left">
+<py:if test="final_grade.get_prev()">
+<button type="button" onclick =
+"window.location='./give_grade?user_id=${final_grade.get_prev()}'">&lt;&lt;
+Previous student </button>
+</py:if>
+&nbsp;
+</td>
+<td width="150" align="right">
+<py:if test="final_grade.get_next()">
+<button type="button" onclick =
+"window.location='./give_grade?user_id=${final_grade.get_next()}'" >Next student &gt;&gt;</button>
+</py:if>
+</td>
+</tr>
+</table>
+</body>
+</html>

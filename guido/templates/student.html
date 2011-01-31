@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:py="http://genshi.edgewall.org/">
+  <xi:include href="layout.html" />
+<head>
+  <title>Student page</title>
+</head>
+<body>
+  <!-- left -->
+  <div class="assignmentlist">
+
+    <h2>View your graded assignments</h2>
+
+    <ul>
+      <li><a href="feedback">a1: Write Scheme</a></li>
+      <li><a href="feedback">a2: Write more Scheme</a></li>
+      <li><a href="feedback">a3: Write more Scheme with recursion</a></li>
+      <li><a href="feedback">a4: Stop writing Scheme</a></li>
+
+    </ul>
+  </div>
+
+  <!-- right -->
+  <div class="codesearchbox">
+  <FORM action="searchresults">
+    <h2>Search your graded assignments</h2>
+    <input class="searchinput" type="textbox"/>
+    <input type="submit" value="search" />
+
+  </FORM>
+    <br/>
+  </div>
+
+<br clear="all"/>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:py="http://genshi.edgewall.org/">
+  <xi:include href="layout.html" />
+<head>
+  <title>Give a grade to a student</title>
+</head>
+<body>
+<h2>The current assignment is "${curr_assmt['a_name']}"</h2>
+
+<table border ="1" cellpadding="10">
+<tr>
+<th>Student names</th>
+</tr>
+<tr py:for="student in students">
+<td><a href = "give_grade?user_id=${student.user_id}">${student.name}</a></td>
+</tr>
+
+</table>
+</body>
+
+</html>

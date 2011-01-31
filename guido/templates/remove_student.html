@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:py="http://genshi.edgewall.org/">
+  <xi:include href="layout.html" />
+<head>
+  <title>Remove Student</title>
+</head>
+<body>
+<h2>You are trying to remove <tt>${student}</tt></h2>
+<br />
+<table border='0'>
+<tr>
+<td>
+<FORM method="POST" action="">
+<input type="hidden" value="${student}" />
+<input type="submit" value="Yes" />
+</FORM>
+</td>
+<td>
+<button type="button" onclick="window.location='./student_details'">No</button>
+</td></tr></table>
+</body>
+</html>

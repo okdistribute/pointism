@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:py="http://genshi.edgewall.org/">
+  <xi:include href="layout.html" />
+<head>
+  <title>Assignment List</title>
+</head>
+<body>
+<h2>ASSIGNMENT LIST</h2>
+<table border="1" cellpadding="10">
+<tr>
+<th>Details</th>
+
+<th>Status</th>
+</tr>
+<tr py:for="assignment in results">
+  <td>${assignment['name']}</td>
+  <td>${assignment['status']}</td>
+</tr>
+</table>
+<br />
+<br />
+</body>
+</html>
+

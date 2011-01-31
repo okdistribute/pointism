@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:py="http://genshi.edgewall.org/">
+  <xi:include href="layout.html" />
+<head>
+  <title>List By Student</title>
+</head>
+<body>
+<h2>You have selected "Assignment ${focused} in term ${term}"</h2>
+<table border ="1" cellpadding="10">
+<tr>
+<th>Student Names</th>
+</tr>
+<tr py:for="student in students">
+   <td><a href="student_answers?s_id=${student['student_id']}">${student['student_id']}</a></td>
+</tr>
+<!--
+<tr>
+<td><a href = "selected_student">Student 3</a></td>
+</tr>-->
+</table>
+</body>
+</html>

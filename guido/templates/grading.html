@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:py="http://genshi.edgewall.org/">
+  <xi:include href="layout.html" />
+<head>
+  <title>Grading</title>
+</head>
+<body>
+  <!-- left -->
+  <div class="student">
+  <div class="code"><div class="linenumbers">${linenumbers}</div>${source}</div>
+    <form method="GET" action="/guido/codesearch/">
+    <input type="hidden" name="student" value="${student}"/>
+    <input type="hidden" name="assignment" value="${assignment}"/>
+    <input name="query" type="textbox" /> <button>Search code</button>
+    </form>
+  </div>
+
+  <!-- right -->
+  <div class="grading">
+    <div class="code">${autograder}</div>
+    <form method="POST" action="">
+      <select name="grade">
+        <option py:if="existinggrade == 'A'" selected="true" value="A">A</option>
+        <option py:if="existinggrade != 'A'" value="A">A</option>
+        <option py:if="existinggrade == 'B'" selected="true" value="B">B</option>
+        <option py:if="existinggrade != 'B'" value="B">B</option>
+        <option py:if="existinggrade == 'C'" selected="true" value="C">C</option>
+        <option py:if="existinggrade != 'C'" value="C">C</option>
+        <option py:if="existinggrade == 'D'" selected="true" value="D">D</option>
+        <option py:if="existinggrade != 'D'" value="D">D</option>
+        <option py:if="existinggrade == 'F'" selected="true" value="F">F</option>
+        <option py:if="existinggrade != 'F'" value="F">F</option>
+      </select>
+      <input type="submit" name="usenew" value="grade"/>
+      <br/>
+      <textarea name="comment" cols="60">${existingcomment}</textarea>
+
+      <p style="margin-bottom:0">Previously used comments:</p>
+      <select name="prevcomments" class="prevcomments" size="3">
+        <option py:for="prevcomment in prevcomments"
+          value="${prevcomment.c_no}">${prevcomment.firstline}</option>
+      </select>
+
+      <br/>
+      <input type="submit" name="useprevious"
+             value="grade with selected comment"/>
+    </form>
+  </div>
+
+  <br clear="all"/>
+
+  <br/>
+
+  <py:if test="final_grade">
+    <table width="300" border="0">
+    <tr>
+    <td width="150" align="left">
+    <py:if test="final_grade.get_prev()">
+    <button type="button" onclick="window.location='../grading/?student=${final_grade.get_prev()}&amp;assignment=${assignment}&amp;problem=${problem}'" >&lt;&lt; Previous student </button>
+    </py:if>
+    </td>
+    <td width="150" align="right">
+    <py:if test="final_grade.get_next()">
+    <button type="button" onclick="window.location='../grading/?student=${final_grade.get_next()}&amp;assignment=${assignment}&amp;problem=${problem}'" > Next student &gt;&gt;</button>
+    </py:if>
+    </td>
+    </tr>
+    </table>
+  </py:if>
+</body>
+</html>

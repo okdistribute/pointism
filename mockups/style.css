@@ -1,0 +1,185 @@
+div.student {
+  background-color: #ddd;
+  width: 52%;
+  overflow: auto;
+  float: left;
+}
+
+div.code {
+  font-family: 'Droid Sans Mono', arial, serif;
+  margin-bottom: 1em;
+}
+
+div.linenumbers {
+  float: left;
+  padding-right: 1em;
+  color: #666;
+}
+
+div.grading {
+  background-color: #bbf;
+  float: right;
+  width: 45%;
+  padding-left: 1em;
+}
+
+
+div.grading textarea {
+  max-width: 95%;
+}
+
+div.assignmentlist {
+  float: left;
+  width: 55%;
+}
+
+a.frontbutton {
+  font-size: 2em;
+}
+
+div.codesearchbox {
+  float: right;
+  width: 45%;
+}
+
+select.prevcomments {
+  max-width: 95%;
+}
+
+.codesearchbox .searchinput {
+  width: 70%;
+  max-width: 300px;
+  min-width: 100px;
+}
+
+/* Header */
+#banner {
+ position: relative;
+ width: 100%;
+ height: 80px;
+ padding: 0;
+}
+
+#banner-wrapper1 {
+ width: 100%;
+ height: 80px;
+ padding: 0;
+}
+
+#banner-wrapper2 {
+ width: 100%;
+ height: 80px;
+ padding: 0;
+}
+
+#logo {
+ position: absolute;
+ top: 35px;
+ left: 2.5em;
+}
+
+#banner h1 {
+ font-size: 200%;
+ color: #000;
+ font-weight: bolder;
+ position: absolute;
+ top: -10px;
+ right: 7px;
+ padding: 0;
+ margin: 0;
+}
+
+#header hr { display: none }
+#header h1 { margin-left: 1em;  }
+#header :link, #header :visited, #header :link:hover, #header
+:visited:hover {
+ background: transparent;
+ color: #555;
+ margin-bottom: 2px;
+ border: none;
+}
+
+#header {
+  margin-top: 2em;
+  margin-left: 12em;
+}
+#header h1 :link:hover, #header h1 :visited:hover { color: #000 }
+
+#navmenu {
+  top: 6.3em;
+  position: relative;
+  color: green;
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+#path {
+  top: -10px;
+  position: relative;
+  color: green;
+  margin-left: 2em;
+  margin-right: 10em;
+}
+.pathclass  A:link {text-decoration: none; color: green;}
+.pathclass  A:visited {text-decoration: none; color: green;}
+.pathclass  A:active {text-decoration: none; color: green;}
+.pathclass  A:hover {text-decoration: underline; color: green;}
+#path :link, #path:link:visited:hover { color: green; }
+
+#content {
+  padding: 1em;
+  padding-bottom: 2em;
+  position: relative;
+  top: 0px;
+  margin-top: -6px;
+  margin-left: 2em;
+  margin-right: 2em;
+  border: 1px solid #bce09c ;
+  min-height: 400px;
+}
+
+
+@media print {
+ #header, #altlinks, #footer, #help { display: none }
+ .nav, form, .buttons form, form .buttons, form .inlinebuttons { display: none }
+ form.printableform { display: block }
+}
+
+/* Footer */
+#footer {
+  clear: both;
+  color: #555;
+  font-size: 10px;
+  height: 31px;
+  padding: .25em 0;
+}
+#footer :link, #footer :visited { color: #555; }
+#footer hr {
+ margin: 1em;
+}
+#footer #tracpowered { border: 0; float: left }
+#footer #tracpowered:hover { background: transparent }
+#footer p { margin: 0 }
+#footer p.left {
+  float: left;
+  margin-left: 1em;
+  padding: 0 1em;
+  border-left: 1px solid #d7d7d7;
+  border-right: 1px solid #d7d7d7;
+}
+#footer p.right {
+  float: right;
+  text-align: right;
+}
+
+/* Copyright lines */
+#copyright{ 
+    text-align: center;
+    position: relative;
+    top: 20px;
+    border-top: 1px solid #ccb;
+}
+.crclass  A:link {text-decoration: none; color: black; }
+.crclass  A:visited {text-decoration: none; color: black; }
+.crclass  A:active {text-decoration: none; color: black; }
+.crclass  A:hover {text-decoration: underline; color: black; }

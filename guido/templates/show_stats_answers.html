@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:py="http://genshi.edgewall.org/">
+  <xi:include href="layout.html" />
+<head>
+ <title>Statistics of the class</title>
+</head>
+<body>
+<table border="2">
+ <tr>
+   <td>question</td>
+   <td>grade</td>
+   <td>count</td>
+   <td> </td>
+ </tr>
+ <tr py:for="stat in stats" >
+     <td>${stat.question}</td>
+     <td>${stat.finalGrade}</td>
+     <td>${stat.number}</td> 
+     <td><div style="height:30px; width:${10 * stat.number}px; background: darkslateblue"></div></td>
+ </tr>
+</table>
+</body>
+</html>

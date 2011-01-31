@@ -1,0 +1,86 @@
+(define clean-environment (lambda args (void)))
+
+(load "/u/c211/lib/image.ss")
+
+(define draw-image
+  (lambda args
+    "draw-image-called"))
+
+(define $set-random-sequence$ #f)
+
+(let ((seq '()))
+  
+  (set! $set-random-sequence$
+    (lambda (ls)
+      (set! seq ls)))
+
+  (set! random
+    (lambda (n)
+      (#%random n)
+      (if (null? seq)
+	  (#%random n)
+	  (let ((rand-num (remainder (car seq) n)))
+	    (set! seq (cdr seq))	
+	    rand-num))))	
+
+)
+
+(define $verify-journey$
+  (lambda (journey cat mouse cheese)
+    (if (and (pair? journey)
+	     (equal? (car journey) mouse))
+	(let verify-loop ((x (car journey))
+			  (rest (cdr journey)))
+	  (cond
+	   ((and (= x cat) (equal? rest '(sad)))
+	    #t)
+	   ((and (= x cheese) (equal? rest '(happy)))
+	    #t)
+	   ((pair? rest)
+	    (let ((y (car rest)))
+	      (if (and (number? y) (= 1 (abs (- x y))))
+		  (verify-loop y (cdr rest))
+		  journey)))
+	   (else
+	    journey)))
+	journey)))
+
+(define require-library
+  (lambda args
+    "require-library called"))
+
+(define require
+  (lambda args
+    "require called"))
+
+(define lib
+  (lambda args
+    "lib called"))
+
+(define $allow-reverse$ #f)
+
+(let ((allow-reverse #t))
+  
+  (set! $allow_reverse$
+    (lambda (v)
+      (set! allow-reverse v)))
+
+  (set! reverse
+    (lambda args
+      (if allow-reverse
+	  (apply #%reverse args)
+	  (error 'reverse "Procedure reverse called"))))
+)
+
+(define $verify-dna-strand$
+  (lambda (strand len)
+    (let loop ((ls strand) (n len))
+      (cond
+       ((null? ls) 
+	(if (zero? n)
+	    #t
+	    strand))
+       ((and (pair? ls) (member (car ls) '(a c g t)))
+	(loop (cdr ls) (- n 1)))
+       (else
+	strand)))))

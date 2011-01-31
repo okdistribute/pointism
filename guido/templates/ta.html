@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:py="http://genshi.edgewall.org/">
+  <xi:include href="layout.html" />
+<head>
+  <title>Welcome to Guido: ${g_user.user_id}</title>
+</head>
+<body>
+<p><a href="${url('../instructor/assignment_list')}" class="frontbutton">grade a question</a></p>
+<py:if test="g_user.is_final()"> 
+<p><a href="give_grade2student"
+class="frontbutton">give a grade for the current assignment</a> 
+</p>
+</py:if>
+<p><a href="statistics" class="frontbutton">assignment statistics</a></p>
+</body>
+</html>

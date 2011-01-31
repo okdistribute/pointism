@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:py="http://genshi.edgewall.org/">
+  <xi:include href="layout.html" />
+<head>
+  <title>Admin a class</title>
+</head>
+<body>
+<!--
+<table border="1">
+
+<tr align="center"><th>Student
+ID</th><th>Name</th><th>Department</th><th>Year</th><th>&nbsp;</th></tr>
+<tr><td align="right">0001</td><td>Burgin, James</td><td>Computer Science</td><td>Sophomore</td><td><a href=""><font color="red">Remove</font></a></td></tr>
+<tr><td align="right">0011</td><td>Carson, Bill</td><td>Informatics</td><td>Freshmen</td><td><a href=""><font color="red">Remove</font></a></td></tr>
+
+<tr><td align="right">0004</td><td>Miller, James</td><td>Computer Science</td><td>Junior</td><td><a href=""><font color="red">Remove</font></a></td></tr>
+<tr><td align="right">0030</td><td>Pruitt, William</td><td>Computer Science</td><td>Freshmen</td><td><a href=""><font color="red">Remove</font></a></td></tr>
+<tr><td align="right">0001</td><td>Siefring, Bridget</td><td>Computer Science</td><td>Junior</td><td><a href=""><font color="red">Remove</font></a></td></tr>
+
+</table>
+-->
+<table border="1">
+<tr align="center"><th>Student
+ID</th><th>Name</th><th>Department</th><th>Year</th><th>&nbsp;</th></tr>
+  <tr py:for="student in students" >
+    <td>${student.user_id}</td>
+    <td>${student.name}</td>
+    <td>${student.dept}</td>
+    <td>${student.year}</td>
+    <td><a href="remove_student?user_id=${student.user_id}">
+        <font color="red">Remove</font></a></td>
+  </tr>
+</table>
+<br />
+<br />
+<br />
+Add more students? <button type="button" onclick="window.location='./add_student'">ADD</button>
+</body>
+</html>
+

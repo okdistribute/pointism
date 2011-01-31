@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:py="http://genshi.edgewall.org/">
+  <xi:include href="layout.html" />
+<head>
+  <title>Admin a class</title>
+</head>
+<body>
+<!--
+<table border="1">
+
+<tr><th>University ID</th><th>Name</th><th>Term</th><th> &nbsp;</th></tr>
+<tr><td align="right">1000</td><td>Brooks, Jason</td><td>Fall 2010</td><td><a href=""><font color="red">Remove</font></a></td></tr>
+<tr><td align="right">2100</td><td>Hanks, John</td><td>Fall 2010</td><td><a href=""><font color="red">Remove</font></a></td></tr>
+<tr><td align="right">0004</td><td>Smith, Myra</td><td>Fall 2010</td><td><a href=""><font color="red">Remove</font></a></td></tr></table>
+-->
+<table border="1">
+<tr><th>University ID</th><th>Name</th><th>Term</th><th> &nbsp;</th></tr>
+  <tr py:for="ta in tas" >
+    <td>${ta.user_id}</td>
+    <td>${ta.name}</td>
+    <td>${ta.term}</td>
+    <td><a href="remove_ta?user_id=${ta.user_id}">
+        <font color="red">Remove</font></a></td>
+  </tr>
+</table>
+
+<br />
+<br />
+<br />
+Add more TAs? <button type="button" onclick="window.location='./add_ta'">ADD</button>
+</body>
+</html>

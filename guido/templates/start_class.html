@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:py="http://genshi.edgewall.org/">
+  <xi:include href="layout.html" />
+<head>
+  <title>Start a new class</title>
+</head>
+<body>
+<font color="red">The class has not started this semester yet.</font><br />
+Would you like to start a new class now? 
+If you do, please select one of the available semesters and then press
+the "Start" button.
+<br />
+<br />
+<FORM method="post" action="">
+<!--
+<Select name="term">
+  <option value="spr_2011">Spring 2011</option>
+  <option value="sum1_2011">Summer-1 2011</option>
+  <option value="sum2_2011">Summer-2 2011</option>
+  <option value="fall_2011">Fall 2011</option>
+</Select>
+-->
+        <select name="term">
+          <option value="">Select a semester</option>
+          <option py:for="term in current_terms" value="$term">$term</option>
+        </select>
+<INPUT type="submit" value="START" />
+          <span py:if="'term' in errors" class="error">${errors.term}</span>
+</FORM>
+</body>
+</html>

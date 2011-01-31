@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:py="http://genshi.edgewall.org/">
+  <xi:include href="layout.html" />
+<head>
+  <title>Distribution</title>
+</head>
+<body>
+<b>This is the new assignment(${new_assmt['name']}) in ${new_assmt['g_term']}: </b>
+<font color="red">${new_assmt['name']} has ${new_assmt['count']} questions</font>
+<py:if test="len(new_assmt['distributed']) > 0">
+<table><tr>
+<td rowspan="2" valign="top">NOTE:</td><td><i>You have already
+distributed the questions to TAs in ${new_assmt['name']}</i></td></tr>
+<tr><td>
+Do you want to go ahead to setup the final grader of ${new_assmt['name']}?<br />
+<button type="button"
+onclick="window.location='./finalgrader?assmt_name=${new_assmt['name']}'">Final
+grader for ${new_assmt['name']}</button>
+</td></tr>
+</table>
+</py:if>
+<FORM METHOD="post" ACTION="">
+<br /><br />
+<table cellspacing="10" >
+<tr>
+<th>Question</th><th>Grader</th>
+</tr>
+<tr py:for="q_no, question in new_assmt['questions'].iteritems()" >
+<td>
+${question}
+</td>
+<td>
+<select name="grader_${q_no}" >
+  <option value="">Select TA</option>
+    <option py:for="g, v in sorted(new_assmt['selected_grader'][q_no].iteritems())" value="${g.user_id}"
+        selected='${v}' >${g.name}</option>
+</select>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<INPUT TYPE="submit" VALUE="Submit" />
+</td>
+</tr>
+</table>
+</FORM>
+</body>
+
+</html>

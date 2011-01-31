@@ -1,0 +1,5 @@
+#!/bin/bash
+
+for username in `cat usernames`; do ./uploader.py   $username a3 ../anonymized/a3/*/$username; done
+
+for username in `cat usernames`; do ./uploader.py   $username a4 ../anonymized/a4/*/$username; done

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:py="http://genshi.edgewall.org/">
+  <xi:include href="layout.html" />
+<head>
+  <title>Add Assignment</title>
+</head>
+<body>
+<b>You are going to create a new assignment in ${message['term']}.</b>
+<br />
+<br />
+<py:if test="len(message['related_qs']) > 0">
+<table><tr>
+<td rowspan="2" valign="top">NOTE:</td><td><i> ${message['msg']}</i></td></tr>
+<tr><td>
+Do you want to setup the related questions for the following existing assignments?<br />
+<button py:for="assmt in message['related_qs']" type="button"
+onclick="window.location='./related_assign?assmt_name=${assmt}'">Go to ${assmt}</button>
+</td></tr>
+</table>
+</py:if>
+<FORM METHOD="post" ACTION="">
+<table cellspacing="15">
+<tr>
+<td valign="top">
+Assignment name:
+</td>
+<td><INPUT TYPE="text" NAME="assmt_name" SIZE="20" /><br />
+(e.g., a1, a2, assignment 1, assignment 2, hw1, hw2, homework 1,
+homework 2, ...)
+</td>
+<td>
+&nbsp;<span py:if="'assmt_name' in errors" class="error">
+        <font color="red">${errors.assmt_name}</font></span>
+</td>
+</tr>
+<tr>
+<td valign="top">
+Question numbers:
+</td>
+<td>
+<textarea name="questions" rows="3" cols="50">
+
+</textarea><br />
+(e.g, 1, 2, 3, 4a, 4b, 5, 6a, 6b, 6c, and so on)
+</td>
+<td>
+&nbsp;<span py:if="'questions' in errors" class="error">
+        <font color="red">${errors.questions}</font></span>
+</td>
+</tr>
+<tr>
+<td>
+<button type="button" onclick="window.location='./instructor'">Cancel</button>
+</td>
+<td colspan="2">
+<INPUT TYPE="submit" VALUE="Submit" />
+</td>
+</tr>
+</table>
+</FORM>
+</body>
+</html>

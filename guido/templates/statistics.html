@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:py="http://genshi.edgewall.org/">
+  <xi:include href="layout.html" />
+<head>
+  <title>Statistical Data</title>
+</head>
+<body>
+<form method="GET" action="show_stats_answers">
+<table border="0">
+  <tr>
+  <td colspan="2">
+
+    <h2>Within assignments</h2>
+    <p>See the distribution of grades for each problem.</p>
+  </td>
+  </tr>
+
+  <tr>
+  <td>
+  Assignment:
+  </td>
+  <td>
+
+    <select name="assignment">
+    <option py:for="assignment_all in assignments_all" value="${assignment_all.s_name}">${assignment_all.s_name}</option>
+    </select>
+
+  </td>
+  </tr>
+
+<tr>
+<td></td>
+<td>
+
+
+   <INPUT type="submit" value="Calculate!" />
+
+  </td>
+  </tr>
+  </table>
+</form>
+<form method="GET" action="show_stats">
+<table border = "0">
+  <tr>
+  <td colspan="2">
+  <h2>Whole assignments</h2>
+
+  <p>
+  See the distribution of grades for each assignment.
+  </p>
+  </td>
+  </tr>
+
+
+  <tr>
+  <td>
+  Assignment:
+  </td>
+
+  <td>
+    
+<select name="assignment_all">
+   <option value="all">All assignments</option> 
+   <option py:for="assignment_all in assignments_all"
+   value="${assignment_all.s_name}">${assignment_all.s_name}</option>
+   </select>
+  </td>
+  </tr>
+
+  <tr>
+  <td>split by:</td>
+  <td>
+
+<select name="split2">
+      <option selected="1" value="wholeclass">whole class (don't split)</option>
+      <option value="year">year</option>
+</select>
+  </td>
+
+  </tr>
+  <tr>
+  <td></td><td> <INPUT type="submit" value="Calculate!" /></td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

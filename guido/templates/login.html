@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:py="http://genshi.edgewall.org/">
+  <xi:include href="layout.html" />
+<head>
+  <title>Login</title>
+</head>
+<body OnLoad="document.guido.login.focus();">
+<form name="guido" method="post" action="${url('/login')}">
+<table>
+<tr>
+<td>User name: </td><td colspan="2"><input type="text" name="login" />
+  <font color="red"><span py:if="'login' in errors" class="error">${errors.login}</span></font></td>
+</tr>
+<tr>
+<td>Password: </td><td><input type="password" name="pwd" />
+   <font color="red"><span py:if="'pwd' in errors" class="error">${errors.pwd}</span></font></td>
+<!-- <td><button type="button" onclick = "window.location='./'">Log In</button></td> -->
+<td><INPUT type="submit" value="Log In" /></td>
+</tr>
+</table>
+</form>
+</body>
+</html>

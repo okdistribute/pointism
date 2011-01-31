@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:py="http://genshi.edgewall.org/">
+  <xi:include href="layout.html" />
+<head>
+  <title>Related qeustions</title>
+</head>
+<body>
+<b>This is the new assignment(${new_assmt['name']}) in ${new_assmt['g_term']}: </b>
+<font color="red">${new_assmt['name']} has ${new_assmt['count']} questions</font>
+<py:if test="len(new_assmt['selected_group']) > 0">
+<table><tr>
+<td rowspan="2" valign="top">NOTE:</td><td><i>You have already setup the
+related questions in ${new_assmt['name']}</i></td></tr>
+<tr><td>
+Do you want to go ahead to distribute the questions to TAs?<br />
+<button type="button"
+onclick="window.location='./distribution?assmt_name=${new_assmt['name']}'">Distribute ${new_assmt['name']}</button>
+</td></tr>
+</table>
+</py:if>
+<p>
+Please update the below question name if necessary and select a group
+"A", "B", "C", "D", or "E" if there are any related questions among them.
+<br />
+If there is no related questions, no need to select the group.
+</p>
+<FORM METHOD="POST" ACTION="">
+<TABLE cellspacing="10">
+<tr>
+<th>Question</th><th>Group</th>
+</tr>
+<tr py:for="q_no, question in new_assmt['questions'].iteritems()" >
+    <td>
+    <INPUT TYPE="text" NAME="list_${q_no}" SIZE="4" VALUE="${question}" />
+    </td>
+    <td>
+    <select name="select_${q_no}">
+        <option value=""></option>
+        <option py:for="g, v in sorted(new_assmt['related_questions'][q_no].iteritems())" value="${g}"
+        selected='${v}' >${g}</option>
+    </select>
+    </td>
+</tr>
+<tr>
+<td colspan="2">
+    <INPUT TYPE="submit" VALUE="Submit" />
+</td>
+</tr>
+</TABLE>
+</FORM>
+</body>
+</html>
