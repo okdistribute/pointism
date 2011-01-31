@@ -2,9 +2,8 @@ README for guido.
 
 In this directory, you should find:
 
-anonymized/	full of anonymized actual homework from c211 students
+anonymized.tgz	full of anonymized actual homework from c211 students
 db/		backup of our test data
-docs/		latex source and figures
 guido/		the actual system
 mockups/	UI ideas, done with HTML and PHP
 uploader/	commandline uploader, meant to be deployed for real users
