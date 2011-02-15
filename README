@@ -7,3 +7,4 @@ db/		backup of our test data
 guido/		the actual system
 mockups/	UI ideas, done with HTML and PHP
 uploader/	commandline uploader, meant to be deployed for real users
+prototype/ the prototype from Fall 2010 
