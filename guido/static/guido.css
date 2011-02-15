@@ -1,0 +1,171 @@
+div.student {
+  background-color: #ddd;
+  width: 52%;
+  overflow: auto;
+  float: left;
+}
+
+div.code {
+  font-family: 'Droid Sans Mono', arial, serif;
+  margin-bottom: 1em;
+  font-size: 10pt;
+  white-space: pre-wrap;
+}
+
+div.linenumbers {
+  float: left;
+  padding-right: 1em;
+  color: #666;
+}
+
+div.grading {
+  background-color: #bbf;
+  float: right;
+  width: 45%;
+  padding-left: 1em;
+}
+
+
+div.grading textarea {
+  max-width: 95%;
+}
+
+div.assignmentlist {
+  float: left;
+  width: 55%;
+}
+
+a.frontbutton {
+  font-size: 2em;
+}
+
+div.codesearchbox {
+  float: right;
+  width: 45%;
+}
+
+select.prevcomments {
+  max-width: 95%;
+  min-width: 200px;
+}
+
+.codesearchbox .searchinput {
+  width: 70%;
+  max-width: 300px;
+  min-width: 100px;
+}
+
+/* Header */
+#banner {
+ position: relative;
+ width: 100%;
+ height: 80px;
+ padding: 0;
+}
+
+#banner-wrapper1 {
+ width: 100%;
+ height: 80px;
+ padding: 0;
+}
+
+#banner-wrapper2 {
+ width: 100%;
+ height: 80px;
+ padding: 0;
+}
+
+#logo {
+ position: absolute;
+ top: 35px;
+ left: 2.5em;
+}
+
+#banner h1 {
+ font-size: 200%;
+ color: #000;
+ font-weight: bolder;
+ position: absolute;
+ top: -10px;
+ right: 7px;
+ padding: 0;
+ margin: 0;
+}
+
+#header hr { display: none }
+#header h1 { margin-left: 6em; margin-top: -1.1em; }
+#header :link, #header :visited, #header :link:hover, #header
+:visited:hover {
+ background: transparent;
+ color: #555;
+ margin-bottom: 2px;
+ border: none;
+}
+
+#header {
+  margin-top: 2em;
+  margin-left: 2em;
+}
+#header h1 :link:hover, #header h1 :visited:hover { color: #000 }
+
+#navmenu {
+  top: 0.5em;
+  position: relative;
+  color: green;
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+#path {
+  top: -10px;
+  position: relative;
+  color: green;
+  margin-left: 2em;
+  margin-right: 10em;
+}
+.pathclass  A:link {text-decoration: none; color: green;}
+.pathclass  A:visited {text-decoration: none; color: green;}
+.pathclass  A:active {text-decoration: none; color: green;}
+.pathclass  A:hover {text-decoration: underline; color: green;}
+#path :link, #path:link:visited:hover { color: green; }
+
+#content {
+  padding: 1em;
+  padding-bottom: 2em;
+  position: relative;
+  top: 0px;
+  margin-top: -6px;
+  margin-left: 2em;
+  margin-right: 2em;
+  border: 1px solid #bce09c ;
+  min-height: 400px;
+}
+
+
+@media print {
+ #header, #altlinks, #footer, #help { display: none }
+ .nav, form, .buttons form, form .buttons, form .inlinebuttons { display: none }
+ form.printableform { display: block }
+}
+
+/* Footer */
+#footer { background: #4A4D4D; border-top: 2px solid #333; font-size: x-small;
+  padding: 3px; text-align: center;
+}
+#footer hr { display: none; }
+
+#byline{ 
+    padding: 2px;
+    text-align: center;
+    position: relative;
+    top: 20px;
+    border-top: 1px solid #ccb;
+    font-size: x-small;
+}
+#byline p { color: #999; margin: 0; }
+
+.crclass  A:link {text-decoration: none; color: black; }
+.crclass  A:visited {text-decoration: none; color: black; }
+.crclass  A:active {text-decoration: none; color: black; }
+.crclass  A:hover {text-decoration: underline; color: black; }
+
