@@ -6,6 +6,6 @@ from bottle import route
 def frontpage():
     return template("frontpage")
 
-@route('/header')
+@route('views/header')
 def header():
     return template("header")
