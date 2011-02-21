@@ -14,6 +14,10 @@ import frontpage
 def index():
     return frontpage.frontpage()
 
+@route('/cow')
+def meet_mr_cow():
+    return frontpage.cow()
+
 @route('/static/:filename')
 def server_static(filename):
     return static_file(filename, root='static')
