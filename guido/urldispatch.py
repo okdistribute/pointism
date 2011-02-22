@@ -18,6 +18,10 @@ def index():
 def meet_mr_cow():
     return frontpage.cow()
 
+@route('/pig')
+def see_pig():
+    return frontpage.pig()
+
 @route('/static/:filename')
 def server_static(filename):
     return static_file(filename, root='static')
