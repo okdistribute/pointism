@@ -9,6 +9,5 @@ def frontpage():
 def cow():
     return template("cow")
 
-@route('views/header')
-def header():
-    return template("header")
+def pig():
+    return template("pig")
