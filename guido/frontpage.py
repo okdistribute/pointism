@@ -12,3 +12,6 @@ def cow():
 @route('views/header')
 def header():
     return template("header")
+
+def krmckelv():
+    return template("krmckelv")
