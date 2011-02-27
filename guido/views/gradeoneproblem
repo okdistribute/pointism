@@ -4,8 +4,8 @@
   <div class="student">
   <div class="code"><div class="linenumbers">{{linenumbers}}</div>{{source}}</div>
     <form method="GET" action="/guido/codesearch/">
-    <input type="hidden" name="student" value="${student}"/>
-    <input type="hidden" name="assignment" value="${assignment}"/>
+    <input type="hidden" name="student" value="{{student}}"/>
+    <input type="hidden" name="assignment" value="{{assignment}}"/>
     <input name="query" type="textbox" /> <button>Search code</button>
     </form>
   </div>
@@ -28,8 +28,9 @@
       <p style="margin-bottom:0">Previously used comments:</p>
 
       <select name="prevcomments" class="prevcomments" size="3">
-        <option py:for="prevcomment in prevcomments"
-          value="${prevcomment.c_no}">${prevcomment.firstline}</option>
+      % for comment in prevcomments:
+        <option value="{{comment.commentid}}">{{comment.firstline}}</option>
+      % end
       </select>
 
       <br/>
