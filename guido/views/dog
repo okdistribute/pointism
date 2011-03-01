@@ -1,0 +1,6 @@
+%include header title="Dog"
+
+<h1>Hello Little Doggie</h1>
+<p> This is a page about a dog. I love dogs! </p>
+
+%include footer
