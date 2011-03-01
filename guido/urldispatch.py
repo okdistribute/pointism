@@ -9,7 +9,6 @@ the functions that will be called in response.
 """
 
 import frontpage
-import grading
 
 @route('/')
 def index():
@@ -22,10 +21,10 @@ def meet_mr_cow():
 @route('/pig')
 def see_pig():
     return frontpage.pig()
-
-@route('/grade')
-def grade():
-    return grading.index()
+	
+@route('/dog')
+def see_dog():
+	return frontpage.dog()
 
 @route('/static/:filename')
 def server_static(filename):
