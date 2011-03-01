@@ -6,7 +6,8 @@
     <form method="GET" action="/guido/codesearch/">
     <input type="hidden" name="student" value="{{student}}"/>
     <input type="hidden" name="assignment" value="{{assignment}}"/>
-    <input name="query" type="textbox" /> <button>Search code</button>
+    <input name="query" type="textbox" /> 
+    <a href="#" class="primary pill button">Search code</a>
     </form>
   </div>
 
@@ -46,16 +47,16 @@
   <py:if test="final_grade">
     <table width="300" border="0">
     <tr>
-    <td width="150" align="left">
     <py:if test="final_grade.get_prev()">
-    <button type="button" onclick="window.location='../grading/?student=${final_grade.get_prev()}&amp;assignment=${assignment}&amp;problem=${problem}'" >&lt;&lt; Previous student </button>
+    %include button href='../grading/?student=${final_grade.get_prev()}&amp;assignment=${assignment}&amp;problem=${problem}', style='left pill button', title='Previous Student'
+
+<!-- old <button type="button" onclick="window.location='../grading/?student=${final_grade.get_prev()}&amp;assignment=${assignment}&amp;problem=${problem}'" >&lt;&lt; Previous student </button> -->
     </py:if>
-    </td>
-    <td width="150" align="right">
+
     <py:if test="final_grade.get_next()">
-    <button type="button" onclick="window.location='../grading/?student=${final_grade.get_next()}&amp;assignment=${assignment}&amp;problem=${problem}'" > Next student &gt;&gt;</button>
+    %include button href='../grading/?student=${final_grade.get_next()}&amp;assignment=${assignment}&amp;problem=${problem}', style='right pill button', title='Next Student'
+<!-- old <button type="button"  onclick="window.location='../grading/?student=${final_grade.get_next()}&amp;assignment=${assignment}&amp;problem=${problem}'" > Next student &gt;&gt;</button> -->
     </py:if>
-    </td>
     </tr>
     </table>
   </py:if>

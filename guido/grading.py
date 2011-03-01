@@ -37,3 +37,4 @@ def index():
                     autograder=autograder,
                     student=fakedata.student,
                     assignment=fakedata.assignment)
+

@@ -30,7 +30,3 @@ def grade():
 @route('/static/:filename')
 def server_static(filename):
     return static_file(filename, root='static')
-
-@route('/krmckelv')
-def hellokarissa():
-    return frontpage.krmckelv()
