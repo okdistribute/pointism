@@ -11,3 +11,9 @@ def cow():
 
 def pig():
     return template("pig")
+
+def assignment_notes():
+    return template("assignment_notes")
+
+def assignment_notes_edit(notes, assign_name):
+    return template("assignment_notes_edit", notes_edit=notes, assignment_name=assign_name)
