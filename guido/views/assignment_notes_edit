@@ -1,0 +1,12 @@
+%include header title="Assignment Notes Edit"
+
+<h1>Assignment {{assignment_name}} Notes Edit</h1>
+<p>Notes</p>
+<form action="/assignment_notes/update/{{assignment_name}}" method="post">
+	<textarea rows="10" cols="30" name="query">
+{{notes_edit}}
+	</textarea>
+	<input type="submit" />
+</form>
+
+%include footer

@@ -1,0 +1,10 @@
+%include header title="Assignment Notes"
+
+<h1>Assignment Notes</h1>
+<p>Select an Assignment</p>
+<form action="assignment_notes/edit" method="post">
+  <input type="text" name="query" />
+  <input type="submit" />
+</form>
+
+%include footer
