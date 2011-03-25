@@ -16,18 +16,15 @@ class Comment(object):
         else:
             self.firstline = "(empty)"
 
-class Source(object):
-    """Representation of student code"""
-    def __init__(self, username, text):
-        self.username = username
-        self.grade = 0
+class Assignment(object):
+    """Representation of an assignment"""
+    def __init__(self, id, name, text):
+        self.id = id
+        self.name = name
         if len(text) > 0:
             self.text = text
         else:
             self.text = "(empty)"
-
-    def grade(self, grade):
-        self.grade = grade
         
 class Student(object):
     """Representation of students"""
