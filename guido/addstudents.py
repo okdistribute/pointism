@@ -5,7 +5,8 @@ This script adds all students from a given file into the Guido database.
 
 The format of the file to be parsed is assumed to be in a csv form, as
 follows: 
-<username>, <full name>, <lecture section>, <lab section>\n
+<id>, <location>, 
+<lab section>, <lecture>, <last name>, <first>, <username>, <email suffix>
 """
 import sys
 
@@ -25,12 +26,16 @@ def main():
 
     while(line != ''):
         vars = line.split(',')
-        username = vars[0]
-        fullname = vars[1]
-        lecture = vars[2]
-        lab = vars[3]
+        id = vars[0]
+        location = vars[1]
+        lab = vars[2]
+        lecture = vars[3]
+        lastname = vars[4]
+        firstname = vars[5]
+        username = vars[6]
+        email = vars[7]
         lab = lab[0:len(lab) -1]
-        print('', username, fullname, lecture, lab)
+        print('', username, firstname, lastname, lab)
         #need to insert into db 
         line = file.readline()
 
