@@ -6,7 +6,7 @@ syntax: glob
 *~
 .*.swp
 .DS_Store
-guidodb
+guido/guidodb
 
 # switch to the regex syntax
 syntax: regexp
