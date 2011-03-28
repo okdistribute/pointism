@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """
 Routines to run the autograder.
@@ -6,7 +6,7 @@ Routines to run the autograder.
 
 import os
 import re
-import commands
+import subprocess
 import tempfile
 from collections import defaultdict
 
@@ -14,7 +14,7 @@ def runtests(assignment, path):
     """Run the autograder on the given file. Returns the output. """
 
     cmd = ("env SCHEMEHEAPDIRS=/l/ChezScheme-7.4d/lib/csv7.4d/i3le ./sgrade-scheme/sg.ss %s < %s" % (assignment, path))
-    output = commands.getoutput(cmd)
+    output = subprocess.getoutput(cmd)
     return output
 
 
