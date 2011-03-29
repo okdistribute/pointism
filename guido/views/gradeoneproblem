@@ -1,0 +1,64 @@
+%include header title='grading the problem'
+
+  <!-- left -->
+  <div class="student">
+  <div class="code"><div class="linenumbers">{{linenumbers}}</div>{{source}}</div>
+    <form method="GET" action="/guido/codesearch/">
+    <input type="hidden" name="student" value="{{student}}"/>
+    <input type="hidden" name="assignment" value="{{assignment}}"/>
+    <input name="query" type="textbox" /> 
+    <a href="#" class="primary pill button">Search code</a>
+    </form>
+  </div>
+
+  <!-- right -->
+  <div class="grading">
+    <div class="code">{{autograder}}</div>
+    <form method="POST" action="">
+      <select name="grade">
+        <option selected="true" value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="D">D</option>
+        <option value="F">F</option>
+      </select>
+      <input type="submit" name="usenew" value="grade"/>
+      <br/>
+      <textarea name="comment" cols="60">{{existingcomment}}</textarea>
+
+      <p style="margin-bottom:0">Previously used comments:</p>
+
+      <select name="prevcomments" class="prevcomments" size="3">
+      % for comment in prevcomments:
+        <option value="{{comment.commentid}}">{{comment.firstline}}</option>
+      % end
+      </select>
+
+      <br/>
+      <input type="submit" name="useprevious"
+             value="grade with selected comment"/>
+    </form>
+  </div>
+
+  <br clear="all"/>
+
+  <br/>
+
+  <py:if test="final_grade">
+    <table width="300" border="0">
+    <tr>
+    <py:if test="final_grade.get_prev()">
+    %include button href='../grading/?student=${final_grade.get_prev()}&amp;assignment=${assignment}&amp;problem=${problem}', style='left pill button', title='Previous Student'
+
+<!-- old <button type="button" onclick="window.location='../grading/?student=${final_grade.get_prev()}&amp;assignment=${assignment}&amp;problem=${problem}'" >&lt;&lt; Previous student </button> -->
+    </py:if>
+
+    <py:if test="final_grade.get_next()">
+    %include button href='../grading/?student=${final_grade.get_next()}&amp;assignment=${assignment}&amp;problem=${problem}', style='right pill button', title='Next Student'
+<!-- old <button type="button"  onclick="window.location='../grading/?student=${final_grade.get_next()}&amp;assignment=${assignment}&amp;problem=${problem}'" > Next student &gt;&gt;</button> -->
+    </py:if>
+    </tr>
+    </table>
+  </py:if>
+
+%include footer

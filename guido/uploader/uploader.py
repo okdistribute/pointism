@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """
 Main upload script for Guido.
@@ -8,10 +8,8 @@ this assignment.
 """
 
 import sys
-sys.path.append("..")
-# sys.path.remove("/home/dikim/Genshi")
+import sqlite3
 
-import guido.database.mysql as mysql
 import autograder
 import parseassignment
 
@@ -26,14 +24,14 @@ SELECT q.q_no FROM Questions q, Associated_with assoc, Assignment a
    AND  q.name = %s""" 
     results = db.do_query(sql, (assignment, key))
     if len(results) == 0:
-        print "Couldn't find assignment %s, question %s." % (assignment,key)
+        print("Couldn't find assignment %s, question %s." % (assignment,key))
         return None
     q_no = results[0]['q_no']
     return q_no
 
 def main():
     if len(sys.argv) != 4:
-        print USAGE
+        print(USAGE)
         return
 
     username = sys.argv[1]
@@ -45,12 +43,12 @@ def main():
     answers = parseassignment.get_answers(filename)
     db = mysql.DB()
 
-    for key in answers.keys():
-        print "inserting %s, question %s." % (assignment, key)
+    for key in list(answers.keys()):
+        print("inserting %s, question %s." % (assignment, key))
         q_no = get_question_id(db, assignment, key)
 
         if q_no is None:
-            print "skipping."
+            print("skipping.")
             continue
 
         sql = ("INSERT INTO Answers "
