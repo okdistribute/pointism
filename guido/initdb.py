@@ -34,8 +34,8 @@ create table if not exists Problem (
 
 Assignment = """\
 create table if not exists Assignment (
-    assignmentid integer primary key autoincrement,
-    name text
+    assignmentid text primary key,
+    notes text
 )"""
 
 ## key for a Solution is Student,Assignment,Problem
