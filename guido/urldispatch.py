@@ -13,6 +13,8 @@ the functions that will be called in response.
 import frontpage
 import sqlite3
 
+THEDB = 'guidodb'
+
 @route('/')
 def index():
     return frontpage.frontpage()
@@ -39,14 +41,14 @@ def see_assignment_notes():
     if not query:
         return "You didn't supply a search query."
     else:
-        conn = sqlite3.connect('test.db')
+        conn = sqlite3.connect(THEDB)
         c = conn.cursor()
         query = request.POST.get('query','').strip()
-        c.execute('select notes from assignment where name ="%s"' % query)
+        c.execute('select notes from assignment where assignmentid ="%s"' % query)
         if len(c.fetchall()) == 0:
             return "Cannot find assignment named %s." % query
         else:
-            c.execute('select notes from assignment where name ="%s"' % query)
+            c.execute('select notes from assignment where assignmentid ="%s"' % query)
             notes = c.fetchone()[0]
             conn.commit()
             conn.close()
@@ -56,10 +58,10 @@ def see_assignment_notes():
 @route('/assignment_notes/update/:name', method='POST')
 def update_assignment_notes(name):
     query = request.POST.get('query','').strip()
-    conn = sqlite3.connect('test.db')
+    conn = sqlite3.connect(THEDB)
     c = conn.cursor()
     update_data = (query, name)
-    c.execute('update assignment set notes=? where name=?', update_data)
+    c.execute('update assignment set notes=? where assignmentid=?', update_data)
     conn.commit()
     conn.close()
     return "Assignment notes for assignment " + name + " have been updated to '" + query + "'"
