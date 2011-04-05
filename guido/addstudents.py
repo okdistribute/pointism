@@ -27,6 +27,7 @@ def main():
     print('Adding Students:\n')
 
     while(line != ''):
+        line = line.strip()
         vars = line.split(',')
         id = vars[0]
         location = vars[1]
@@ -36,7 +37,6 @@ def main():
         firstname = vars[5]
         username = vars[6]
         email = vars[7]
-        lab = lab[0:len(lab) -1]
         student = (username, email, lecture, lab, "")
         print(student)
         c.execute('insert into Student values (?,?,?,?,?)',student)
