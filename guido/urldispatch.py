@@ -65,3 +65,7 @@ def update_assignment_notes(name):
     conn.commit()
     conn.close()
     return "Assignment notes for assignment " + name + " have been updated to '" + query + "'"
+
+@route('/grade')
+def grade():
+    return grading.index()
