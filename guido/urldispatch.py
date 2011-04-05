@@ -10,6 +10,7 @@ This module handles all of the URL dispatching for Guido, mapping from URLs to
 the functions that will be called in response.
 """
 
+import grading
 import frontpage
 import sqlite3
 
