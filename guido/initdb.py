@@ -56,6 +56,7 @@ create table if not exists Submission (
     text text,
     autograder text,
     grade integer,
+    notes text,
     hasdraft boolean,
     username text,
     assignmentid text,
@@ -74,12 +75,25 @@ create table if not exists Comment (
     foreign key(assignmentid) references Assignment(assignmentid)
 )"""
 
+CommentSolution = """\
+create table if not exists CommentSolution (
+    id integer primary key autoincrement,
+    commentid integer,
+    username text,
+    assignmentid text,
+    problemname text,
+    foreign key(username) references Student(username),
+    foreign key(problemname) references Problem(name),
+    foreign key(assignmentid) references Assignment(assignmentid)
+)"""
+
 tables = [Student,
 Problem,
 Assignment,
 Solution,
 Submission,
 Comment,
+CommentSolution
 ]
 
 def main():
