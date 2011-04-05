@@ -8,7 +8,7 @@ follows:
 <id>, <location>, 
 <lab section>, <lecture>, <last name>, <first>, <username>, <email suffix>
 """
-import sys
+import sys, sqlite3
 
 USAGE = "addstudents.py <filename>"
 THEDB = "guidodb" 
@@ -37,8 +37,9 @@ def main():
         username = vars[6]
         email = vars[7]
         lab = lab[0:len(lab) -1]
-        student = (username, email, lecture, lab)
-        c.execute('insert into Student values (?,?,?,?)',student)
+        student = (username, email, lecture, lab, "")
+        print(student)
+        c.execute('insert into Student values (?,?,?,?,?)',student)
         line = file.readline()
         
     conn.commit()
