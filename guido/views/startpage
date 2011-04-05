@@ -1,0 +1,157 @@
+%include header title="Start page"
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Guido</title>
+<style type="text/css">
+<!--
+body {
+	font: 100%/1.4  Georgia, "Times New Roman", Times, serif;
+	background: #838383;
+	margin: 0;
+	padding: 0;
+	color: #000;
+}
+
+
+ul, ol, dl {
+	padding: 0;
+	margin: 0;
+}
+h1, h2, h3, h4, h5, h6, p {
+	margin-top: 0;
+}
+a img { 
+	border: none;
+}
+
+
+a:link {
+	color: #fff;
+}
+a:visited {
+	color: #fff;
+}
+a:hover, a:active, a:focus { 
+	text-decoration: none;
+}
+
+
+.container {
+	width: 1000px;
+	height: 500px;
+	background: #838383;
+	margin: 0 auto;
+	overflow: hidden;
+	border: 1px solid #fff;
+	position: center;
+}
+
+
+.sidebar1 {
+	margin-top: 100px;
+	float: left;
+	width: 220px;
+	background: #838383;
+	padding-bottom: 10px;
+}
+.content {
+
+	padding: 0px;
+	width: 400px;
+	background: #838383;
+	float: left;
+	margin-left: 80px;
+}
+
+.gradebutton {
+	margin-top: 180px;
+	width: 200px;
+	background: #838383;
+	margin-left: 400px;
+	
+}
+
+.legalstuff {
+
+	width: 1000px;
+	font-size: 10px;
+	color: #fff;
+	left-margin: 250Spx;
+}
+
+/* ~~ This grouped selector gives the lists in the .content area space ~~ */
+.content ul, .content ol { 
+	padding: 0 15px 15px 40px; /* this padding mirrors the right padding in the headings and paragraph rule above. Padding was placed on the bottom for space between other elements on the lists and on the left to create the indention. These may be adjusted as you wish. */
+}
+
+/* ~~ The navigation list styles (can be removed if you choose to use a premade flyout menu like Spry) ~~ */
+ul.nav {
+	list-style: none; /* this removes the list marker */
+	border-top: 1px solid #fff; /* this creates the top border for the links - all others are placed using a bottom border on the LI */
+	margin-bottom: 15px; /* this creates the space between the navigation on the content below */
+}
+ul.nav li {
+	border-bottom: 1px solid #fff; /* this creates the button separation */
+}
+ul.nav a, ul.nav a:visited { /* grouping these selectors makes sure that your links retain their button look even after being visited */
+	padding: 5px 5px 5px 15px;
+	display: block; /* this gives the link block properties causing it to fill the whole LI containing it. This causes the entire area to react to a mouse click. */
+	width: 200px;  /*this width makes the entire button clickable for IE6. If you don't need to support IE6, it can be removed. Calculate the proper width by subtracting the padding on this link from the width of your sidebar container. */
+	text-decoration: none;
+	background: #666;
+}
+ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* this changes the background and text color for both mouse and keyboard navigators */
+	background: #FFF;
+	color: #000;
+}
+
+/* ~~ miscellaneous float/clear classes ~~ */
+.fltrt {  /* this class can be used to float an element right in your page. The floated element must precede the element it should be next to on the page. */
+	float: right;
+	margin-left: 8px;
+}
+.fltlft { /* this class can be used to float an element left in your page. The floated element must precede the element it should be next to on the page. */
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat { /* this class can be placed on a <br /> or empty div as the final element following the last floated div (within the #container) if the overflow:hidden on the .container is removed */
+	clear:both;
+	height:0;
+	font-size: 1px;
+	line-height: 0px;
+}
+-->
+</style></head>
+
+<body>
+
+<div class="container">
+  <div class="sidebar1">
+    <ul class="nav">
+      <li><a href="#"><b>Grade</b> Specific Problem</a></li>
+      <li><a href="#"><b>Grade</b> Whole Submission</a></li>
+      <li><a href="#"><b>Edit</b> Assignment Notes</a></li>
+      <li><a href="#"><b>Edit</b> Problem Notes</a></li>
+      <li><a href="#"><b>View </b> Submissions </a></li>
+    </ul>
+    <p>
+</div>
+  <div class="content"  >
+   <center> <h1> Guido </h1> </center><br>
+   <hr>
+   </div>
+
+<div class="gradebutton">
+<center><a href="#"> <h1> Grade </h1> </a></center>
+</div>
+  </div>
+ <center><div class="legalstuff">
+   &copy; Copyright 2011, &nbsp;  Trustees of Indiana University 
+ </div></center> 
+</body>
+</html>
+
+%include footer
