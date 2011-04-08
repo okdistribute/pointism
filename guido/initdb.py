@@ -20,16 +20,14 @@ create table if not exists Student (
     notes text
 )"""
 
-## TODO(alexr): make assignment a foreign key into the assignments table.
-## TODO(alexr): make the key for Problem be the assignment name and the problem
-## name taken together.
 Problem = """\
 create table if not exists Problem (
-    problemid int primary key,
     name text not null,
-    assignment text not null,
+    assignmentid text not null,
     problemtext text,
-    notes text
+    notes text,
+    primary key(assignmentid, name),
+    foreign key(assignmentid) references Assignment(assignmentid)
 )"""
 
 Assignment = """\
@@ -41,20 +39,52 @@ create table if not exists Assignment (
 ## key for a Solution is Student,Assignment,Problem
 Solution = """\
 create table if not exists Solution (
-    solutionid integer primary key autoincrement,
-    name text not null
+    text text,
+    autograder text,
+    grade integer,
+    username text,
+    assignmentid text,
+    problemname text,
+    foreign key(username) references Student(username),
+    foreign key(problemname) references Problem(name),
+    foreign key(assignmentid) references Assignment(assignmentid),
+    primary key(username, assignmentid, problemname)
 )"""
 
 Submission = """\
 create table if not exists Submission (
-    submissionid integer primary key autoincrement,
-    name text not null
+    text text,
+    autograder text,
+    grade integer,
+    notes text,
+    hasdraft boolean,
+    username text,
+    assignmentid text,
+    foreign key(username) references Student(username),
+    foreign key(problemname) references Problem(name),
+    foreign key(assignmentid) references Assignment(assignmentid)
 )"""
 
 Comment = """\
 create table if not exists Comment (
     commentid integer primary key autoincrement,
     text text
+    problemname text,
+    assignmentid text,
+    foreign key(problemname) references Problem(name),
+    foreign key(assignmentid) references Assignment(assignmentid)
+)"""
+
+CommentSolution = """\
+create table if not exists CommentSolution (
+    id integer primary key autoincrement,
+    commentid integer,
+    username text,
+    assignmentid text,
+    problemname text,
+    foreign key(username) references Student(username),
+    foreign key(problemname) references Problem(name),
+    foreign key(assignmentid) references Assignment(assignmentid)
 )"""
 
 tables = [Student,
@@ -63,6 +93,7 @@ Assignment,
 Solution,
 Submission,
 Comment,
+CommentSolution
 ]
 
 def main():
@@ -75,7 +106,14 @@ def main():
     print("Creating guido tables...")
     for sql in tables:
         print("  creating", sql.split("\n")[0].split()[-2])
-        c.execute(sql)
+        try:
+            c.execute(sql)
+        except Exception as e:
+            print("*** exception!!! ***")
+            print(sql)
+            print(e)
+            print("failed!")
+            return
     print("ok done.")
 
     conn.commit()

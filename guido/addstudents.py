@@ -8,23 +8,26 @@ follows:
 <id>, <location>, 
 <lab section>, <lecture>, <last name>, <first>, <username>, <email suffix>
 """
-import sys
+import sys, sqlite3
 
 USAGE = "addstudents.py <filename>"
+THEDB = "guidodb" 
 
 def main():
 
     if len(sys.argv) != 2:
         print(USAGE)
         return
+    conn = sqlite3.connect(THEDB)
+    c = conn.cursor()
 
     file = open(sys.argv[1])
     #need to make sure file exists
-
     line = file.readline()
     print('Adding Students:\n')
 
     while(line != ''):
+        line = line.strip()
         vars = line.split(',')
         id = vars[0]
         location = vars[1]
@@ -34,11 +37,13 @@ def main():
         firstname = vars[5]
         username = vars[6]
         email = vars[7]
-        lab = lab[0:len(lab) -1]
-        print('', username, firstname, lastname, lab)
-        #need to insert into db 
+        student = (username, email, lecture, lab, "")
+        print(student)
+        c.execute('insert into Student values (?,?,?,?,?)',student)
         line = file.readline()
-
+        
+    conn.commit()
+    conn.close()
     file.close()
         
 if __name__ == "__main__": main()    

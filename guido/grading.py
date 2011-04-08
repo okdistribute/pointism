@@ -23,10 +23,13 @@ def index():
     # - what's the answer the student gave?
     # - what's the autograder output for that answer?
 
-    autograder=fakedata.autograder
+    autograder = fakedata.autograder
     studentsolution = fakedata.studentsolution
     existingcomment = fakedata.existingcomment
     prevcomments = fakedata.prevcomments
+
+    
+
 
     linenumbers = makelinenumbers(studentsolution)
     return template("gradeoneproblem",

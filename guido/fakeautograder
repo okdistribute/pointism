@@ -1,0 +1,21 @@
+Results for Assignment 10 
+
+2: insert: FAILED 
+   Test:     (insert < 6 '(1 3 5 7 9 11))
+   Expected: (1 3 5 6 7 9 11)
+   Actual:   (6 1 3 5 7 9 11)
+
+5.b: list-bst: FAILED
+   Test:  (list->bst > '())
+   Error: Exception in car: () is not a pair
+
+6.a: sort-by-weight: FAILED
+   Test:  (sort-by-weight
+  '((#\A 8) (#\B 7) (#\C 1) (#\D 2) (#\E 3) (#\F 4) (#\G 5)
+    
+   Error: Probable Infinite Loop
+
+Test Results
+   Passed: 6.
+   Failed: 3. 
+   Missing: 0. 
