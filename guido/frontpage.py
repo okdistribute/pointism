@@ -17,3 +17,6 @@ def assignment_notes():
 
 def gradeoneproblem():
     return template("gradeoneproblem")
+
+def startpage():
+    return template("startpage")
