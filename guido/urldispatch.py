@@ -49,3 +49,8 @@ def update_assignment_notes(name):
 @route('/gradeoneproblem')
 def gradeoneproblem():
     return frontpage.gradeoneproblem()
+
+@route('/startpage')
+def startpage():
+	return frontpage.startpage()
+	
