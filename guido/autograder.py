@@ -30,7 +30,7 @@ def build(grader_output):
     """Returns a list of autograder outputs, organized by
     problem. Each problem's output is a tuple that contains the
     problem number, the name of the problem, the result (failed or
-    passed), and any extra specifics the autograder outputted (test
+    passed), and any extra text the autograder outputted (test
     cases, for example)"""
     lines = grader_output.splitlines(True)
     l = len(lines)
@@ -46,43 +46,47 @@ def build(grader_output):
     number = None
     name = None
     result = None
-    specifics = ''
-    getting_specifics = 0
+    text = ''
+    getting_text = 0
 
     #for each line in lines, build the problem's output
     for line in lines:
         ids = pat.match(line)
         if ids:
-            #if we were getting specifics, we are done now.
-            if(getting_specifics == 1):
-                getting_specifics = 0
-                grader_problem = (number, name, result, specifics)
+            #if we were getting text, we are done now.
+            if(getting_text == 1):
+                getting_text = 0
+                grader_problem = (number, name, result, text)
                 built_output.append(grader_problem)
 
             #parse ids
             number = ids.group(1)
             name = ids.group(2)
-            result = ids.group(3)
-
-        else: #else we are getting specifics
+            if(ids.group(3) == "FAILED"):
+                result = 3
+            else:
+                result = 7
+        else: #else we are getting text
             if(line == '\n'):
                 line = '' #we dont want rogue newlines
-            if(getting_specifics == 1):
-                specifics += line 
+            if(getting_text == 1):
+                text += line 
             else:
-                specifics = line 
-                getting_specifics = 1
+                text = line 
+                getting_text = 1
 
     #finally, make sure to add the last one that was built.
-    grader_problem = (number, name, result, specifics)
+    grader_problem = (number, name, result, text)
     built_output.append(grader_problem)
     return built_output
 
 
 def get_autograder_results(assignment, path):
-    """Function that you should call. Takes an assignment ID and a path for a
-    student solution to that assignment. Returns a dictionary from problem IDs
-    to the autograder output for that problem."""
+    """Function that you should call. Takes an assignment ID and a path
+    for a student solution to that assignment. Returns a list
+    containing: problem #, problem name, 3 or 7 (default grade,
+    depending on a pass or fail), and the autograder text for each
+    problem."""
     output = runtests(assignment, path)
     return build(output)
 
