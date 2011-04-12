@@ -13,24 +13,27 @@ import sqlite3
 import autograder
 import parseassignment
 
-USAGE = "uploader.py <username> <assignment> <filename>"
+THEDB = "../guidodb"
+USAGE = "uploader.py <username> <assignment> <filename> [nodraft]"
 
-def get_question_id(db, assignment, key):
-    sql = """
-SELECT q.q_no FROM Questions q, Associated_with assoc, Assignment a
- WHERE  q.q_no = assoc.q_no
-   AND  assoc.s_no = a.s_no
-   AND  a.name = %s
-   AND  q.name = %s""" 
-    results = db.do_query(sql, (assignment, key))
-    if len(results) == 0:
-        print("Couldn't find assignment %s, question %s." % (assignment,key))
-        return None
-    q_no = results[0]['q_no']
-    return q_no
+def insert_submission(c, username, aid, hasdraft, text, autograder):
+    print("saving {1} for {0}.".format(username, aid))
+    sql = ("insert or replace into Submission "
+           "(text, autograder, username, assignmentid, hasdraft) "
+           "values (?, ?, ?, ?, ?)")
+    param = (text, autograder, username, aid, hasdraft)
+    c.execute(sql, param)
+
+def insert_solution(c, username, aid, problemname, text, autograder):
+    print("  ({0},{1},{2})".format(username,aid,problemname))
+    sql = ("insert or replace into Solution "
+           "(text, autograder, username, assignmentid, problemname) "
+           "values (?, ?, ?, ?, ?) ")
+    param = (text, autograder, username, aid, problemname)
+    c.execute(sql, param)
 
 def main():
-    if len(sys.argv) != 4:
+    if len(sys.argv) not in (4,5):
         print(USAGE)
         return
 
@@ -38,24 +41,24 @@ def main():
     assignment = sys.argv[2]
     filename = sys.argv[3]
 
+    hasdraft = True
+    if len(sys.argv) == 5:
+        hasdraft = sys.argv[4] is not "nodraft"
+
     #results = autograder.get_autograder_results(assignment, filename)
     results = autograder.fake_autograder_results(assignment, filename)
     answers = parseassignment.get_answers(filename)
-    db = mysql.DB()
+    text = open(filename, "r").read()
 
-    for key in list(answers.keys()):
-        print("inserting %s, question %s." % (assignment, key))
-        q_no = get_question_id(db, assignment, key)
-
-        if q_no is None:
-            print("skipping.")
-            continue
-
-        sql = ("INSERT INTO Answers "
-               "(q_no, student_id, text, autograder) "
-               "VALUES (%s, %s, %s, %s)")
-        param = (q_no, username, answers[key], results[key])
-        db.do_commit(sql, param)
-    db.close()
+    conn = sqlite3.connect(THEDB)
+    c = conn.cursor()
+    
+    insert_submission(c, username, assignment, hasdraft, text, "(none yet)")
+    conn.commit()
+    for key in answers.keys():
+        insert_solution(c, username, assignment, key,
+                        answers[key], results[key])
+        conn.commit()
+    c.close()
 
 if __name__ == "__main__": main()

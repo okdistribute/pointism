@@ -60,10 +60,9 @@ create table if not exists Submission (
     hasdraft boolean,
     username text,
     assignmentid text,
-    problemname text,
     foreign key(username) references Student(username),
-    foreign key(problemname) references Problem(name),
-    foreign key(assignmentid) references Assignment(assignmentid)
+    foreign key(assignmentid) references Assignment(assignmentid),
+    primary key(username, assignmentid)
 )"""
 
 Comment = """\
