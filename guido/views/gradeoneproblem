@@ -1,5 +1,4 @@
 %include header title='grading the problem'
-
   <!-- left -->
   <div class="student">
   <div class="code"><div class="linenumbers">{{linenumbers}}</div>{{source}}</div>
@@ -16,11 +15,13 @@
     <div class="code">{{autograder}}</div>
     <form method="POST" action="">
       <select name="grade">
-        <option selected="true" value="A">A</option>
-        <option value="B">B</option>
-        <option value="C">C</option>
-        <option value="D">D</option>
-        <option value="F">F</option>
+      % for grade in grades:
+      	% if default_grade == grade:
+	       <option value={{default_grade}} SELECTED>{{default_grade}}</option>
+	% else:
+	       <option value={{grade}}>{{grade}}</option>
+	% end
+      % end
       </select>
       <input type="submit" name="usenew" value="grade"/>
       <br/>

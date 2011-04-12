@@ -3,6 +3,7 @@
 from bottle import template
 
 import fakedata
+import autograder
 
 def makelinenumbers(text):
     """Given some text, generate line numbers to go on the left side of that
@@ -23,12 +24,10 @@ def index():
     # - what's the answer the student gave?
     # - what's the autograder output for that answer?
 
-    autograder = fakedata.autograder
+    autograder_output = fakedata.autograder
     studentsolution = fakedata.studentsolution
     existingcomment = fakedata.existingcomment
     prevcomments = fakedata.prevcomments
-
-    
 
 
     linenumbers = makelinenumbers(studentsolution)
@@ -37,7 +36,19 @@ def index():
                     existingcomment=existingcomment,
                     linenumbers=linenumbers,
                     prevcomments=prevcomments,
-                    autograder=autograder,
+                    autograder=autograder_output,
                     student=fakedata.student,
-                    assignment=fakedata.assignment)
+                    assignment=fakedata.assignment,
+                    default_grade=default_grade(), 
+                    grades=possible_grades())
 
+def possible_grades():
+    """Returns the possible grades (as a list of strings) for a given
+    assignment. For now, this always returns A-F."""
+    return  ("A", "B", "C", "D", "F")
+
+def default_grade():
+    """Returns the default grade as a string. For now, this always
+    returns "C". We will want this to return "A" if the autograder
+    output returns True (for passed); else, return "F"."""
+    return "C"

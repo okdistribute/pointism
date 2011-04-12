@@ -44,8 +44,11 @@ def see_assignment_notes():
 @route('/assignment_notes/update/:name', method='POST')
 def update_assignment_notes(name):
     return assignment_notes.notes_update(name)
-    
 
+@route('/grade')
+def grade():
+    return grading.index()
+    
 @route('/gradeoneproblem')
 def gradeoneproblem():
     return frontpage.gradeoneproblem()
