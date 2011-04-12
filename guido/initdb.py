@@ -60,6 +60,7 @@ create table if not exists Submission (
     hasdraft boolean,
     username text,
     assignmentid text,
+    problemname text,
     foreign key(username) references Student(username),
     foreign key(problemname) references Problem(name),
     foreign key(assignmentid) references Assignment(assignmentid)
@@ -68,7 +69,7 @@ create table if not exists Submission (
 Comment = """\
 create table if not exists Comment (
     commentid integer primary key autoincrement,
-    text text
+    text text,
     problemname text,
     assignmentid text,
     foreign key(problemname) references Problem(name),
@@ -88,9 +89,9 @@ create table if not exists CommentSolution (
 )"""
 
 tables = [Student,
-Problem,
 Assignment,
 Solution,
+Problem,
 Submission,
 Comment,
 CommentSolution
@@ -114,9 +115,8 @@ def main():
             print(e)
             print("failed!")
             return
+        conn.commit()
     print("ok done.")
-
-    conn.commit()
     c.close()
 
 if __name__ == "__main__": main()
