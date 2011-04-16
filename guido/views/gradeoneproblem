@@ -38,6 +38,8 @@
       <br/>
       <input  type="submit" name="useprevious"
              value="grade with selected comment"/>
+      <input  type="submit" name="editcomment"
+             value="edit selected comment"/>
     </form>
   </div>
 
