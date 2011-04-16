@@ -3,7 +3,6 @@
 from bottle import route
 from bottle import static_file
 from bottle import request
-import sqlite3
 
 """
 This module handles all of the URL dispatching for Guido, mapping from URLs to
@@ -13,9 +12,7 @@ the functions that will be called in response.
 import grading
 import frontpage
 import assignment_notes
-import sqlite3
 
-THEDB = 'guidodb'
 
 @route('/')
 def index():
@@ -48,12 +45,16 @@ def update_assignment_notes(name):
 @route('/grade')
 def grade():
     return grading.index()
-    
-@route('/gradeoneproblem')
-def gradeoneproblem():
-    return frontpage.gradeoneproblem()
+
+@route('/grade', method='POST')
+def grade_post():
+    return grading.index()
+
+@route('/grade/:assignment/:problemname')
+def grade_problem(assignment, problemname):
+    return grading.grade(assignment, problemname)
 
 @route('/startpage')
 def startpage():
-	return frontpage.startpage()
+    return frontpage.startpage()
 	

@@ -1,4 +1,4 @@
 <!-- description of buttons at http://css3buttons.michaelhenriksen.dk/-->
-    <a href="window.location='{{href}}'"
+    <a href="{{href}}"
          class="{{style}}" >{{title}}</a>
 

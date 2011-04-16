@@ -15,8 +15,6 @@ def pig():
 def assignment_notes():
     return template("assignment_notes")
 
-def gradeoneproblem():
-    return template("gradeoneproblem")
 
 def startpage():
     return template("startpage")
