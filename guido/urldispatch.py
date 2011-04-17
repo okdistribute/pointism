@@ -50,9 +50,9 @@ def grade():
 def grade_post():
     return grading.index()
 
-@route('/grade/:assignment/:problemname')
-def grade_problem(assignment, problemname):
-    return grading.grade(assignment, problemname)
+@route('/grade/:assignment/:problemname/:username')
+def grade_problem(username, assignment, problemname):
+    return grading.grade(username, assignment, problemname)
 
 @route('/startpage')
 def startpage():

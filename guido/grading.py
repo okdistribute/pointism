@@ -44,8 +44,8 @@ def index():
                     default_grade=default_grade(), 
                     grades=possible_grades())
 
-def grade(assignment, problemname):
-    solution = queries.get_solution("charles", assignment, problemname)
+def grade(username, assignment, problemname):
+    solution = queries.get_solution(username, assignment, problemname)
     if(solution == None):
         return "There is nothing to see here"
     
@@ -58,7 +58,7 @@ def grade(assignment, problemname):
         
     prevcomments = fakedata.prevcomments
     linenumbers = makelinenumbers(studentsolution)
-    commenttext = queries.get_comment("charles", assignment, problemname)
+    commenttext = queries.get_comment(username, assignment, problemname)
 
     return template("gradeoneproblem",
                     source=studentsolution,
