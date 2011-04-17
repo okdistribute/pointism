@@ -25,7 +25,12 @@
       </select>
       <input type="submit" name="usenew" value="grade"/>
       <br/>
-      <textarea name="comment" cols="60">{{existingcomment}}</textarea>
+
+      % if existingcomment is None:
+      <textarea name="comment" cols="60"></textarea>
+      % else:
+      <div class="existingcomment">{{existingcomment}}</div>
+      % end
 
       <p style="margin-bottom:0">Previously used comments:</p>
 

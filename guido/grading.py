@@ -5,9 +5,7 @@ from bottle import request
 
 import fakedata
 import autograder
-import sqlite3
-
-THEDB = 'guidodb'
+import queries
 
 def makelinenumbers(text):
     """Given some text, generate line numbers to go on the left side of that
@@ -47,12 +45,7 @@ def index():
                     grades=possible_grades())
 
 def grade(assignment, problemname):
-    conn = sqlite3.connect(THEDB)
-    c = conn.cursor()
-
-    sql = "SELECT * from Solution WHERE assignmentid='%s' AND problemname='%s'" % (assignment, problemname)
-    c.execute(sql)
-    solution = c.fetchone()
+    solution = queries.get_solution("charles", assignment, problemname)
     if(solution == None):
         return "There is nothing to see here"
     
@@ -63,16 +56,13 @@ def grade(assignment, problemname):
     hasdraft = solution[4]
     username = solution[5]
         
-    commentsql = "SELECT * from CommentSolution WHERE assignmentid='%s' AND problemname='%s' AND username='%s'" % (assignment, problemname, username)
-    c.execute(commentsql)
-    existingcomment = c.fetchone()
-
     prevcomments = fakedata.prevcomments
     linenumbers = makelinenumbers(studentsolution)
+    commenttext = queries.get_comment("charles", assignment, problemname)
 
     return template("gradeoneproblem",
                     source=studentsolution,
-                    existingcomment=existingcomment,
+                    existingcomment=commenttext,
                     linenumbers=linenumbers,
                     prevcomments=prevcomments,
                     autograder=autograder_output,

@@ -25,6 +25,11 @@ div.grading {
   padding-left: 1em;
 }
 
+div.existingcomment {
+  color: black;
+  background-color: #ddd;
+  margin-right: 1em;
+}
 
 div.grading textarea {
   max-width: 95%;
