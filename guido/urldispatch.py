@@ -12,6 +12,7 @@ the functions that will be called in response.
 import grading
 import frontpage
 import assignment_notes
+import specific_problem
 
 
 @route('/')
@@ -49,6 +50,14 @@ def grade():
 @route('/grade', method='POST')
 def grade_post():
     return grading.index()
+
+@route('/specific_assignment')
+def specific_post():
+    return specific_problem.specific_assignment()
+
+@route('/specific_assignment/pick_problem', method='POST')
+def specific_problem_choice():
+    return specific_problem.specific_problem_choice()
 
 @route('/grade/:assignment/:problemname/:username')
 def grade_problem(username, assignment, problemname):

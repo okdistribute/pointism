@@ -38,3 +38,29 @@ def get_comment(student, assignment, problem):
             return existingcomment[0]
         else:
             return None
+
+
+
+def get_assignments():
+    with sqlite3.connect(THEDB) as conn:
+        c = conn.cursor()
+        assignment_sql = "select assignmentid from Assignment"
+        c.execute(assignment_sql)
+        assignments = c.fetchall()
+        stripped = []
+        for ass in assignments:
+            stripped.append(ass[0])
+        return stripped
+
+def get_problems(assignment):
+    with sqlite3.connect(THEDB) as conn:
+        c = conn.cursor()
+        sql = """select problemid from Problem inner join Assignment on
+                 Problem.assignment=Assignment.assignmentid where
+                 Assignment.assignmentid=?"""
+        c.execute(sql,(assignment,))
+        all_problems = c.fetchall()
+        stripped = []
+        for problem in all_problems:
+            stripped.append(problem[0])
+        return stripped
