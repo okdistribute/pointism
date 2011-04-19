@@ -54,10 +54,21 @@
 
     <table width="300" border="0">
     <tr>
+    % if prevstudent != None:
     <a href="/grade/{{assignment}}/{{problem}}/{{prevstudent}}"
          class="left pill button" >Previous Student</a>
+    % end
+    % if nextstudent != None:
     <a href="/grade/{{assignment}}/{{problem}}/{{nextstudent}}"
          class="right pill button" >Next Student</a>
+    % end
+    <br><br>
+    </tr>
+    <tr>
+    <a href="/specific_assignment"
+         class="pill button" >Pick a new assignment</a> &nbsp;
+    <a href="/specific_assignment/{{assignment}}"
+         class="pill button" >Pick a new problem</a> 
     </tr>
     </table>
 %include footer

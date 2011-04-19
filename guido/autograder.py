@@ -7,7 +7,7 @@ database.
 The format is assumed to be in the following style:
 
 <problem number>.<optional subnumbers>: <problem-name>: <result>
-      <result specifics....>
+      <text....>
 
 The script parses each output between this form, records a pass or
 fail, and enters that information into the database. It also saves the

@@ -45,7 +45,7 @@ def insert_solution(c, username, aid, problemname, text, autograder):
 
 def insert_problem(c, name, aid):
     print("creating problem ({0}, {1})".format(aid, name))
-    sql = ("insert or replace into Problem "
+    sql = ("insert or ignore into Problem "
            "(name, assignmentid, problemtext, notes) "
            "values (?, ?, ?, ?) ")
     param = (name, aid, "(unknown)", "(none)")

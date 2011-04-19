@@ -4,12 +4,15 @@ from bottle import template
 from bottle import request
 from bottle import redirect
 
+import sqlite3
 import fakedata
 import autograder
 import queries
 import sqlite3
 
 THEDB="guidodb"
+
+THEDB = "guidodb"
 
 def makelinenumbers(text):
     """Given some text, generate line numbers to go on the left side of that

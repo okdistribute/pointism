@@ -17,7 +17,7 @@ import queries
 
 @route('/')
 def index():
-    return frontpage.frontpage()
+    return frontpage.startpage()
 
 @route('/static/:filename')
 def server_static(filename):
