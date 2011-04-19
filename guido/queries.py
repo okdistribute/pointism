@@ -68,6 +68,21 @@ def get_problems(assignment):
             stripped.append(problem[0])
         return stripped
 
+def get_first_student(assignment, problemname):
+    """Returns the first student, by alpha order, who submitted an assignment
+    and problemname."""
+    with sqlite3.connect(THEDB) as conn:
+        c = conn.cursor()
+        sql = """select username from Solution
+                  where assignmentid=?
+                  and problemname=?
+                  order by username asc"""
+        c.execute(sql, (assignment, problemname))
+        result = c.fetchone()
+        if result:
+            return result[0]
+        return None
+
 def get_usernames(assignment, problemname):
     """Returns all usernames from a given assignment and problemname, that
     is all usernames that have submitted an answer."""

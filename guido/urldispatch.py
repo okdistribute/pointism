@@ -13,7 +13,7 @@ import grading
 import frontpage
 import assignment_notes
 import specific_problem
-
+import queries
 
 @route('/')
 def index():
@@ -59,7 +59,8 @@ def specific_problem_choice(aid):
 @route('/specific_assignment/:aid', method='POST')
 def specific_problem_choice(aid):
     problemname = request.POST.get('problem','').strip()
-    redirect("/grade/%s/%s/%s" % (aid, problemname, 'bob'));
+    first = queries.get_first_student(aid, problemname)
+    redirect("/grade/%s/%s/%s" % (aid, problemname, first));
 
 @route('/grade/:assignment/:problemname/:username')
 def grade_problem(username, assignment, problemname):
