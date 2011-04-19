@@ -12,6 +12,8 @@ import sqlite3
 THEDB = 'guidodb'
 
 def get_solution(student, assignment, problem):
+    """Returns the solution associated with the given student's assignment
+    and problem name"""
     with sqlite3.connect(THEDB) as conn:
         c = conn.cursor()
         sql = """select * from Solution
@@ -39,9 +41,8 @@ def get_comment(student, assignment, problem):
         else:
             return None
 
-
-
 def get_assignments():
+    """Returns all the assignmentids as a list, from the assignments in the db"""
     with sqlite3.connect(THEDB) as conn:
         c = conn.cursor()
         assignment_sql = "select assignmentid from Assignment"
@@ -53,14 +54,31 @@ def get_assignments():
         return stripped
 
 def get_problems(assignment):
+    """Returns all the problems that have been submitted for a given assignment"""
     with sqlite3.connect(THEDB) as conn:
         c = conn.cursor()
-        sql = """select problemid from Problem inner join Assignment on
-                 Problem.assignment=Assignment.assignmentid where
+        sql = """select name from Problem inner join Assignment on
+                 Problem.assignmentid=Assignment.assignmentid where
                  Assignment.assignmentid=?"""
         c.execute(sql,(assignment,))
         all_problems = c.fetchall()
+
         stripped = []
         for problem in all_problems:
             stripped.append(problem[0])
         return stripped
+
+def get_usernames(assignment, problemname):
+    """Returns all usernames from a given assignment and problemname, that
+    is all usernames that have submitted an answer."""
+    with sqlite3.connect(THEDB) as conn:
+        c = conn.cursor()
+        sql = """select username from Solution
+                  where assignmentid=?
+                  and problemname=?"""
+        c.execute(sql, (assignment, problemname))
+        usernames = c.fetchall()
+        stripped = []
+        for name in usernames:
+            stripped.append(name[0])
+        return sorted(stripped)
