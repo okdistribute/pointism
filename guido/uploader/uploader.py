@@ -22,7 +22,16 @@ def insert_submission(c, username, aid, hasdraft, text, autograder):
            "(text, autograder, username, assignmentid, hasdraft) "
            "values (?, ?, ?, ?, ?)")
     param = (text, autograder, username, aid, hasdraft)
+    insert_assignment(c, aid)
     c.execute(sql, param)
+
+def insert_assignment(c, assignmentid):
+    print("creating assignment {0}.".format(assignmentid))
+    sql = ("insert or ignore into Assignment "
+           "(assignmentid, notes) "
+           "values (?, ?) ")
+    param = (assignmentid, "(none)")
+    c.execute(sql,param)
 
 def insert_solution(c, username, aid, problemname, text, autograder):
     print("  ({0},{1},{2})".format(username,aid,problemname))
