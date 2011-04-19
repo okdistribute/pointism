@@ -52,21 +52,12 @@
 
   <br/>
 
-  <py:if test="final_grade">
     <table width="300" border="0">
     <tr>
-    <py:if test="final_grade.get_prev()">
-    %include button href='/grading/?student=prev_student()&amp;assignment=assignment&amp;problem=problem', style='left pill button', title='Previous Student'
-
-<!-- old <button type="button" onclick="window.location='../grading/?student=${final_grade.get_prev()}&amp;assignment=${assignment}&amp;problem=${problem}'" >&lt;&lt; Previous student </button> -->
-    </py:if>
-
-    <py:if test="final_grade.get_next()">
-    %include button href='../grading/?student=final_grade.get_next()&amp;assignment=assignment&amp;problem=problem', style='right pill button', title='Next Student'
-<!-- old <button type="button"  onclick="window.location='../grading/?student=${final_grade.get_next()}&amp;assignment=${assignment}&amp;problem=${problem}'" > Next student &gt;&gt;</button> -->
-    </py:if>
+    <a href="/grade/{{assignment}}/{{problem}}/{{prevstudent}}"
+         class="left pill button" >Previous Student</a>
+    <a href="/grade/{{assignment}}/{{problem}}/{{nextstudent}}"
+         class="right pill button" >Next Student</a>
     </tr>
     </table>
-  </py:if>
-
 %include footer

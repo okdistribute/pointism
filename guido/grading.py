@@ -2,6 +2,7 @@
 
 from bottle import template
 from bottle import request
+from bottle import redirect
 
 import fakedata
 import autograder
@@ -17,40 +18,19 @@ def makelinenumbers(text):
     numbers = "\n".join(map(str, range(1, nlines+1)))
     return numbers
 
-def index():
-    # Template for grading a single problem wants to know...
-    # - is this a get or a post? ie, did you just commit a grade for a problem?
-    # - if you've graded this problem previously, what's the current grade? (look
-    #   that up in the database)
-    # - otherwise, what's the default grade? if autograder output is correct,
-    # then default to A, else F.
-    # - if you've graded this problem previously, what were the comments you
-    #   gave? (text that you pulled for a specific comment id in the database.)
-    # - what's the answer the student gave?
-    # - what's the autograder output for that answer?
-
-    studentsolution = fakedata.studentsolution
-    autograder_output = fakedata.autograder
-    existingcomment = fakedata.existingcomment
-    prevcomments = fakedata.prevcomments
-
-    linenumbers = makelinenumbers(studentsolution)    
-
-    return template("gradeoneproblem",
-                    source=studentsolution,
-                    existingcomment=existingcomment,
-                    linenumbers=linenumbers,
-                    prevcomments=prevcomments,
-                    autograder=autograder_output,
-                    student=fakedata.student,
-                    assignment=fakedata.assignment,
-                    default_grade=default_grade(), 
-                    grades=possible_grades())
+def find_prev_next(students, current):
+    """Out of a list of students, return the previous student and next student
+    relative to the current student, out of the list of who turned in the
+    current problem."""
+    index = students.index(current)
+    prevstudent = students[index - 1] if index != 0 else None
+    nextstudent = students[index + 1] if index != (len(students) - 1) else None
+    return (prevstudent, nextstudent)
 
 def grade(username, assignment, problemname):
     solution = queries.get_solution(username, assignment, problemname)
     if(solution == None):
-        return "There is nothing to see here"
+        redirect('/specific_assignment/' + assignment)
     studentsolution = solution[0]
     autograder_output = solution[1]
     grade = solution[2]
@@ -58,6 +38,9 @@ def grade(username, assignment, problemname):
     prevcomments = fakedata.prevcomments
     linenumbers = makelinenumbers(studentsolution)
     commenttext = queries.get_comment(username, assignment, problemname)
+
+    students = queries.get_usernames(assignment, problemname)
+    p,n = find_prev_next(students, username)
 
     return template("gradeoneproblem",
                     source=studentsolution,
@@ -67,6 +50,9 @@ def grade(username, assignment, problemname):
                     autograder=autograder_output,
                     student=username,
                     assignment=assignment,
+                    problem=problemname,
+                    nextstudent=n,
+                    prevstudent=p,
                     default_grade=get_grade(username, assignment, problemname), 
                     grades=possible_grades())
 

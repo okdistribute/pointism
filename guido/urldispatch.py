@@ -45,11 +45,11 @@ def update_assignment_notes(name):
 
 @route('/grade')
 def grade():
-    return grading.index()
+    redirect('/specific_assignment')
 
 @route('/grade', method='POST')
 def grade_post():
-    return grading.index()
+    redirect('/specific_assignment')
 
 @route('/specific_assignment')
 def specific_post():
