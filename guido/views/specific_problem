@@ -25,7 +25,7 @@ form{
  	       <option value={{assignment}}>{{assignment}}</option>
       % end
       </select>
-      <input type="submit" name="usenew" value="select"/>
+      <input type="submit" value="select"/>
       <br/>
 </form>
 </div>

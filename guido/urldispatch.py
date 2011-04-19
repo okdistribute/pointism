@@ -2,7 +2,7 @@
 
 from bottle import route
 from bottle import static_file
-from bottle import request
+from bottle import request, redirect
 
 """
 This module handles all of the URL dispatching for Guido, mapping from URLs to
@@ -56,11 +56,27 @@ def specific_post():
     return specific_problem.specific_assignment()
 
 @route('/specific_assignment/pick_problem', method='POST')
-def specific_problem_choice():
-    return specific_problem.specific_problem_choice()
+def picked_assignment():
+    aid = request.POST.get('assignment','').strip()
+    redirect("/specific_assignment/%s" % aid)
+    
+@route('/specific_assignment/:aid')
+def specific_problem_choice(aid):
+    return specific_problem.specific_problem_choice(aid)
+
+@route('/specific_assignment/:aid', method='POST')
+def specific_problem_choice(aid):
+    problemname = request.POST.get('problem','').strip()
+    redirect("/grade/%s/%s/%s" % (aid, problemname, 'bob'));
 
 @route('/grade/:assignment/:problemname/:username')
 def grade_problem(username, assignment, problemname):
+    return grading.grade(username, assignment, problemname)
+
+@route('/grade/:assignment/:problemname/:username', method='POST')
+def grade_problem(username, assignment, problemname):
+    grade = request.POST.get('grade','').strip()
+    grading.insert_problem_grade(grade, username, assignment, problemname)
     return grading.grade(username, assignment, problemname)
 
 @route('/startpage')
