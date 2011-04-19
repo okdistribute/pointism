@@ -39,7 +39,17 @@ def insert_solution(c, username, aid, problemname, text, autograder):
            "(text, autograder, username, assignmentid, problemname) "
            "values (?, ?, ?, ?, ?) ")
     param = (text, autograder, username, aid, problemname)
+    if(problemname != None):
+        insert_problem(c, problemname, aid)
     c.execute(sql, param)
+
+def insert_problem(c, name, aid):
+    print("creating problem ({0}, {1})".format(aid, name))
+    sql = ("insert or replace into Problem "
+           "(name, assignmentid, problemtext, notes) "
+           "values (?, ?, ?, ?) ")
+    param = (name, aid, "(unknown)", "(none)")
+    c.execute(sql,param)
 
 def main():
     if len(sys.argv) not in (4,5):
