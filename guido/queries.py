@@ -8,6 +8,7 @@ queries.get_foo(username, assignment, problem)
 """
 
 import sqlite3
+import sort_probs
 
 THEDB = 'guidodb'
 
@@ -66,7 +67,8 @@ def get_problems(assignment):
         stripped = []
         for problem in all_problems:
             stripped.append(problem[0])
-        return stripped
+        this = sort_probs.sort_prob(stripped)
+        return this
 
 def get_first_student(assignment, problemname):
     """Returns the first student, by alpha order, who submitted an assignment
