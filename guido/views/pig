@@ -1,6 +1,0 @@
-%include header title="Pig"
-
-<h1>Hello Pig</h1>
-<p> This is a page about a pig.</p>
-
-%include footer

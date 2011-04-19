@@ -19,14 +19,6 @@ import specific_problem
 def index():
     return frontpage.frontpage()
 
-@route('/cow')
-def meet_mr_cow():
-    return frontpage.cow()
-
-@route('/pig')
-def see_pig():
-    return frontpage.pig()
-
 @route('/static/:filename')
 def server_static(filename):
     return static_file(filename, root='static')
@@ -82,4 +74,3 @@ def grade_problem(username, assignment, problemname):
 @route('/startpage')
 def startpage():
     return frontpage.startpage()
-	

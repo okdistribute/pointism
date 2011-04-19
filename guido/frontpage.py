@@ -6,15 +6,8 @@ from bottle import route
 def frontpage():
     return template("frontpage")
 
-def cow():
-    return template("cow")
-
-def pig():
-    return template("pig")
-
 def assignment_notes():
     return template("assignment_notes")
-
 
 def startpage():
     return template("startpage")
