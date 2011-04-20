@@ -10,8 +10,6 @@ import autograder
 import queries
 import sqlite3
 
-THEDB="guidodb"
-
 THEDB = "guidodb"
 
 def makelinenumbers(text):
@@ -71,6 +69,26 @@ def insert_problem_grade(grade, username, assignment, problemname):
     conn.commit()
     c.close()
 
+def insert_problem_comment(comment, username, assignment, problemname):
+    conn = sqlite3.connect(THEDB)
+    c = conn.cursor()
+    print("inserting comment {0} for {1}".format(comment, username))
+    sql = ("insert into Comment "
+           "(text, problemname, assignmentid) "
+           "values (?, ?, ?) ")
+    param = (comment, problemname, assignment)
+    c.execute(sql, param)
+    conn.commit()
+
+    commentid = c.lastrowid
+    sql = ("insert into CommentSolution "
+           "(commentid, username, assignmentid, problemname) "
+           "values (?, ?, ?, ?) ")
+    param = (commentid, username, assignment, problemname)
+    c.execute(sql, param)
+    conn.commit()
+    c.close()
+
 class Problem:
     def __init__(self, source, grade):
         self.source = source
@@ -82,9 +100,7 @@ def grade_assignment(assignment, username):
     for problem in query:
         problems.append(Problem(problem[0],problem[1]))
 
-    print(problems)
     prevcomments = fakedata.prevcomments
-
     students = queries.who_turned_in(assignment)
     p,n = find_prev_next(students, username)
 
