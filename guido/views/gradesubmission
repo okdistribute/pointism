@@ -54,13 +54,7 @@
       <input  type="submit" name="editcomment"
              value="edit selected comment"/>
     </form>
-    </div>
-  </div>
-
-  <br clear="all"/>
-
-  <br/>
-
+<br>
     <table width="300" border="0">
     <tr>
     % if prevstudent != None:
@@ -74,4 +68,11 @@
     <br><br>
     </tr>
     </table>
+    </div>
+  </div>
+
+  <br clear="all"/>
+
+  <br/>
+
 %include footer
