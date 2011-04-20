@@ -180,7 +180,7 @@ select.prevcomments {
     border-top: 1px solid #ccb;
     font-size: x-small;
 }
-#byline p { color: #999; margin: 0; }
+#byline p { color: #000; margin: 0; }
 
 .crclass  A:link {text-decoration: none; color: black; }
 .crclass  A:visited {text-decoration: none; color: black; }

@@ -148,9 +148,7 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* this changes the background
 <center><a href="#"> <h1> Grade </h1> </a></center>
 </div>
   </div>
- <center><div class="legalstuff">
-   &copy; Copyright 2011, &nbsp;  Trustees of Indiana University 
- </div></center> 
+
 </body>
 </html>
 
