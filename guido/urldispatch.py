@@ -66,6 +66,10 @@ def specific_problem_choice(aid):
 def grade_problem(username, assignment, problemname):
     return grading.grade(username, assignment, problemname)
 
+@route('/grade/:assignment/:username')
+def grade_assignment(assignment, username):
+    return grading.grade_assignment(assignment, username)
+
 @route('/grade/:assignment/:problemname/:username', method='POST')
 def grade_problem(username, assignment, problemname):
     grade = request.POST.get('grade','').strip()

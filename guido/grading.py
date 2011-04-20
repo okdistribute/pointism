@@ -71,8 +71,34 @@ def insert_problem_grade(grade, username, assignment, problemname):
     conn.commit()
     c.close()
 
-def next_student():
-    return ""
+class Problem:
+    def __init__(self, source, grade):
+        self.source = source
+        self.grade = grade
+
+def grade_assignment(assignment, username):
+    problems = []
+    query = queries.get_graded_problems(assignment, username)
+    for problem in query:
+        problems.append(Problem(problem[0],problem[1]))
+
+    print(problems)
+    prevcomments = fakedata.prevcomments
+
+    students = queries.who_turned_in(assignment)
+    p,n = find_prev_next(students, username)
+
+    return template("gradesubmission",
+                    problems=problems,
+                    prevstudent=p,
+                    nextstudent=n,
+                    student=username,
+                    assignment=assignment,
+                    commenttext="",
+                    grades=possible_grades(),
+                    default_grade="C",
+                    existingcomment=None,
+                    prevcomments=prevcomments)
 
 def possible_grades():
     """Returns the possible grades (as a list of strings) for a given
