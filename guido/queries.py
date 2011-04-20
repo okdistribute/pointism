@@ -99,3 +99,30 @@ def get_usernames(assignment, problemname):
         for name in usernames:
             stripped.append(name[0])
         return sorted(stripped)
+
+def who_turned_in(assignment):
+    """Returns all usernames from a given assignment, that
+    is all usernames that have a submission."""
+    with sqlite3.connect(THEDB) as conn:
+        c = conn.cursor()
+        sql = """select username from Submission
+                  where assignmentid=?"""
+        c.execute(sql, (assignment,))
+        usernames = c.fetchall()
+        stripped = []
+        for name in usernames:
+            stripped.append(name[0])
+        return sorted(stripped)
+
+def get_graded_problems(assignment, username):
+    """Returns a joined list of the solutions & grades for all
+    graded problems for a given assignment and username"""
+    with sqlite3.connect(THEDB) as conn:
+        c = conn.cursor()
+        sql = """select text, grade from Solution
+                 where assignmentid=?
+                 and username=?"""
+                
+        c.execute(sql, (assignment, username))
+        request = c.fetchall()
+        return request
