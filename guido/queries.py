@@ -114,15 +114,24 @@ def who_turned_in(assignment):
             stripped.append(name[0])
         return sorted(stripped)
 
+def one_who_turned_in(assignment):
+    """Returns all usernames from a given assignment, that
+    is all usernames that have a submission."""
+    with sqlite3.connect(THEDB) as conn:
+        c = conn.cursor()
+        sql = """select username from Submission
+                  where assignmentid=?"""
+        c.execute(sql, (assignment,))
+        return c.fetchone()[0]
+
 def get_graded_problems(assignment, username):
-    """Returns a joined list of the solutions & grades for all
+    """Returns a joined list of the solutions, grades, and comments for all
     graded problems for a given assignment and username"""
     with sqlite3.connect(THEDB) as conn:
         c = conn.cursor()
         sql = """select text, grade from Solution
                  where assignmentid=?
                  and username=?"""
-                
         c.execute(sql, (assignment, username))
         request = c.fetchall()
         return request
