@@ -97,9 +97,9 @@ def grade_problem(username, assignment, problemname):
     """inserts a problem grade (when there's been a post) and routes back
     to the same page"""
     grade = request.POST.get('grade','').strip()
-    grading.insert_problem_grade(grade, username, assignment, problemname)
+    queries.insert_problem_grade(grade, username, assignment, problemname)
     comment = request.POST.get('comment','').strip()
-    grading.insert_problem_comment(comment, username, assignment, problemname)
+    queries.insert_problem_comment(comment, username, assignment, problemname)
     return grading.grade(username, assignment, problemname)
 
 @route('/startpage')
