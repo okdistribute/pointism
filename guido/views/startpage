@@ -132,7 +132,7 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* this changes the background
   <div class="sidebar1">
     <ul class="nav">
       <li><a href="specific_assignment"><b>Grade</b> Specific Problem</a></li>
-      <li><a href="#"><b>Grade</b> Whole Submission</a></li>
+      <li><a href="specific_submission"><b>Grade</b> Whole Submission</a></li>
       <li><a href="#"><b>Edit</b> Assignment Notes</a></li>
       <li><a href="#"><b>Edit</b> Problem Notes</a></li>
       <li><a href="#"><b>View </b> Submissions </a></li>
