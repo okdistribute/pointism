@@ -168,3 +168,12 @@ def insert_problem_comment(comment, username, assignment, problemname):
     conn.commit()
     c.close()
 
+def get_assignment_notes(assignment):
+    with sqlite3.connect(THEDB)as conn:
+        c = conn.cursor()
+        sql = """select notes from Assignment
+                 where assignmentid=?"""
+        c.execute(sql, (assignment,))
+        request = c.fetchone()
+        return request[0]
+
