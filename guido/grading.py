@@ -42,7 +42,7 @@ def grade(username, assignment, problemname):
 
     students = queries.get_usernames(assignment, problemname)
     p,n = find_prev_next(students, username)
-
+    
     return template("gradeoneproblem",
                     source=studentsolution,
                     existingcomment=commenttext,
@@ -62,7 +62,7 @@ class Problem:
         self.source = source
         self.grade = grade
 
-def grade_assignment(assignment, username):
+def submissionbyproblem(assignment, username):
     problems = []
     query = queries.get_graded_problems(assignment, username)
     for problem in query:
@@ -72,7 +72,7 @@ def grade_assignment(assignment, username):
     students = queries.who_turned_in(assignment)
     p,n = find_prev_next(students, username)
 
-    return template("gradesubmission",
+    return template("gradesubmissionbyproblem",
                     problems=problems,
                     prevstudent=p,
                     nextstudent=n,

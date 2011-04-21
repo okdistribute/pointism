@@ -37,25 +37,25 @@ def update_assignment_notes(name):
 
 @route('/grade')
 def grade():
-    redirect('/specific_assignment')
+    redirect('/specific_problem')
 
 @route('/grade', method='POST')
 def grade_post():
-    redirect('/specific_assignment')
+    redirect('/specific_problem')
 
-@route('/specific_assignment')
+@route('/specific_problem')
 def specific_post():
     return specific_problem.specific_assignment()
 
-@route('/specific_assignment/pick_problem', method='POST')
+@route('/specific_problem/pick_problem', method='POST')
 def picked_assignment():
     """Called after the user has picked an assignment to grade"""
     aid = request.POST.get('assignment','').strip()
-    redirect("/specific_assignment/%s" % aid)
+    redirect("/specific_problem/%s" % aid)
     
-@route('/specific_assignment/:aid')
+@route('/specific_problem/:aid')
 def specific_problem_choice(aid):
-    """Called after the user has picked an assignment to grade"""
+    """Routed to after the user has picked an assignment to grade"""
     return specific_problem.specific_problem_choice(aid)
 
 @route('/specific_submission')
@@ -72,7 +72,7 @@ def specific_submission():
     first = queries.one_who_turned_in(aid)
     redirect("/grade/%s/%s" % (aid, first))
 
-@route('/specific_assignment/:aid', method='POST')
+@route('/specific_problem/:aid', method='POST')
 def specific_problem_choice(aid):
     """Called after the user has picked an assignment and problem to
     grade. Redirects to grade/aid/problemname/username"""
@@ -87,10 +87,10 @@ def grade_problem(username, assignment, problemname):
     return grading.grade(username, assignment, problemname)
 
 @route('/grade/:assignment/:username')
-def grade_assignment(assignment, username):
+def grade_submission_with_graded_problem_table(assignment, username):
     """Routes the user to the grading an assignment page for and
-    assignment, username"""
-    return grading.grade_assignment(assignment, username)
+    assignment, username, assuming the problems have been graded"""
+    return grading.submissionbyproblem(assignment, username)
 
 @route('/grade/:assignment/:problemname/:username', method='POST')
 def grade_problem(username, assignment, problemname):
@@ -101,6 +101,14 @@ def grade_problem(username, assignment, problemname):
     comment = request.POST.get('comment','').strip()
     queries.insert_problem_comment(comment, username, assignment, problemname)
     return grading.grade(username, assignment, problemname)
+
+@route('/grade/whole/:assignment/:username')
+def grade_whole_submissions(assignment, username):
+    return grading.whole_submission(assignment, username)
+
+@route('/grade/whole/:assignment/:username', method='POST')
+def grade_whole_submissions(assignment, username):
+    return grading.whole_submission(assignment, username)
 
 @route('/startpage')
 def startpage():
