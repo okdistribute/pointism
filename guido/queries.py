@@ -151,10 +151,13 @@ def insert_problem_grade(grade, username, assignment, problemname):
 def insert_problem_comment(comment, username, assignment, problemname):
     conn = sqlite3.connect(THEDB)
     c = conn.cursor()
-    if comment == "":
-        return;
+    ##check to make sure we won't get 'None' comments
     if comment == None:
         return;
+    ##check to make sure comments that contain just whitespace won't get added
+    if comment.replace(" ","") == "":
+        return;
+
     print("inserting comment {0} for {1}".format(comment, username))
     sql = ("insert into Comment "
            "(text, problemname, assignmentid) "
@@ -162,7 +165,8 @@ def insert_problem_comment(comment, username, assignment, problemname):
     param = (comment, problemname, assignment)
     c.execute(sql, param)
     conn.commit()
-
+    
+    ##insert into commentsolution now
     commentid = c.lastrowid
     sql = ("insert into CommentSolution "
            "(commentid, username, assignmentid, problemname) "
