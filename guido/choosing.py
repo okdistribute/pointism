@@ -13,4 +13,9 @@ def specific_problem_choice(aid):
 
 def specific_submission():
     return template("specific_submission",assignments=queries.get_assignments())
-    
+
+def submission_report():
+    return template("specific_report",assignments = queries.get_assignments())
+
+def submission_report_choice(aid):
+    return template("specific_report_choice",usernames = queries.who_turned_in(aid))

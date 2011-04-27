@@ -1,0 +1,32 @@
+%include header title="Assignment Selection"
+<head>
+<style type="text/css">
+body{
+}
+form{
+    width:200px;
+	margin:0 auto;
+}
+#box{
+	width:400px;
+	text-align:center;
+	background-color:#ccc;
+	margin:0 auto;
+	margin-top:50px;
+	padding:100px 0;
+}
+</style>
+</head>
+<div id="box">
+<h2>Choose Student Report to View</h2>
+<form method="POST" >
+      <select name="username">
+      % for username in usernames:
+ 	       <option value={{username}}>{{username}}</option>
+      % end
+      </select>
+      <input type="submit" value="select"/>
+      <br/>
+</form>
+</div>
+%include footer

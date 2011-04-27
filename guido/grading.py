@@ -12,21 +12,6 @@ import model
 
 THEDB = "guidodb"
 
-def makelinenumbers(text):
-    """Given some text, generate line numbers to go on the left side of that
-    text. Output is a string with newlines in it."""
-    nlines = text.count("\n")
-    numbers = "\n".join(map(str, range(1, nlines+1)))
-    return numbers
-
-def find_prev_next(students, current):
-    """Out of a list of students, return the previous student and next student
-    relative to the current student, out of the list of who turned in the
-    current problem."""
-    index = students.index(current)
-    prevstudent = students[index - 1] if index != 0 else None
-    nextstudent = students[index + 1] if index != (len(students) - 1) else None
-    return (prevstudent, nextstudent)
 
 def grade(username, assignment, problemname):
     solution = queries.get_solution(username, assignment, problemname)
@@ -53,27 +38,16 @@ def grade(username, assignment, problemname):
                     student=username,
                     assignment=assignment,
                     problem=problemname,
-                    nextstudent=n,
+                     nextstudent=n,
                     prevstudent=p,
                     default_grade=get_grade(username, assignment, problemname), 
                     grades=possible_grades())
-
-class Problem:
-    def __init__(self, source, grade):
-        self.source = source
-        self.grade = grade
-
-def comments_firstline(list_of_prevcommenttext):
-    prevcomments = list( map( lambda pair: model.Comment(pair[0],pair[1]),
-                              zip(range(len(list_of_prevcommenttext)),
-                                  list_of_prevcommenttext)) )
-    return prevcomments
 
 def submissionbyproblem(assignment, username):
     problems = []
     query = queries.get_graded_problems(assignment, username)
     for problem in query:
-        problems.append(Problem(problem[0],problem[1]))
+        problems.append(ProblemGrade(problem[0],problem[1]))
 
     prevcomments = fakedata.prevcomments
     students = queries.who_turned_in(assignment)
@@ -91,6 +65,22 @@ def submissionbyproblem(assignment, username):
                     existingcomment=None,
                     past_comments=queries.get_all_past_comments(),
                     prevcomments=prevcomments)
+
+def submission_report(assignment, username):
+    problems = []
+    query = queries.get_report(assignment, username)
+    for problem in query:
+        problems.append(ProblemReport(problem[0],problem[1],problem[2]))
+
+    students = queries.who_turned_in(assignment)
+    p,n = find_prev_next(students, username)
+
+    return template("submissionreport",
+                    problems=problems,
+                    prevstudent=p,
+                    nextstudent=n,
+                    student=username,
+                    assignment=assignment)
 
 def possible_grades():
     """Returns the possible grades (as a list of strings) for a given
@@ -116,3 +106,37 @@ def get_grade(username, assignment, problemname):
         return possible_grades()[(len(possible_grades()) - grade) + 2]
     else: 
         return grade
+
+class ProblemGrade:
+    def __init__(self, source,grade):
+        self.source = source
+        self.grade = grade
+
+class ProblemReport:
+    def __init__(self, source, comment, autograder):
+        self.source = source
+        self.comment = comment
+        self.autograder = autograder
+
+
+def comments_firstline(list_of_prevcommenttext):
+    prevcomments = list( map( lambda pair: model.Comment(pair[0],pair[1]),
+                              zip(range(len(list_of_prevcommenttext)),
+                                  list_of_prevcommenttext)) )
+    return prevcomments
+
+def makelinenumbers(text):
+    """Given some text, generate line numbers to go on the left side of that
+    text. Output is a string with newlines in it."""
+    nlines = text.count("\n")
+    numbers = "\n".join(map(str, range(1, nlines+1)))
+    return numbers
+
+def find_prev_next(students, current):
+    """Out of a list of students, return the previous student and next student
+    relative to the current student, out of the list of who turned in the
+    current problem."""
+    index = students.index(current)
+    prevstudent = students[index - 1] if index != 0 else None
+    nextstudent = students[index + 1] if index != (len(students) - 1) else None
+    return (prevstudent, nextstudent)

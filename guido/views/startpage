@@ -9,7 +9,7 @@
 <!--
 body {
 	font: 100%/1.4  Georgia, "Times New Roman", Times, serif;
-	background: #838383;
+	background: #FFFFFF;
 	margin: 0;
 	padding: 0;
 	color: #000;
@@ -70,8 +70,7 @@ a:hover, a:active, a:focus {
 	margin-top: 180px;
 	width: 200px;
 	background: #838383;
-	margin-left: 400px;
-	
+	margin-left: 400px;	
 }
 
 .legalstuff {
@@ -133,15 +132,23 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* this changes the background
     <ul class="nav">
       <li><a href="/specific_problem"><b>Grade</b> Specific Problem</a></li>
       <li><a href="/specific_submission"><b>Grade</b> Submission by Problem</a></li>
-      <li><a href="/whole_submission"><b>Grade</b> Whole Submission</a></li>
+      <li><a href="#"><b>Grade</b> Whole Submission</a></li>
+      </ul>
+    <ul class="nav">
+      <li><a href="/specific_report"><b>View </b> Reports </a></li>
+      <li><a href="#"><b>View </b> Statistics </a></li>
+    </ul>
+    <ul class="nav">
       <li><a href="/assignment_notes"><b>Edit</b> Assignment Notes</a></li>
       <li><a href="#"><b>Edit</b> Problem Notes</a></li>
-      <li><a href="#"><b>View </b> Submissions </a></li>
+</ul>
+     <ul class="nav">
+      <li><a href="#"><b>Send </b> Reports </a></li>
     </ul>
     <p>
 </div>
   <div class="content"  >
-   <center> <h1> Guido </h1> </center><br>
+   <center> <h1> <br>Guido is for grading</h1> </center><br>
    <hr>
    </div>
 

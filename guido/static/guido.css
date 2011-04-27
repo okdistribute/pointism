@@ -59,7 +59,29 @@ div.codesearchbox {
   width: 45%;
 }
 
+.reportTable {
+padding: 2px 4px 2px 4px;
+border: 1px solid #660000;
+width: 100%;
+}
 
+.reportTable td {
+border: 1px solid #660000;
+width: 33%;
+}
+
+.reportTable h2 {
+  text-align: center;
+  margin: 0px 0px 0px 0px;
+  background-color: grey;
+}
+
+div.report {
+  font-family: 'Droid Sans Mono', arial, serif;
+  margin-bottom: 1em;
+  font-size: 10pt;
+  white-space: pre-wrap;
+}
 
 select.prevcomments {
   max-width: 95%;
@@ -108,6 +130,7 @@ select.prevcomments {
  padding: 0;
  margin: 0;
 }
+
 
 
 #header hr { display: none }
