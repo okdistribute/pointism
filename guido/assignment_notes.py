@@ -12,7 +12,7 @@ def notes_update(name):
     c.execute('update assignment set notes=? where assignmentid=?', update_data)
     conn.commit()
     conn.close()
-    return "Assignment notes for assignment " + name + " have been updated to '" + query + "'"
+    return template("content", title="Success!", content="Assignment notes for assignment " + name + " have been updated to '" + query + "'")
 
 def notes_edit():
     query = request.POST.get('query', '').strip()

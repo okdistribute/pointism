@@ -69,6 +69,10 @@ width: 800px;
 	margin-left: 80px;
 }
 
+.content a {
+	 color: #000fff;
+}
+
 .gradebutton {
 	margin-top: 180px;
 	width: 200px;
@@ -135,18 +139,18 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* this changes the background
     <ul class="nav">
       <li><a href="/specific_problem"><b>Grade</b> Specific Problem</a></li>
       <li><a href="/specific_submission"><b>Grade</b> Submission by Problem</a></li>
-      <li><a href="#"><b>Grade</b> Whole Submission</a></li>
+      <li><a href="/none"><b>Grade</b> Whole Submission</a></li>
       </ul>
     <ul class="nav">
       <li><a href="/specific_report"><b>View </b> Reports </a></li>
-      <li><a href="#"><b>View </b> Statistics </a></li>
+      <li><a href="/none"><b>View </b> Statistics </a></li>
     </ul>
     <ul class="nav">
       <li><a href="/assignment_notes"><b>Edit</b> Assignment Notes</a></li>
-      <li><a href="#"><b>Edit</b> Problem Notes</a></li>
+      <li><a href="/none"><b>Edit</b> Problem Notes</a></li>
 </ul>
      <ul class="nav">
-      <li><a href="#"><b>Send </b> Reports </a></li>
+      <li><a href="/none"><b>Send </b> Reports </a></li>
     </ul>
     <p>
 </div>

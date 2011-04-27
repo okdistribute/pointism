@@ -3,6 +3,7 @@
 from bottle import route
 from bottle import static_file
 from bottle import request, redirect
+from bottle import template
 
 """
 This module handles all of the URL dispatching for Guido, mapping from URLs to
@@ -160,3 +161,7 @@ def grade_post():
 @route('/startpage')
 def startpage():
     return frontpage.startpage()
+
+@route('/none')
+def unsupported():
+    return template("unsupported")

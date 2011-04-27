@@ -1,12 +1,9 @@
-%include header title="Assignment Notes Edit"
+%rebase layout title="Edit Assignment Notes"
 
-<h1>Assignment {{assignment_name}} Notes Edit</h1>
-<p>Notes</p>
+<h2>{{assignment_name}} Notes</h2>
 <form action="/assignment_notes/update/{{assignment_name}}" method="post">
 	<textarea rows="10" cols="30" name="query">
 {{notes_edit}}
 	</textarea>
 	<input type="submit" />
 </form>
-
-%include footer
