@@ -1,4 +1,5 @@
-%include header title='grading the submission'
+%include gradeheader title='grading the submission', past_comments=past_comments
+
   <!-- left -->
   <div class="student">
   <div class="code">
@@ -35,7 +36,7 @@
       <br/>
 
       % if existingcomment is None:
-      <textarea name="comment" cols="60"></textarea>
+      <textarea id="comment" name="comment" cols="60"></textarea>
       % else:
       <div class="existingcomment">{{existingcomment}}</div>
       % end

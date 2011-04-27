@@ -146,7 +146,7 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* this changes the background
    </div>
 
 <div class="gradebutton">
-<center><a href="/specific_assignment"> <h1> Grade </h1> </a></center>
+<center><a href="/specific_problem"> <h1> Grade </h1> </a></center>
 </div>
   </div>
 

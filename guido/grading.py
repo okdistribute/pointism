@@ -47,6 +47,7 @@ def grade(username, assignment, problemname):
                     source=studentsolution,
                     existingcomment=commenttext,
                     linenumbers=linenumbers,
+                    past_comments=queries.get_all_past_comments(),
                     prevcomments=prevcomments,
                     autograder=autograder_output,
                     student=username,
@@ -82,6 +83,7 @@ def submissionbyproblem(assignment, username):
                     grades=possible_grades(),
                     default_grade="C",
                     existingcomment=None,
+                    past_comments=queries.get_all_past_comments(),
                     prevcomments=prevcomments)
 
 def possible_grades():

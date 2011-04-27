@@ -1,4 +1,5 @@
-%include header title='grading the problem'
+%include gradeheader title='grading the problem', past_comments=past_comments
+
   <!-- left -->
   <div class="student">
   <div class="code"><div class="linenumbers">{{linenumbers}}</div>{{source}}</div>
@@ -13,7 +14,7 @@
   <!-- right -->
   <div class="grading">
     <div class="code">{{autograder}}</div>
-    <form method="POST" action="">
+    <form method="POST" action="" autocomplete="off">
       <select name="grade">
       % for grade in grades:
       	% if default_grade == grade:
@@ -27,7 +28,7 @@
       <br/>
 
       % if existingcomment is None:
-      <textarea name="comment" cols="60"></textarea>
+      <textarea id="comment" name="comment" cols="60"></textarea>
       % else:
       <div class="existingcomment">{{existingcomment}}</div>
       % end
@@ -65,9 +66,9 @@
     <br><br>
     </tr>
     <tr>
-    <a href="/specific_assignment"
+    <a href="/specific_problem"
          class="pill button" >Pick a new assignment</a> &nbsp;
-    <a href="/specific_assignment/{{assignment}}"
+    <a href="/specific_problem/{{assignment}}"
          class="pill button" >Pick a new problem</a> 
     </tr>
     </table>
