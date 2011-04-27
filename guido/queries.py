@@ -158,16 +158,24 @@ def insert_problem_comment(comment, username, assignment, problemname):
     if comment.replace(" ","") == "":
         return;
 
-    print("inserting comment {0} for {1}".format(comment, username))
-    sql = ("insert into Comment "
-           "(text, problemname, assignmentid) "
-           "values (?, ?, ?) ")
-    param = (comment, problemname, assignment)
-    c.execute(sql, param)
-    conn.commit()
+    sql = """select commentid, text from Comment 
+           where text=?"""
+    c.execute(sql, (comment,))
+    request = c.fetchone()
+    #if this will be a duplicate comment, use the original commentid 
+    if request != None:
+        commentid = request[0]
+    else: #else, insert a new comment, and commentid is the last row added.
+        print("inserting comment {0} for {1}".format(comment, username))
+        sql = ("insert into Comment "
+               "(text, problemname, assignmentid) "
+               "values (?, ?, ?) ")
+        param = (comment, problemname, assignment)
+        c.execute(sql, param)
+        conn.commit()
+        commentid = c.lastrowid
     
     ##insert into commentsolution now
-    commentid = c.lastrowid
     sql = ("insert into CommentSolution "
            "(commentid, username, assignmentid, problemname) "
            "values (?, ?, ?, ?) ")
@@ -188,7 +196,7 @@ def get_assignment_notes(assignment):
 def get_all_past_comments():
     with sqlite3.connect(THEDB) as conn:
         c = conn.cursor()
-        sql=  """Select C.text from Comment C 
+        sql=  """SELECT DISTINCT C.text from Comment C 
                  left join CommentSolution CS, Solution S   
                  where S.assignmentid=CS.assignmentid
                  and S.username=CS.username
@@ -200,3 +208,17 @@ def get_all_past_comments():
         for c in comments:
             stripped.append(c[0])
         return stripped
+
+def get_report(assignment, username):
+    """Returns a list of solution, comment, and autograder"""
+    with sqlite3.connect(THEDB) as conn:
+        c = conn.cursor()
+        sql=  """Select S.text, C.text, S.autograder 
+                 from Solution S
+                 left join CommentSolution CS, Comment C   
+                 where S.assignmentid=? and S.username=?
+                 and S.username=CS.username
+                 and C.commentid=CS.commentid
+                 and C.problemname=S.problemname"""
+        c.execute(sql, (assignment, username))
+        return c.fetchall()

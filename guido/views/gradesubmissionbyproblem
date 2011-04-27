@@ -11,7 +11,7 @@
         {{problem.source}}
         </td>
         <td>
-        {{problem.grade}}
+        {{problem.value}}
         </td>
       </tr>
     %end

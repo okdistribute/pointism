@@ -37,7 +37,7 @@
 
       <select name="prevcomments" class="prevcomments" size="3">
       % for comment in prevcomments:
-        <option value="{{comment.commentid}}">{{comment.firstline}}</option>
+        <option value="{{past_comments[comment.commentid]}}">{{comment.firstline}}</option>
       % end
       </select>
 
