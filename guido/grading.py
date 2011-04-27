@@ -4,11 +4,11 @@ from bottle import template
 from bottle import request
 from bottle import redirect
 
-import sqlite3
 import fakedata
 import autograder
 import queries
 import sqlite3
+import model
 
 THEDB = "guidodb"
 
@@ -36,7 +36,7 @@ def grade(username, assignment, problemname):
     autograder_output = solution[1]
     grade = solution[2]
 
-    prevcomments = fakedata.prevcomments
+    fullprevcomments = queries.get_all_past_comments()
     linenumbers = makelinenumbers(studentsolution)
     commenttext = queries.get_comment(username, assignment, problemname)
 
@@ -47,8 +47,8 @@ def grade(username, assignment, problemname):
                     source=studentsolution,
                     existingcomment=commenttext,
                     linenumbers=linenumbers,
-                    past_comments=queries.get_all_past_comments(),
-                    prevcomments=prevcomments,
+                    past_comments=fullprevcomments,
+                    prevcomments=comments_firstline(fullprevcomments),
                     autograder=autograder_output,
                     student=username,
                     assignment=assignment,
@@ -62,6 +62,12 @@ class Problem:
     def __init__(self, source, grade):
         self.source = source
         self.grade = grade
+
+def comments_firstline(list_of_prevcommenttext):
+    prevcomments = list( map( lambda pair: model.Comment(pair[0],pair[1]),
+                              zip(range(len(list_of_prevcommenttext)),
+                                  list_of_prevcommenttext)) )
+    return prevcomments
 
 def submissionbyproblem(assignment, username):
     problems = []
