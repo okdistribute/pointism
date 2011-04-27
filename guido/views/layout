@@ -1,15 +1,14 @@
-%include header title="Guido is for grading"
+%include header title="Guido"
 
 <!DOCTYPE HTML>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Guido</title>
 <style type="text/css">
 <!--
 body {
 	font: 100%/1.4  Georgia, "Times New Roman", Times, serif;
-	background: #bbf;
+	background: #DDDDDD;
 	margin: 0;
 	padding: 0;
 	color: #000;
@@ -42,11 +41,12 @@ a:hover, a:active, a:focus {
 width: 800px;
 }
 
-.container {
-	width:1000px;
-        height: 500px;
-	background: #FFFFFF;
+.container {        
+	width: 50%;
+        height: 80%;
+	background: #bbf;
 	margin: 100px 100px 100px 100px;
+	padding: 10px 10px 10px 10px;
 	overflow: hidden;
 	border: 1px solid #fff;
 	position: center;
@@ -57,21 +57,18 @@ width: 800px;
 	margin-top: 100px;
 	float: left;
 	width: 220px;
-	background: #FFFFFF;
+	background: #bbf;
 	padding-bottom: 10px;
 }
 .content {
-
+         
 	padding: 0px;
 	width: 400px;
-	background: #FFFFFF;
+	background: #bbf;
 	float: left;
 	margin-left: 80px;
 }
 
-.content a {
-	 color: #000fff;
-}
 
 .gradebutton {
 	margin-top: 180px;
@@ -96,7 +93,7 @@ width: 800px;
 /* ~~ The navigation list styles (can be removed if you choose to use a premade flyout menu like Spry) ~~ */
 ul.nav {
 	list-style: none; /* this removes the list marker */
-	border-top: 1px solid #fff; /* this creates the top border for the links - all others are placed using a bottom border on the LI */
+	border-top: 1px solid #000000; /* this creates the top border for the links - all others are placed using a bottom border on the LI */
 	margin-bottom: 15px; /* this creates the space between the navigation on the content below */
 }
 ul.nav li {
@@ -154,7 +151,7 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* this changes the background
     </ul>
     <p>
 </div>
-  <div class="content" >
+  <div class="content">
    <center> <h1> <br>{{title}}</h1> </center>
    <hr>
 %include<br>
