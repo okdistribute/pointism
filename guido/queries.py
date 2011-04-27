@@ -177,7 +177,7 @@ def insert_problem_comment(comment, username, assignment, problemname):
     c.close()
 
 def get_assignment_notes(assignment):
-    with sqlite3.connect(THEDB)as conn:
+    with sqlite3.connect(THEDB) as conn:
         c = conn.cursor()
         sql = """select notes from Assignment
                  where assignmentid=?"""
@@ -185,3 +185,18 @@ def get_assignment_notes(assignment):
         request = c.fetchone()
         return request[0]
 
+def get_all_past_comments():
+    with sqlite3.connect(THEDB) as conn:
+        c = conn.cursor()
+        sql=  """Select C.text from Comment C 
+                 left join CommentSolution CS, Solution S   
+                 where S.assignmentid=CS.assignmentid
+                 and S.username=CS.username
+                 and C.commentid=CS.commentid
+                 and S.problemname=CS.problemname"""
+        c.execute(sql)
+        comments = c.fetchall()
+        stripped = []
+        for c in comments:
+            stripped.append(c[0])
+        return stripped
