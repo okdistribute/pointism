@@ -151,6 +151,10 @@ def insert_problem_grade(grade, username, assignment, problemname):
 def insert_problem_comment(comment, username, assignment, problemname):
     conn = sqlite3.connect(THEDB)
     c = conn.cursor()
+    if comment == "":
+        return;
+    if comment == None:
+        return;
     print("inserting comment {0} for {1}".format(comment, username))
     sql = ("insert into Comment "
            "(text, problemname, assignmentid) "
