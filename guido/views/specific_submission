@@ -1,24 +1,7 @@
-%include header title="Assignment Selection"
-<head>
-<style type="text/css">
-body{
-}
-form{
-    width:200px;
-	margin:0 auto;
-}
-#box{
-	width:400px;
-	text-align:center;
-	background-color:#ccc;
-	margin:0 auto;
-	margin-top:50px;
-	padding:100px 0;
-}
-</style>
-</head>
+%rebase layout title="Grade Submission by Problem"
+%include choiceheader
 <div id="box">
-<h2>Choose Assignment to Grade</h2>
+<h2>Assignment Selection</h2>
 <form method="POST" action="/specific_submission">
       <select name="assignment">
       % for assignment in assignments:
@@ -29,4 +12,4 @@ form{
       <br/>
 </form>
 </div>
-%include footer
+

@@ -49,7 +49,8 @@ def submissionbyproblem(assignment, username):
     for problem in query:
         problems.append(ProblemGrade(problem[0],problem[1]))
 
-    prevcomments = fakedata.prevcomments
+    fullprevcomments = queries.get_all_past_comments()
+
     students = queries.who_turned_in(assignment)
     p,n = find_prev_next(students, username)
 
@@ -63,8 +64,8 @@ def submissionbyproblem(assignment, username):
                     grades=possible_grades(),
                     default_grade="C",
                     existingcomment=None,
-                    past_comments=queries.get_all_past_comments(),
-                    prevcomments=prevcomments)
+                    past_comments=fullprevcomments,
+                    prevcomments=comments_firstline(fullprevcomments))
 
 def submission_report(assignment, username):
     problems = []
