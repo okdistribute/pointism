@@ -10,6 +10,7 @@ div.code {
   margin-bottom: 1em;
   font-size: 10pt;
   white-space: pre-wrap;
+position:relative;
 }
 
 div.linenumbers {
@@ -21,17 +22,18 @@ div.linenumbers {
 div.grading {
   background-color: #bbf;
   float: right;
-  width: 45%;
+  width: 100%;
   padding-left: 1em;
   marigin-top: 20px;
+  marigin-right: 20px;
 }
 
 div.gradingWrapper {
-  left: 0px;
+  left: 55%;
   position: fixed;
-  width: 99%;
-  marigin-top:25px;
-  marigin-bottom:25px;
+  width: 45%;
+  margin-bottom:25px;
+  float: left;
 }
 
 div.existingcomment {

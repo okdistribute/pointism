@@ -67,6 +67,35 @@ def submissionbyproblem(assignment, username):
                     past_comments=fullprevcomments,
                     prevcomments=comments_firstline(fullprevcomments))
 
+def whole_submission(assignment, username):
+    solution = queries.get_submission(username, assignment)
+    if(solution == None):
+        redirect('/specific_assignment/' + assignment)
+    studentsolution = solution[0]
+    autograder_output = solution[1]
+    grade = solution[2]
+
+    fullprevcomments = queries.get_all_past_comments()
+    linenumbers = makelinenumbers(studentsolution)
+
+    students = queries.who_turned_in(assignment)
+    p,n = find_prev_next(students, username)
+    
+    return template("gradesubmission",
+                    source=studentsolution,
+                    existingcomments=queries.get_all_comments(username, assignment),
+                    linenumbers=linenumbers,
+                    past_comments=fullprevcomments,
+                    prevcomments=comments_firstline(fullprevcomments),
+                    autograder=autograder_output,
+                    student=username,
+                    assignment=assignment,
+                    nextstudent=n,
+                    prevstudent=p,
+                    default_grade="A",
+                    grades=possible_grades())
+
+
 def submission_report(assignment, username):
     problems = []
     query = queries.get_report(assignment, username)

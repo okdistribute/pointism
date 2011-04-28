@@ -25,6 +25,19 @@ def get_solution(student, assignment, problem):
         solution = c.fetchone()
         return solution
 
+def get_submission(student, assignment):
+    """Returns the solution associated with the given student's assignment
+    and problem name"""
+    with sqlite3.connect(THEDB) as conn:
+        c = conn.cursor()
+        sql = """select * from Submission
+                 where username=?
+                   and assignmentid=?"""
+        c.execute(sql, (student,assignment))
+        submission = c.fetchone()
+        return submission
+
+
 def get_comment(student, assignment, problem):
     """Returns the text associated with the given student's solution to a
     problem, or None if none is set."""
@@ -41,6 +54,23 @@ def get_comment(student, assignment, problem):
             return existingcomment[0]
         else:
             return None
+
+def get_all_comments(student, assignment):
+    """Returns the text associated with the given student's solution to a
+    problem, or None if none is set."""
+    with sqlite3.connect(THEDB) as conn:
+        c = conn.cursor()
+        commentsql = """select C.text from Comment C,CommentSolution CS
+                         where CS.assignmentid=?
+                           and CS.username=?
+                           and CS.commentid = C.commentid"""
+        c.execute(commentsql, (assignment,student))
+        comments = c.fetchall()
+        stripped = []
+        for c in comments:
+            stripped.append(c[0])
+        return stripped
+        
 
 def get_assignments():
     """Returns all the assignmentids as a list, from the assignments in the db"""

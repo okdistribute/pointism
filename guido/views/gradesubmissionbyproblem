@@ -22,7 +22,7 @@
   <!-- right -->
   <div class="gradingWrapper">
     <div class="grading">
-    <form method="POST" action="">
+    <form method="POST" action="" autocomplete="off">
       <select name="grade">
       % for grade in grades:
       	% if default_grade == grade:

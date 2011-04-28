@@ -1,0 +1,104 @@
+%include gradeheader title='grading a submission', past_comments=past_comments
+<head>
+<script>
+function getSelectedText() {
+    if (window.getSelection) {
+        return window.getSelection();
+    }
+    else if (document.selection) {
+        return document.selection.createRange().text;
+    }
+    return '';
+}
+
+jQuery(function() {
+    // Bind the click handler of some button on your page
+    jQuery('#moveOver').click(function(evt) {
+        // Insert the selected text into a given textarea
+        var textarea = jQuery('#gradedCode');
+        textarea.val(getSelectedText());
+        evt.preventDefault();
+    });
+});
+</script>
+</head>
+
+  <!-- left -->
+  <div class="student">
+  <div class="code"><div class="linenumbers">{{linenumbers}}</div> {{source}}</div>
+    <form method="GET" action="/guido/codesearch/">
+    <input type="hidden" name="student" value="{{student}}"/>
+    <input type="hidden" name="assignment" value="{{assignment}}"/>
+    <input name="query" type="textbox" /> 
+    <a href="#" class="primary pill button">Search code</a>
+    </form>
+  </div>
+
+  <!-- right -->
+  <div class="gradingWrapper">
+    <div class="grading">
+    <div class="code">{{autograder}}</div>
+    <div class="code" id="gradedCode"></div>
+    <form method="POST" action="" autocomplete="off">
+      <select name="grade">
+      % for grade in grades:
+      	% if default_grade == grade:
+	       <option value={{default_grade}} SELECTED>{{default_grade}}</option>
+	% else:
+	       <option value={{grade}}>{{grade}}</option>
+	% end
+      % end
+      </select>
+      <input type="submit" name="usenew" value="grade"/>
+      <br/>
+
+      <textarea id="comment" name="comment" cols="60"></textarea>
+
+      <p style="margin-bottom:0">Previously used comments:</p>
+
+      <select name="prevcomments" class="prevcomments" size="3">
+      % for comment in prevcomments:
+        <option value="{{past_comments[comment.commentid]}}">{{comment.firstline}}</option>
+      % end
+      </select>
+      <br/>
+      <input  type="submit" name="useprevious"
+             value="grade with selected comment"/>
+      <input  type="submit" name="editcomment"
+             value="edit selected comment"/>
+    </form>
+      <p style="margin-bottom:0">Existing comments:</p>
+      <div class="existingcomment">
+      % for comment in existingcomments:
+        {{comment}}<br>
+      % end
+      </div>	
+      <br />
+    <table width="300" border="0">
+    <tr>
+    % if prevstudent != None:
+    <a href="/grade_whole/{{assignment}}/{{prevstudent}}"
+         class="left pill button" >Previous Student</a>
+    % end
+    % if nextstudent != None:
+    <a href="/grade_whole/{{assignment}}/{{nextstudent}}"
+         class="right pill button" >Next Student</a>
+    % end
+    <br><br>
+    </tr>
+    <tr>
+    <a href="/specific_problem"
+         class="pill button" >Pick a new assignment</a> &nbsp;
+    <a href="/specific_problem/{{assignment}}"
+         class="pill button" >Pick a new problem</a> 
+    </tr>
+    </table>
+  </div>
+</div>
+
+  <br clear="all"/>
+
+  <br/>
+
+
+%include footer

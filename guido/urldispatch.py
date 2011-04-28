@@ -39,18 +39,23 @@ def grade_submission_with_graded_problem_table(assignment, username):
 def grade_problem(username, assignment, problemname):
     """inserts a problem grade (when there's been a post) and routes back
     to the same page"""
-    grade = request.POST.get('grade','').strip()
+    grade = request.forms.get('grade')
     queries.insert_problem_grade(grade, username, assignment, problemname)
-    comment = request.POST.get('comment','').strip()
+    comment = request.forms.get('comment')
     queries.insert_problem_comment(comment, username, assignment, problemname)
     return grading.grade(username, assignment, problemname)
 
-@route('/grade/whole/:assignment/:username')
+@route('/grade_whole/:assignment/:username')
 def grade_whole_submissions(assignment, username):
     return grading.whole_submission(assignment, username)
 
-@route('/grade/whole/:assignment/:username', method='POST')
+@route('/grade_whole/:assignment/:username', method='POST')
 def grade_whole_submissions(assignment, username):
+    grade = request.forms.get('grade')
+    queries.insert_problem_grade(grade, username, assignment, None)
+    comment = request.forms.get('comment')
+    selectedtext=""
+    queries.insert_problem_comment(comment, username, assignment, None)
     return grading.whole_submission(assignment, username)
 
 #############################################################
@@ -156,6 +161,7 @@ def grade_post():
 #########
 # other #
 #########
+
 
 @route('/startpage')
 def startpage():

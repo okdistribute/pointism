@@ -137,7 +137,7 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* this changes the background
     <ul class="nav">
       <li><a href="/specific_problem"><b>Grade</b> Specific Problem</a></li>
       <li><a href="/specific_submission"><b>Grade</b> Submission by Problem</a></li>
-      <li><a href="/none"><b>Grade</b> Whole Submission</a></li>
+      <li><a href="/grade_whole/a3/boris"><b>Grade</b> Whole Submission</a></li>
       </ul>
     <ul class="nav">
       <li><a href="/specific_report"><b>View </b> Reports </a></li>
