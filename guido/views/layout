@@ -42,8 +42,8 @@ width: 800px;
 }
 
 .container {        
-	width: 50%;
-        height: 80%;
+	width: 90%;
+        height: 100%;
 	background: #bbf;
 	margin: 100px 100px 100px 100px;
 	padding: 10px 10px 10px 10px;
@@ -63,7 +63,6 @@ width: 800px;
 .content {
          
 	padding: 0px;
-	width: 400px;
 	background: #bbf;
 	float: left;
 	margin-left: 80px;

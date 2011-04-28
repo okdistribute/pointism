@@ -1,2 +1,2 @@
-%rebase layout title='Guido is for grading'
-<br><br><center><a href="/specific_problem"> Grade a Problem  </a></center>
+%rebase layout title='Guido Is For Grading'
+<br><br><center><h2><a href="/specific_problem"> Grade  </a></h2></center>

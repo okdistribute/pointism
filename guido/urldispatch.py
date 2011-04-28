@@ -13,7 +13,6 @@ the functions that will be called in response.
 import grading
 import frontpage
 import assignment_notes
-import choosing
 import queries
 
 @route('/')
@@ -60,7 +59,7 @@ def grade_whole_submissions(assignment, username):
 
 @route('/specific_report')
 def submission_report():
-    return choosing.submission_report()
+    return frontpage.submission_report()
 
 @route('/specific_report/pick_username', method='POST')
 def picked_assignment():
@@ -70,7 +69,7 @@ def picked_assignment():
 
 @route('/specific_report/:assignment')
 def submission_report(assignment):
-    return choosing.submission_report_choice(assignment)
+    return frontpage.submission_report_choice(assignment)
 
 @route('/specific_report/:assignment', method='POST')
 def submission_report(assignment):
@@ -105,7 +104,7 @@ def update_assignment_notes(name):
 def specific_submission():
     """Called after the user has picked that they want to grade a
     whole submission"""
-    return choosing.specific_submission()
+    return frontpage.specific_submission()
 
 @route('/specific_submission', method='POST')
 def specific_submission():
@@ -121,7 +120,7 @@ def specific_submission():
 
 @route('/specific_problem')
 def specific_post():
-    return choosing.specific_assignment()
+    return frontpage.specific_assignment()
 
 @route('/specific_problem/pick_problem', method='POST')
 def picked_assignment():
@@ -132,7 +131,7 @@ def picked_assignment():
 @route('/specific_problem/:aid')
 def specific_problem_choice(aid):
     """Routed to after the user has picked an assignment to grade"""
-    return choosing.specific_problem_choice(aid)
+    return frontpage.specific_problem_choice(aid)
 
 @route('/specific_problem/:aid', method='POST')
 def specific_problem_choice(aid):

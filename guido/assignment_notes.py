@@ -21,7 +21,6 @@ def notes_edit():
     else:
         conn = sqlite3.connect(THEDB)
         c = conn.cursor()
-        query = request.POST.get('query','').strip()
         c.execute('select notes from assignment where assignmentid ="%s"' % query)
         if len(c.fetchall()) == 0:
             return "Cannot find assignment named %s." % query
