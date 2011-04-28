@@ -93,10 +93,12 @@ width: 800px;
 ul.nav {
 	list-style: none; /* this removes the list marker */
 	border-top: 1px solid #000000; /* this creates the top border for the links - all others are placed using a bottom border on the LI */
+	border-bottom: 1px solid #000; /* this creates the top border for the links - all others are placed using a bottom border on the LI */
 	margin-bottom: 15px; /* this creates the space between the navigation on the content below */
 }
 ul.nav li {
-	border-bottom: 1px solid #fff; /* this creates the button separation */
+/*  border-top: 1px solid #fff; this creates the button separation */	
+/*  border-bottom: 1px solid #fff;  this creates the button separation */
 }
 ul.nav a, ul.nav a:visited { /* grouping these selectors makes sure that your links retain their button look even after being visited */
 	padding: 5px 5px 5px 15px;
