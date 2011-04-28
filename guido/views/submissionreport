@@ -1,4 +1,4 @@
-%include header title='submission report for' + ' ' + student + ' , ' + assignment
+%rebase layout title='submission report for' + ' ' + student + ' , ' + assignment
 
   <!-- left -->
   <h1> {{student}}</h1><h2>{{assignment}}</h2>
@@ -43,4 +43,4 @@
 
   <br/>
 
-%include footer
+

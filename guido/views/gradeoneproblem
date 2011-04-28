@@ -12,6 +12,7 @@
   </div>
 
   <!-- right -->
+<div class="gradingWrapper">
   <div class="grading">
     <div class="code">{{autograder}}</div>
     <form method="POST" action="" autocomplete="off">
@@ -47,12 +48,7 @@
       <input  type="submit" name="editcomment"
              value="edit selected comment"/>
     </form>
-  </div>
-
-  <br clear="all"/>
-
-  <br/>
-
+<br /><br>
     <table width="300" border="0">
     <tr>
     % if prevstudent != None:
@@ -72,4 +68,10 @@
          class="pill button" >Pick a new problem</a> 
     </tr>
     </table>
+  </div>
+</div>
+  <br clear="all"/>
+
+  <br/>
+
 %include footer

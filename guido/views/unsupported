@@ -1,4 +1,3 @@
 %rebase layout title="Sorry"
-<br><center><h3>Unsupported Link.</h3>
+<br><h3>Unsupported Link.</h3>
 <a href="http://code.google.com/p/iucs-guido/" target="_blank">Implement it!</a>
-</center>

@@ -1,7 +1,4 @@
 %rebase layout title="Assignment Notes"
-%include choiceheader
-
-<div id="box">
 <h2>Assignment Selection</h2>
 <form method="POST" action="/assignment_notes/edit">
       <select name="query">
@@ -12,5 +9,4 @@
       <input type="submit" value="select"/>
       <br/>
 </form>
-</div>
 

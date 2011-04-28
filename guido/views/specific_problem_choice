@@ -1,5 +1,4 @@
 %rebase layout title="Grade Specific Problem"
-%include choiceheader
 <div id="box">
 <h2>Problem Selection</h2>
 <form method="POST" action="">

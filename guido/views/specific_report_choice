@@ -1,5 +1,5 @@
 %rebase layout title="View Reports"
-%include choiceheader
+
 <div id="box">
 <h2>Choose Student Report to View</h2>
 <form method="POST" >

@@ -5,7 +5,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
-<!--
 body {
 	font: 100%/1.4  Georgia, "Times New Roman", Times, serif;
 	background: #DDDDDD;
@@ -28,10 +27,10 @@ a img {
 
 
 a:link {
-	color: #fff;
+	color: #000;
 }
 a:visited {
-	color: #fff;
+	color: #000;
 }
 a:hover, a:active, a:focus { 
 	text-decoration: none;
@@ -42,38 +41,51 @@ width: 800px;
 }
 
 .container {        
+	position: absolute;
 	width: 90%;
-        height: 100%;
-	background: #bbf;
-	margin: 100px 100px 100px 100px;
-	padding: 10px 10px 10px 10px;
-	overflow: hidden;
+        height: 80%;
+	background: #fff;
+	margin: 50px;
+	overflow: auto;
 	border: 1px solid #fff;
-	position: center;
 }
 
 
 .sidebar1 {
-	margin-top: 100px;
-	float: left;
-	width: 220px;
-	background: #bbf;
-	padding-bottom: 10px;
+	position: fixed;
+	margin: 10px 0px 10px 0px;
+	width: 17%;
+	margin-left: 10px;
+	border-style: dashed;
+	border-color: #bbf;
+}
+
+
+.sidebar1 a {
+	color: #fff;
+}
+
+.content_container {
+	position: absolute;
+	right: 0;
+	width: 80%;
+	height: 100%;
+
+	text-align: center;
+}
+.content_header {
+	text-align: center;
+	font-family: arial;
+	font-weight: bold;
+	font-size: 28px;
+	font-style: italic;
+	height: 10%;
 }
 .content {
-         
-	padding: 0px;
-	background: #bbf;
-	float: left;
-	margin-left: 80px;
-}
-
-
-.gradebutton {
-	margin-top: 180px;
-	width: 200px;
-	background: #838383;
-	margin-left: 400px;	
+	margin: 0px 20px 0px 20px;
+	border-style: solid;
+	border-color: #ccc;
+	border-bottom: 0px;
 }
 
 .legalstuff {
@@ -83,56 +95,55 @@ width: 800px;
 	color: #fff;
 	left-margin: 250Spx;
 }
-
-/* ~~ This grouped selector gives the lists in the .content area space ~~ */
 .content ul, .content ol { 
-	padding: 0 15px 15px 40px; /* this padding mirrors the right padding in the headings and paragraph rule above. Padding was placed on the bottom for space between other elements on the lists and on the left to create the indention. These may be adjusted as you wish. */
+	padding: 0 15px 15px 40px;
 }
 
-/* ~~ The navigation list styles (can be removed if you choose to use a premade flyout menu like Spry) ~~ */
 ul.nav {
-	list-style: none; /* this removes the list marker */
-	border-top: 1px solid #000000; /* this creates the top border for the links - all others are placed using a bottom border on the LI */
-	border-bottom: 1px solid #000; /* this creates the top border for the links - all others are placed using a bottom border on the LI */
-	margin-bottom: 15px; /* this creates the space between the navigation on the content below */
+	list-style: none; 
+	border-top: 1px solid #000000; 
+	border-bottom: 1px solid #000; 
+	margin-bottom: 15px;
 }
+
+ul.nav:last-child{ 
+	margin-bottom: 0px;
+}
+
 ul.nav li {
-/*  border-top: 1px solid #fff; this creates the button separation */	
-/*  border-bottom: 1px solid #fff;  this creates the button separation */
+    font-color: #fff;
 }
-ul.nav a, ul.nav a:visited { /* grouping these selectors makes sure that your links retain their button look even after being visited */
+
+ul.nav a, ul.nav a:visited a:link {
 	padding: 5px 5px 5px 15px;
-	display: block; /* this gives the link block properties causing it to fill the whole LI containing it. This causes the entire area to react to a mouse click. */
-	width: 200px;  /*this width makes the entire button clickable for IE6. If you don't need to support IE6, it can be removed. Calculate the proper width by subtracting the padding on this link from the width of your sidebar container. */
+	display: block;
 	text-decoration: none;
+	font-color:#fff;
 	background: #838383;
 }
-ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* this changes the background and text color for both mouse and keyboard navigators */
-	background: #FFF;
+ul.nav a:hover, ul.nav a:active, ul.nav a:focus { 
+	background: #BBF;
 	color: #000;
 }
 
-/* ~~ miscellaneous float/clear classes ~~ */
-.fltrt {  /* this class can be used to float an element right in your page. The floated element must precede the element it should be next to on the page. */
+.fltrt {
 	float: right;
 	margin-left: 8px;
 }
-.fltlft { /* this class can be used to float an element left in your page. The floated element must precede the element it should be next to on the page. */
+.fltlft { 
 	float: left;
 	margin-right: 8px;
 }
-.clearfloat { /* this class can be placed on a <br /> or empty div as the final element following the last floated div (within the #container) if the overflow:hidden on the .container is removed */
+.clearfloat { 
 	clear:both;
 	height:0;
 	font-size: 1px;
 	line-height: 0px;
 }
--->
 </style></head>
 
 <body>
-
-<div class="container">
+ <div class="container">
   <div class="sidebar1">
     <ul class="nav">
       <li><a href="/specific_problem"><b>Grade</b> Specific Problem</a></li>
@@ -150,16 +161,14 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* this changes the background
      <ul class="nav">
       <li><a href="/none"><b>Send </b> Reports </a></li>
     </ul>
-    <p>
-</div>
-  <div class="content">
-   <center> <h1> <br>{{title}}</h1> </center>
-   <hr>
-%include<br>
+  </div>
+  <div class="content_container">
+   <div class="content_header"> <span>{{title}}</span> </div>
+	<div class="content">
+           %include
+        </div>
    </div>
   </div>
-
+%include byline
 </body>
 </html>
-
-%include footer
