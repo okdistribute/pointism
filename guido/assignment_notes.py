@@ -15,7 +15,7 @@ def notes_update(name):
     return template("content", title="Success!", content="Assignment notes for assignment " + name + " have been updated to '" + query + "'")
 
 def notes_edit():
-    query = request.POST.get('query', '').strip()
+    query = request.forms.get('assignment')
     if not query:
         return "You didn't supply a search query."
     else:
