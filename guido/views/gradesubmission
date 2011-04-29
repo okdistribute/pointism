@@ -12,7 +12,6 @@ function getSelectedText() {
 }
 
 jQuery(function() {
-    // Bind the click handler of some button on your page
     jQuery('#moveOver').click(function(evt) {
         // Insert the selected text into a given textarea
         var textarea = jQuery('#gradedCode');

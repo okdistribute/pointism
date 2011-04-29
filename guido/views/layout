@@ -56,8 +56,6 @@ width: 800px;
 	margin: 10px 0px 10px 0px;
 	width: 17%;
 	margin-left: 10px;
-	border-style: dashed;
-	border-color: #bbf;
 }
 
 
@@ -86,10 +84,11 @@ width: 800px;
 	border-style: solid;
 	border-color: #ccc;
 	border-bottom: 0px;
+	border-right: 0px;
+	border-left: 0px;
 }
 
 .legalstuff {
-
 	width: 1000px;
 	font-size: 10px;
 	color: #fff;
