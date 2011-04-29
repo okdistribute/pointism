@@ -1,4 +1,0 @@
-<!-- description of buttons at http://css3buttons.michaelhenriksen.dk/-->
-    <a href="{{href}}"
-         class="{{style}}" >{{title}}</a>
-

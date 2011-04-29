@@ -1,4 +1,4 @@
-%rebase layout title='submission report for' + ' ' + student + ' , ' + assignment
+%include header title='submission report for' + ' ' + student + ' , ' + assignment
 
   <!-- left -->
   <h1> {{student}}</h1><h2>{{assignment}}</h2>
@@ -15,6 +15,9 @@
     % end
     <br><br>
     </tr>
+       <a href="/specific_report"
+         class="pill button" >Go Back</a>
+	 <br><br>
     </table>
 
 
