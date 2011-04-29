@@ -1,7 +1,7 @@
-%rebase layout title="Grade Specific Problem"
+%rebase layout title=title
 <div id="box">
 <h2>Problem Selection</h2>
-<form method="POST" action="">
+<form method="POST" action={{target}}>
       <select name="problem">
       % for problem in problems:
  	       <option value={{problem}}>{{problem}}</option>
