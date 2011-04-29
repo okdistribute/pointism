@@ -45,6 +45,16 @@ def grade_problem(username, assignment, problemname):
     queries.insert_problem_comment(comment, username, assignment, problemname)
     return grading.grade(username, assignment, problemname)
 
+@route('/grade_whole/pick')
+def grade_whole_pick():
+    return frontpage.grade_whole()
+
+@route('/grade_whole/pick', method='POST')
+def grade_whole_pick():
+    aid = request.forms.get('assignment')
+    first = queries.get_first_student(aid, None)
+    redirect("/grade_whole/%s/%s" % (aid, first))
+
 @route('/grade_whole/:assignment/:username')
 def grade_whole_submissions(assignment, username):
     return grading.whole_submission(assignment, username)
@@ -115,8 +125,8 @@ def specific_submission():
 def specific_submission():
     """Called after the user has picked which submission they want to
     grade. Redirects to /grade/assignment/username"""
-    aid = request.POST.get('assignment','').strip()
-    first = queries.one_who_turned_in(aid)
+    aid = request.forms.get('assignment')
+    first = queries.get_first_student(aid, None)
     redirect("/grade/%s/%s" % (aid, first))
 
 ###################################################
@@ -142,7 +152,7 @@ def specific_problem_choice(aid):
 def specific_problem_choice(aid):
     """Called after the user has picked an assignment and problem to
     grade. Redirects to grade/aid/problemname/username"""
-    problemname = request.POST.get('problem','').strip()
+    problemname = request.POST.get('problem')
     first = queries.get_first_student(aid, problemname)
     redirect("/grade/%s/%s/%s" % (aid, problemname, first))
 

@@ -56,8 +56,6 @@ width: 800px;
 	margin: 10px 0px 10px 0px;
 	width: 17%;
 	margin-left: 10px;
-	border-style: dashed;
-	border-color: #bbf;
 }
 
 
@@ -86,10 +84,11 @@ width: 800px;
 	border-style: solid;
 	border-color: #ccc;
 	border-bottom: 0px;
+	border-right: 0px;
+	border-left: 0px;
 }
 
 .legalstuff {
-
 	width: 1000px;
 	font-size: 10px;
 	color: #fff;
@@ -148,7 +147,7 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus {
     <ul class="nav">
       <li><a href="/specific_problem"><b>Grade</b> Specific Problem</a></li>
       <li><a href="/specific_submission"><b>Grade</b> Submission by Problem</a></li>
-      <li><a href="/grade_whole/a3/boris"><b>Grade</b> Whole Submission</a></li>
+      <li><a href="/grade_whole/pick"><b>Grade</b> Whole Submission</a></li>
       </ul>
     <ul class="nav">
       <li><a href="/specific_report"><b>View </b> Reports </a></li>

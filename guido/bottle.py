@@ -1398,7 +1398,7 @@ def default():
 
 class ServerAdapter(object):
     quiet = False
-    def __init__(self, host='127.0.0.1', port=8080, **config):
+    def __init__(self, host='127.0.0.1', port=8081, **config):
         self.options = config
         self.host = host
         self.port = int(port)
@@ -1658,7 +1658,7 @@ def load_app(target):
     return rv if isinstance(rv, Bottle) else tmp
 
 
-def run(app=None, server='wsgiref', host='127.0.0.1', port=8080,
+def run(app=None, server='wsgiref', host='127.0.0.1', port=8081,
         interval=1, reloader=False, quiet=False, **kargs):
     """ Start a server instance. This method blocks until the server terminates.
 
