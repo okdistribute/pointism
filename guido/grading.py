@@ -62,7 +62,7 @@ def submissionbyproblem(assignment, username):
                     assignment=assignment,
                     commenttext="",
                     grades=possible_grades(),
-                    default_grade="C",
+                    default_grade=get_grade(username, assignment, None),
                     existingcomment=None,
                     past_comments=fullprevcomments,
                     prevcomments=comments_firstline(fullprevcomments))
