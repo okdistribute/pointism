@@ -62,7 +62,7 @@ def grade_whole_submissions(assignment, username):
 @route('/grade_whole/:assignment/:username', method='POST')
 def grade_whole_submissions(assignment, username):
     grade = request.forms.get('grade')
-    queries.insert_problem_grade(grade, username, assignment, None)
+    queries.insert_submission_grade(grade, username, assignment)
     comment = request.forms.get('comment')
     selectedtext=""
     queries.insert_problem_comment(comment, username, assignment, None)

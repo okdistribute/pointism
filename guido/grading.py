@@ -38,7 +38,7 @@ def grade(username, assignment, problemname):
                     student=username,
                     assignment=assignment,
                     problem=problemname,
-                     nextstudent=n,
+                    nextstudent=n,
                     prevstudent=p,
                     default_grade=get_grade(username, assignment, problemname), 
                     grades=possible_grades())
@@ -92,7 +92,7 @@ def whole_submission(assignment, username):
                     assignment=assignment,
                     nextstudent=n,
                     prevstudent=p,
-                    default_grade="A",
+                    default_grade=get_grade(username, assignment, None),
                     grades=possible_grades())
 
 
@@ -122,7 +122,10 @@ def get_grade(username, assignment, problemname):
     problemname. If you've graded this problem previously, we return
     the current grade.  This returns "A" if the autograder output
     returns True (or passed); else, return "F"."""
-    solution = queries.get_solution(username, assignment, problemname)
+    if(problemname==None):
+        solution = queries.get_submission(username, assignment)
+    else:
+        solution = queries.get_solution(username, assignment, problemname)
 
     if(solution != None):
         grade = solution[2]

@@ -184,6 +184,18 @@ def insert_problem_grade(grade, username, assignment, problemname):
     conn.commit()
     c.close()
 
+def insert_submission_grade(grade, username, assignment):
+    conn = sqlite3.connect(THEDB)
+    c = conn.cursor()
+    print("inserting grade {0} for {1}".format(grade, username))
+    sql = ("update Submission "
+           "set grade=? "
+           "where username=? and assignmentid=?")
+    param = (grade, username, assignment)
+    c.execute(sql, param)
+    conn.commit()
+    c.close()
+
 def insert_problem_comment(comment, username, assignment, problemname):
     conn = sqlite3.connect(THEDB)
     c = conn.cursor()
