@@ -17,6 +17,7 @@ compelte autograder output just in case it is needed.
 import sys
 import re
 import subprocess
+from collections import defaultdict
 
 def runtests(assignment, path):
     """Runs the autograder on an assignment and path and returns the
@@ -42,7 +43,7 @@ def build(grader_output):
 
     #these are the values in which we are interested for each
     #problem's autograder output
-    built_output = []
+    out = defaultdict(lambda: ())
     number = None
     name = None
     result = None
@@ -56,8 +57,8 @@ def build(grader_output):
             #if we were getting text, we are done now.
             if(getting_text == 1):
                 getting_text = 0
-                grader_problem = (number, name, result, text)
-                built_output.append(grader_problem)
+                grader_problem = (name, result, text)
+                out[number] = grader_problem
 
             #parse ids
             number = ids.group(1)
@@ -76,9 +77,9 @@ def build(grader_output):
                 getting_text = 1
 
     #finally, make sure to add the last one that was built.
-    grader_problem = (number, name, result, text)
-    built_output.append(grader_problem)
-    return built_output
+    grader_problem = (name, result, text)
+    out[number] = grader_problem
+    return out
 
 
 def get_autograder_results(assignment, path):

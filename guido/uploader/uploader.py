@@ -10,7 +10,7 @@ this assignment.
 import sys
 import sqlite3
 
-import autograder
+import magsautograder
 import parseassignment
 
 THEDB = "../guidodb"
@@ -65,7 +65,7 @@ def main():
         hasdraft = sys.argv[4] is not "nodraft"
 
     #results = autograder.get_autograder_results(assignment, filename)
-    results = autograder.fake_autograder_results(assignment, filename)
+    results = magsautograder.fake_autograder_results(assignment, filename)
     answers = parseassignment.get_answers(filename)
     text = open(filename, "r").read()
 
@@ -75,8 +75,13 @@ def main():
     insert_submission(c, username, assignment, hasdraft, text, "(none yet)")
     conn.commit()
     for key in answers.keys():
-        insert_solution(c, username, assignment, key,
-                        answers[key], results[key])
+        autograder = results[key]
+        if autograder != None and len(autograder) > 0:
+            problemname = autograder[0]
+            grade = autograder[1]
+            text = autograder[2]
+            insert_solution(c, username, assignment, key,
+                            answers[key], text)
         conn.commit()
     c.close()
 
