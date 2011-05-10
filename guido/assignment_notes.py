@@ -5,7 +5,7 @@ import sqlite3
 THEDB = "guidodb"
 
 def notes_update(name):
-    query = request.POST.get('query','').strip()
+    query = request.forms.get('query')
     conn = sqlite3.connect(THEDB)
     c = conn.cursor()
     update_data = (query, name)
