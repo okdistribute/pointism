@@ -1,5 +1,7 @@
 %include gradeheader title='grading a submission', past_comments=past_comments
+
   <!-- left -->
+<div class="gradingContainer">
   <div class="student">
   <div class="code"><div class="linenumbers">{{linenumbers}}</div> {{source}}</div>
     <form method="GET" action="/guido/codesearch/">
@@ -16,20 +18,20 @@
     <div class="code">{{autograder}}</div>
     <div class="code" id="gradedCode"></div>
     <form method="POST" action="" autocomplete="off">
-      <select name="grade">
+      <ol id="grade">
       % for grade in grades:
       	% if default_grade == grade:
-	       <option value={{default_grade}} SELECTED>{{default_grade}}</option>
+	       <li class="ui-state-default" value="{{default_grade}}">{{default_grade}}</li>
 	% else:
-	       <option value={{grade}}>{{grade}}</option>
+	       <li class="ui-state-default" value="{{grade}}">{{grade}}</li>
 	% end
       % end
-      </select>
-      <input type="submit" name="usenew" value="grade"/>
+      </ol>
       <br/>
-
       <textarea id="comment" name="comment" cols="60"></textarea>
-
+      <br/>
+      <input type="hidden" id="submit_grade" name="grade" value="None" />
+      <input type="submit" name="usenew" value="grade"/>
       <p style="margin-bottom:0">Previously used comments:</p>
 
       <select name="prevcomments" class="prevcomments" size="3">
@@ -43,7 +45,7 @@
       <input  type="submit" name="editcomment"
              value="edit selected comment"/>
     </form>
-      <p style="margin-bottom:0">Existing comments:</p>
+      <p style="margin-bottom:0">Comments on this</p>
       <div class="existingcomment">
       % for comment in existingcomments:
         {{comment}}<br>
@@ -70,11 +72,11 @@
     </tr>
     </table>
   </div>
+  </div>
 </div>
 
-  <br clear="all"/>
 
   <br/>
 
 
-%include footer
+%include byline

@@ -1,6 +1,7 @@
 %include gradeheader title='grading the submission', past_comments=past_comments
 
   <!-- left -->
+<div class="gradingContainer">
   <div class="student">
   <div class="code">
     <table width="400" border="0">
@@ -59,21 +60,17 @@
     <table width="300" border="0">
     <tr>
     % if prevstudent != None:
-    <a href="/grade/{{assignment}}/{{prevstudent}}"
-         class="left pill button" >Previous Student</a>
+    <a href="/grade/{{assignment}}/{{prevstudent}}">Previous Student</a>
     % end
     % if nextstudent != None:
-    <a href="/grade/{{assignment}}/{{nextstudent}}"
-         class="right pill button" >Next Student</a>
+    <a href="/grade/{{assignment}}/{{nextstudent}}">Next Student</a>
     % end
     <br><br>
     </tr>
     </table>
     </div>
-  </div>
-
-  <br clear="all"/>
-
+</div>
+</div>
   <br/>
 
-%include footer
+%include byline

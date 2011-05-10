@@ -13,6 +13,22 @@
         $( "#comment" ).autocomplete({
 	   source: comments
         });
+        $( "#searchbutton").button({
+        icons: {
+           secondary:"ui-icon-search"
+          }
+        });
+        $( "#prevstudentbutton").button({
+        icons: {
+          primary:"ui-icon-arrowthick-1-w"
+        }
+       });
+        $( "#nextstudentbutton").button({
+        icons: {
+          secondary:"ui-icon-arrowthick-1-e"
+        }
+       });        
+        
         $( "button, input:submit, a", ".student").button();
         $( "button, input:submit, a", ".grading").button();
      });

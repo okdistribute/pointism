@@ -1,5 +1,6 @@
 %include gradeheader title='grading the problem', past_comments=past_comments
 
+<div class="gradingContainer">
   <!-- left -->
   <div class="student">
   <div class="code"><div class="linenumbers">{{linenumbers}}</div>{{source}}</div>
@@ -7,7 +8,7 @@
     <input type="hidden" name="student" value="{{student}}"/>
     <input type="hidden" name="assignment" value="{{assignment}}"/>
     <input name="query" type="textbox" /> 
-    <a href="#" class="primary pill button">Search code</a>
+    <button id="searchbutton">Search code</button>
     </form>
   </div>
 
@@ -16,24 +17,27 @@
   <div class="grading">
     <div class="code">{{autograder}}</div>
     <form method="POST" action="" autocomplete="off">
-      <select name="grade">
+      <ol id="grade">
       % for grade in grades:
       	% if default_grade == grade:
-	       <option value={{default_grade}} SELECTED>{{default_grade}}</option>
+	       <li class="ui-state-default" value="{{default_grade}}">{{default_grade}}</li>
 	% else:
-	       <option value={{grade}}>{{grade}}</option>
+	       <li class="ui-state-default" value="{{grade}}">{{grade}}</li>
 	% end
       % end
-      </select>
-      <input type="submit" name="usenew" value="grade"/>
+      </ol>
       <br/>
-
+      <br/>
+      <br/>
       % if existingcomment is None:
       <textarea id="comment" name="comment" cols="60"></textarea>
       % else:
       <div class="existingcomment">{{existingcomment}}</div>
       % end
-
+      <br/>
+      <input type="hidden" id="submit_grade" name="grade" value="None" />
+      <input type="submit" name="usenew" value="Grade" />
+      <br/>
       <p style="margin-bottom:0">Previously used comments:</p>
 
       <select name="prevcomments" class="prevcomments" size="3">
@@ -51,27 +55,24 @@
 <br /><br>
     <table width="300" border="0">
     <tr>
+Navigation:<br>
     % if prevstudent != None:
-    <a href="/grade/{{assignment}}/{{problem}}/{{prevstudent}}"
-         class="left pill button" >Previous Student</a>
+    <button id="prevstudentbutton" onclick="window.location='/grade/{{assignment}}/{{problem}}/{{prevstudent}}';">Previous</button>
     % end
     % if nextstudent != None:
-    <a href="/grade/{{assignment}}/{{problem}}/{{nextstudent}}"
-         class="right pill button" >Next Student</a>
+    <button id="nextstudentbutton" onclick="window.location='/grade/{{assignment}}/{{problem}}/{{nextstudent}}';">Next</button>
     % end
-    <br><br>
+    <br>
     </tr>
     <tr>
-    <a href="/specific_problem"
-         class="pill button" >Pick a new assignment</a> &nbsp;
-    <a href="/specific_problem/{{assignment}}"
-         class="pill button" >Pick a new problem</a> 
+    <a href="/specific_problem">Pick a new assignment</a> &nbsp;
+    <a href="/specific_problem/{{assignment}}" >Pick a new problem</a> 
+
     </tr>
     </table>
   </div>
 </div>
-  <br clear="all"/>
-
+</div>
   <br/>
 
-%include byline
+%include footer

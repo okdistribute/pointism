@@ -64,9 +64,9 @@ def build(grader_output):
             number = ids.group(1)
             name = ids.group(2)
             if(ids.group(3).find("FAILED") == -1):
-                result = 7
+                result = "A"
             else:
-                result = 3
+                result = "F"
         else: #else we are getting text
             if(line == '\n'):
                 line = '' #we dont want rogue newlines
