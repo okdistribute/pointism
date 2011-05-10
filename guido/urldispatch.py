@@ -19,21 +19,45 @@ import queries
 def index():
     return frontpage.startpage()
 
-@route('/static/:filename')
-def server_static(filename):
-    return static_file(filename, root='static')
+                #################
+################# Grading Pages #################
+                #################
+
+
+#######################
+# Grading the problem #
+#######################
+
+# Picking the problem #
+
+@route('/specific_problem')
+def specific_post():
+    return frontpage.specific_assignment()
+
+@route('/specific_problem/pick_problem', method='POST')
+def picked_assignment():
+    """Called after the user has picked an assignment to grade"""
+    aid = request.forms.get('assignment')
+    redirect("/specific_problem/%s" % aid)
+    
+@route('/specific_problem/:aid')
+def specific_problem_choice(aid):
+    """Routed to after the user has picked an assignment to grade"""
+    return frontpage.specific_problem_choice(aid)
+
+@route('/specific_problem/:aid', method='POST')
+def specific_problem_choice(aid):
+    """User has picked an assignment and problem to grade."""
+    problemname = request.POST.get('problem')
+    first = queries.get_first_student(aid, problemname)
+    redirect("/grade/%s/%s/%s" % (aid, problemname, first))
+
+# Routing to the problem #
 
 @route('/grade/:assignment/:problemname/:username')
 def grade_problem(username, assignment, problemname):
-    """Routes the user to the grading page for and assignment, problem,
-    username"""
+    """Routes the user to the grading page"""
     return grading.grade(username, assignment, problemname)
-
-@route('/grade/:assignment/:username')
-def grade_submission_with_graded_problem_table(assignment, username):
-    """Routes the user to the grading an assignment page for and
-    assignment, username, assuming the problems have been graded"""
-    return grading.submissionbyproblem(assignment, username)
 
 @route('/grade/:assignment/:problemname/:username', method='POST')
 def grade_problem(username, assignment, problemname):
@@ -45,22 +69,58 @@ def grade_problem(username, assignment, problemname):
     queries.insert_problem_comment(comment, username, assignment, problemname)
     return grading.grade(username, assignment, problemname)
 
+
+#############################################################
+# Submission by problem, assuming problems have been graded #
+#############################################################
+
+@route('/specific_submission')
+def specific_submission():
+    """Picking an assignment"""
+    return frontpage.specific_submission()
+
+@route('/specific_submission', method='POST')
+def specific_submission():
+    """Called after the user has picked which assignment they want to
+    grade. Redirects to /grade/assignment/username"""
+    aid = request.forms.get('assignment')
+    first = queries.get_first_student(aid, None)
+    redirect("/grade/%s/%s" % (aid, first))
+
+@route('/grade/:assignment/:username')
+def grade_submission_with_graded_problem_table(assignment, username):
+    """Routes the user to the grading a submission by problem"""
+    return grading.submissionbyproblem(assignment, username)
+
+
+################################
+# Grading the whole submission #
+################################
+
+# Picking the assignment #
+
 @route('/grade_whole/pick')
 def grade_whole_pick():
+    """Picking an assignment"""
     return frontpage.grade_whole()
 
 @route('/grade_whole/pick', method='POST')
 def grade_whole_pick():
+    """User has picked an assignment"""
     aid = request.forms.get('assignment')
     first = queries.get_first_student(aid, None)
     redirect("/grade_whole/%s/%s" % (aid, first))
 
+# Routing to the submission #
+
 @route('/grade_whole/:assignment/:username')
 def grade_whole_submissions(assignment, username):
+    """Grading a whole submission"""
     return grading.whole_submission(assignment, username)
 
 @route('/grade_whole/:assignment/:username', method='POST')
 def grade_whole_submissions(assignment, username):
+    """Inserting grade and comment for a whole submission"""
     grade = request.forms.get('grade')
     queries.insert_submission_grade(grade, username, assignment)
     comment = request.forms.get('comment')
@@ -68,28 +128,41 @@ def grade_whole_submissions(assignment, username):
     queries.insert_problem_comment(comment, username, assignment, None)
     return grading.whole_submission(assignment, username)
 
-#############################################################
-# Viewing a specific report, picking an assignment/username #
-#############################################################
+
+
+                #################
+################# Other Stuff #################
+                #################
+
+####################
+# Viewing a report #
+####################
+
+# Picking the report #
 
 @route('/specific_report')
 def submission_report():
+    """The user is picking an assignment"""
     return frontpage.submission_report()
 
 @route('/specific_report/pick_username', method='POST')
 def picked_assignment():
-    """Called after the user has picked an assignment report"""
+    """The user has just picked an assignment"""
     aid = request.forms.get('assignment')
     redirect("/specific_report/%s" % aid)
 
 @route('/specific_report/:assignment')
 def submission_report(assignment):
+    """The user is picking a username"""
     return frontpage.submission_report_choice(assignment)
 
 @route('/specific_report/:assignment', method='POST')
 def submission_report(assignment):
+    """The user has just picked a username"""
     username = request.forms.get('username')
     redirect("/specific_report/%s/%s" % (assignment, username))
+
+# Viewing the report #
 
 @route('/specific_report/:assignment/:username')
 def submission_report(assignment, username):
@@ -111,54 +184,10 @@ def see_assignment_notes():
 def update_assignment_notes(name):
     return assignment_notes.notes_update(name)
 
-#####################################################################
-# Picking a submission to grade, assuming problems have been graded #
-#####################################################################
 
-@route('/specific_submission')
-def specific_submission():
-    """Called after the user has picked that they want to grade a
-    whole submission"""
-    return frontpage.specific_submission()
-
-@route('/specific_submission', method='POST')
-def specific_submission():
-    """Called after the user has picked which submission they want to
-    grade. Redirects to /grade/assignment/username"""
-    aid = request.forms.get('assignment')
-    first = queries.get_first_student(aid, None)
-    redirect("/grade/%s/%s" % (aid, first))
-
-###################################################
-# Picking an assignment and then problem to grade #
-###################################################
-
-@route('/specific_problem')
-def specific_post():
-    return frontpage.specific_assignment()
-
-@route('/specific_problem/pick_problem', method='POST')
-def picked_assignment():
-    """Called after the user has picked an assignment to grade"""
-    aid = request.forms.get('assignment')
-    redirect("/specific_problem/%s" % aid)
-    
-@route('/specific_problem/:aid')
-def specific_problem_choice(aid):
-    """Routed to after the user has picked an assignment to grade"""
-    return frontpage.specific_problem_choice(aid)
-
-@route('/specific_problem/:aid', method='POST')
-def specific_problem_choice(aid):
-    """Called after the user has picked an assignment and problem to
-    grade. Redirects to grade/aid/problemname/username"""
-    problemname = request.POST.get('problem')
-    first = queries.get_first_student(aid, problemname)
-    redirect("/grade/%s/%s/%s" % (aid, problemname, first))
-
-#####################################################
-## Making sure the user doesn't get an error screen #
-#####################################################
+##################
+# Error Checking #
+##################
 
 @route('/grade')
 def grade():
@@ -168,15 +197,35 @@ def grade():
 def grade_post():
     redirect('/specific_problem')
 
-#########
-# other #
-#########
+@route('/none')
+def unsupported():
+    return template("unsupported")
 
+##################
+# Static routing #
+##################
+
+@route('/static/:filename')
+def server_static(filename):
+    return static_file(filename, root='static')
+
+@route('/static/:extension/:filename')
+def server_static(extension,filename):
+    return static_file(filename, root='static/%s' % extension )
+
+@route('/static/:path/:extension/:filename')
+def server_static(path, extension, filename):
+    return static_file(filename, root='static/%s/%s' % (path, extension) )
+
+@route('/static/:path/:to/:extension/:filename')
+def server_static(path, to, extension, filename):
+    return static_file(filename, root='static/%s/%s/%s' % (path, to, extension) )
+
+#########
+# Other #
+#########
 
 @route('/startpage')
 def startpage():
     return frontpage.startpage()
 
-@route('/none')
-def unsupported():
-    return template("unsupported")
