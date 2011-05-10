@@ -70,7 +70,7 @@ def submissionbyproblem(assignment, username):
 def whole_submission(assignment, username):
     solution = queries.get_submission(username, assignment)
     if(solution == None):
-        redirect('/specific_assignment/' + assignment)
+        redirect('/grade_whole/pick')
     studentsolution = solution[0]
     autograder_output = solution[1]
     grade = solution[2]
@@ -83,7 +83,7 @@ def whole_submission(assignment, username):
     
     return template("gradesubmission",
                     source=studentsolution,
-                    existingcomments=queries.get_all_comments(username, assignment),
+                    existingcomments=queries.get_student_comments(username, assignment),
                     linenumbers=linenumbers,
                     past_comments=fullprevcomments,
                     prevcomments=comments_firstline(fullprevcomments),

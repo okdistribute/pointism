@@ -55,7 +55,7 @@ def get_comment(student, assignment, problem):
         else:
             return None
 
-def get_all_comments(student, assignment):
+def get_student_comments(student, assignment):
     """Returns the text associated with the given student's solution to a
     problem, or None if none is set."""
     with sqlite3.connect(THEDB) as conn:
@@ -246,10 +246,7 @@ def get_all_past_comments():
         c = conn.cursor()
         sql=  """SELECT DISTINCT C.text from Comment C 
                  left join CommentSolution CS, Solution S   
-                 where S.assignmentid=CS.assignmentid
-                 and S.username=CS.username
-                 and C.commentid=CS.commentid
-                 and S.problemname=CS.problemname"""
+                 where C.commentid=CS.commentid"""
         c.execute(sql)
         comments = c.fetchall()
         stripped = []

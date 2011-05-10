@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/static/css3buttons.css" type="text/css" />
     <link rel="stylesheet" href="/static/jquery.autocomplete.css" type="text/css" />
     
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
     <script type="text/javascript" src="/static/jquery.bgiframe.min.js"></script> 
     <script type="text/javascript" src="/static/thickbox-compressed.js"></script> 
     <script type="text/javascript" src="/static/jquery.autocomplete.min.js"></script>
