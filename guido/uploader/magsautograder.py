@@ -94,6 +94,6 @@ def get_autograder_results(assignment, path):
 
 def fake_autograder_results(assignment, path):
     """Returns some fake autograder results"""
-    return build("Results for Assignment 10\n\n2: insert: FAILED \n  Test:     (insert < 6 '(1 3 5 7 9 11))\n   Expected: (1 3 5 6 7 9 11)\n   Actual:   (6 1 3 5 7 9 11)\n\n5.b: list-bst: FAILED\n   Test:  (list->bst > '())\n   Error: Exception in car: () is not a pair\n\n6.a: sort-by-weight: FAILED\n   Test:  (sort-by-weight\n  '((#\A 8) (#\B 7) (#\C 1) (#\D 2) (#\E 3) (#\F 4) (#\G 5)\n   Error: Probable Infinite Loop\n\nTest Results\n   Passed: 6.\n   Failed: 3. \n   Missing: 0. \n")
+    return build("Results for Assignment 10\n\n11: both-odd?: PASSED \n\n10: pick-one-at-random: FAILED\n   Test:  (pick-one-at-random 3 4)   Error: Exception in car: () is not a pair\n\n12: either-even?: PASSED\n\n EC1: least: PASSED \n\n 1: least: PASSED\n\n 1a: least: PASSED\n\n1b: least-of-three: PASSED\n\n 3: curious?: PASSED\n\n2: next-even: PASSED\n\n3: curious?: PASSED\n\n 5: opposite: PASSED\n\n4: sleep-in?: PASSED\n\n7:next-collatz: FAILED \nError: Probable Infinite Loop\n\n6: next-compass: PASSED \n\n 9: up-or-down: PASSED\n\n 8: dna-complement: PASSED\n\n8a: dna-complement: PASSED \n\nTest Results\n   Passed: 6.\n   Failed: 3. \n   Missing: 0. \n")
            
 
