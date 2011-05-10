@@ -63,10 +63,10 @@ def build(grader_output):
             #parse ids
             number = ids.group(1)
             name = ids.group(2)
-            if(ids.group(3) == "FAILED"):
-                result = 3
-            else:
+            if(ids.group(3).find("FAILED") == -1):
                 result = 7
+            else:
+                result = 3
         else: #else we are getting text
             if(line == '\n'):
                 line = '' #we dont want rogue newlines
@@ -94,6 +94,6 @@ def get_autograder_results(assignment, path):
 
 def fake_autograder_results(assignment, path):
     """Returns some fake autograder results"""
-    return build("Results for Assignment 10\n\n11: both-odd?: PASSED \n\n10: pick-one-at-random: FAILED\n   Test:  (pick-one-at-random 3 4)   Error: Exception in car: () is not a pair\n\n12: either-even?: PASSED \n\nEC1: least: PASSED \n\n1: least: PASSED \n\n1a: least: PASSED\n\n1b: least-of-three: PASSED \n\n3: curious?: PASSED \n\n2: next-even: PASSED \n\n3: curious?: PASSED \n\n5: opposite: PASSED \n\n4: sleep-in?: PASSED \n\n7: next-collatz: FAILED \nError: Probable Infinite Loop \n\n6: next-compass: PASSED \n\n9: up-or-down: PASSED \n\n8: dna-complement: PASSED \n\n8a: dna-complement: PASSED \n\nTest Results\n   Passed: 6.\n   Failed: 3. \n   Missing: 0. \n")
+    return build("Results for Assignment 10\n\n11: both-odd?: PASSED \n\n10: pick-one-at-random: FAILED\n   Test:  (pick-one-at-random 3 4) \n  Error: Exception in car: () is not a pair\n\n12: either-even?: PASSED \n\nEC1: least: PASSED \n\n1: least: PASSED \n\n1a: least: PASSED\n\n1b: least-of-three: PASSED \n\n3: curious?: PASSED \n\n2: next-even: PASSED \n\n3: curious?: PASSED \n\n5: opposite: PASSED \n\n4: sleep-in?: PASSED \n\n7: next-collatz: FAILED \nError: Probable Infinite Loop \n\n6: next-compass: PASSED \n\n9: up-or-down: PASSED \n\n8: dna-complement: PASSED \n\n8a: dna-complement: PASSED \n\nTest Results\n   Passed: 6.\n   Failed: 3. \n   Missing: 0. \n")
            
 

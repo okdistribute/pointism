@@ -33,12 +33,12 @@ def insert_assignment(c, assignmentid):
     param = (assignmentid, "(none)")
     c.execute(sql,param)
 
-def insert_solution(c, username, aid, problemname, text, autograder):
+def insert_solution(c, username, aid, problemname, text, autograder, grade):
     print("  ({0},{1},{2})".format(username,aid,problemname))
     sql = ("insert or replace into Solution "
-           "(text, autograder, username, assignmentid, problemname) "
-           "values (?, ?, ?, ?, ?) ")
-    param = (text, autograder, username, aid, problemname)
+           "(text, autograder, username, assignmentid, problemname, grade) "
+           "values (?, ?, ?, ?, ?, ?) ")
+    param = (text, autograder, username, aid, problemname, grade)
     if(problemname != None):
         insert_problem(c, problemname, aid)
     c.execute(sql, param)
@@ -81,7 +81,7 @@ def main():
             grade = autograder[1]
             text = autograder[2]
             insert_solution(c, username, assignment, key,
-                            answers[key], text)
+                            answers[key], text, grade)
         conn.commit()
     c.close()
 
