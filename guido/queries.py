@@ -245,7 +245,7 @@ def get_all_past_comments():
     with sqlite3.connect(THEDB) as conn:
         c = conn.cursor()
         sql=  """SELECT DISTINCT C.text from Comment C 
-                 left join CommentSolution CS, Solution S   
+                 left join CommentSolution CS
                  where C.commentid=CS.commentid"""
         c.execute(sql)
         comments = c.fetchall()

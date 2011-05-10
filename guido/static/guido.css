@@ -11,7 +11,7 @@ div.code {
   margin-bottom: 1em;
   font-size: 10pt;
   white-space: pre-wrap;
-position:relative;
+  position:relative;
 }
 
 div.linenumbers {
@@ -21,7 +21,6 @@ div.linenumbers {
 }
 
 div.grading {
-	
   background-color: #bbf;
   float: right;
   position: relative;
@@ -215,8 +214,22 @@ select.prevcomments {
 }
 #byline p { color: #000; margin: 0; position:relative; }
 
-.crclass  A:link {text-decoration: none; color: black; }
+.crclass  A:link {text-decoration: none; }
 .crclass  A:visited {text-decoration: none; color: black; }
 .crclass  A:active {text-decoration: none; color: black; }
 .crclass  A:hover {text-decoration: underline; color: black; }
 
+/* jquery-ui */
+
+.ui-autocomplete {
+    max-height:100px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 20px;
+}
+.ui-menu-item {
+    font-size: small;
+}
+.ui-button {
+    font-size: small !important;
+}

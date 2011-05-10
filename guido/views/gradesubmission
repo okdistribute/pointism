@@ -1,27 +1,4 @@
 %include gradeheader title='grading a submission', past_comments=past_comments
-<head>
-<script>
-function getSelectedText() {
-    if (window.getSelection) {
-        return window.getSelection();
-    }
-    else if (document.selection) {
-        return document.selection.createRange().text;
-    }
-    return '';
-}
-
-jQuery(function() {
-    jQuery('#moveOver').click(function(evt) {
-        // Insert the selected text into a given textarea
-        var textarea = jQuery('#gradedCode');
-        textarea.val(getSelectedText());
-        evt.preventDefault();
-    });
-});
-</script>
-</head>
-
   <!-- left -->
   <div class="student">
   <div class="code"><div class="linenumbers">{{linenumbers}}</div> {{source}}</div>
