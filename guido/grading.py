@@ -5,7 +5,6 @@ from bottle import request
 from bottle import redirect
 
 import fakedata
-import autograder
 import queries
 import sqlite3
 import model
