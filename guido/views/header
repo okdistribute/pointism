@@ -3,6 +3,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" /> 
     <link rel="stylesheet" href="/static/guido.css" type="text/css" />
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js" type="text/css" />
     <link rel="stylesheet" href="/static/css3buttons.css" type="text/css" />
     <title>{{title}}</title>
   </head>
