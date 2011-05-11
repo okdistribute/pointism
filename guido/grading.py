@@ -8,6 +8,7 @@ import fakedata
 import queries
 import sqlite3
 import model
+from collections import defaultdict
 
 THEDB = "guidodb"
 
@@ -96,16 +97,24 @@ def whole_submission(assignment, username):
 
 
 def submission_report(assignment, username):
-    problems = []
     query = queries.get_report(assignment, username)
+    report = defaultdict(lambda: ('',[],''))
+    ### problem = (problemname, code, comment, autograder)
     for problem in query:
-        problems.append(ProblemReport(problem[0],problem[1],problem[2]))
+        problemname = problem[0]
+        code = problem[1]
+        comment = problem[2]
+        autograder = problem[3]     
+        if(comment != None):
+            commentlist = report[problemname][1]
+            commentlist.append(comment)
+            report[problemname] = (code, commentlist ,autograder)
 
     students = queries.who_turned_in(assignment)
     p,n = find_prev_next(students, username)
 
     return template("submissionreport",
-                    problems=problems,
+                    problems=report,
                     prevstudent=p,
                     nextstudent=n,
                     student=username,
@@ -143,13 +152,6 @@ class ProblemGrade:
     def __init__(self, source,grade):
         self.source = source
         self.grade = grade
-
-class ProblemReport:
-    def __init__(self, source, comment, autograder):
-        self.source = source
-        self.comment = comment
-        self.autograder = autograder
-
 
 def comments_firstline(list_of_prevcommenttext):
     prevcomments = list( map( lambda pair: model.Comment(pair[0],pair[1]),

@@ -76,6 +76,8 @@ div.assignmentlist {
   width: 55%;
 }
 
+
+
 a.frontbutton {
   font-size: 2em;
 }
@@ -85,15 +87,31 @@ div.codesearchbox {
   width: 45%;
 }
 
-.reportTable {
+.reportTable td {
 padding: 2px 4px 2px 4px;
 border: 1px solid #660000;
-width: 100%;
+border-style: dotted;
+border-color: gray;
+background-color:white;
+width: 33%;
 }
 
-.reportTable td {
-border: 1px solid #660000;
-width: 33%;
+.reportTable th {
+  border-width: 1px;
+  padding: 1px;
+  border-style: dotted;
+  border-color: gray;
+  background-color: white;
+}
+
+.reportTable {
+  border-width: 1px;
+  border-spacing: 2px;
+  border-style: hidden;
+  border-color: gray;
+  border-collapse: collapse;
+  background-color: rgb(250, 240, 230);
+  width: 100%;
 }
 
 .reportTable h2 {
@@ -107,6 +125,12 @@ div.report {
   margin-bottom: 1em;
   font-size: 10pt;
   white-space: pre-wrap;
+}
+
+div.report li {
+  margin: auto;
+  width: 90%;
+  list-style-type: circle;
 }
 
 select.prevcomments {

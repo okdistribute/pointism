@@ -259,7 +259,7 @@ def get_report(assignment, username):
     """Returns a list of solution, comment, and autograder"""
     with sqlite3.connect(THEDB) as conn:
         c = conn.cursor()
-        sql=  """Select S.text, C.text, S.autograder 
+        sql=  """Select S.problemname, S.text, C.text, S.autograder 
                  from Solution S
                  left join CommentSolution CS, Comment C   
                  where S.assignmentid=? and S.username=?

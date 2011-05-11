@@ -1,4 +1,4 @@
-%include header title='submission report for' + ' ' + student + ' , ' + assignment
+%include gradeheader title='submission report for' + ' ' + student + ' , ' + assignment, past_comments=[]
 
   <!-- left -->
   <h1> {{student}}</h1><h2>{{assignment}}</h2>
@@ -6,17 +6,14 @@
   <table>
     <tr>
     % if prevstudent != None:
-    <a href="/specific_report/{{assignment}}/{{prevstudent}}"
-         class="left pill button" >Previous Student</a>
+    <button id="prevstudentbutton" onclick="window.location='/specific_report/{{assignment}}/{{prevstudent}}';">Previous Student</button>
     % end
     % if nextstudent != None:
-    <a href="/specific_report/{{assignment}}/{{nextstudent}}"
-         class="right pill button" >Next Student</a>
+    <button id="nextstudentbutton" onclick="window.location='/specific_report/{{assignment}}/{{nextstudent}}';">Next Student</button>
     % end
     <br><br>
     </tr>
-       <a href="/specific_report"
-         class="pill button" >Go Back</a>
+       <button id="back" onclick="window.location='/specific_report';">Go Back</button>
 	 <br><br>
     </table>
 
@@ -24,16 +21,20 @@
   <div class="report" dir="LTR">
     <table class=reportTable width="400" border="0">
       <td><h2>Your Code</h2></td> <td><h2>Comments<h2></td> <td><h2>Autograder report<h2></td>	
-    % for problem in problems:
+    % for key in problems.keys():
       <tr>
         <td>
-        {{problem.source}}
+        {{problems[key][0]}}
         </td>
         <td>
-        {{problem.comment}}
+	<ul>
+	% for p in problems[key][1]:
+	  <li> {{p}}</li>
+	  %end
+	</ul>
         </td>
         <td>
-        {{problem.autograder}}
+        {{problems[key][2]}}
         </td>
       </tr>
     %end
