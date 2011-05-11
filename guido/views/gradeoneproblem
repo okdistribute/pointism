@@ -20,7 +20,7 @@
       <ol id="grade">
       % for grade in grades:
       	% if default_grade == grade:
-	       <li class="ui-state-default" value="{{default_grade}}">{{default_grade}}</li>
+	       <li class="ui-selected ui-state-hover" value="{{default_grade}}">{{default_grade}}</li>
 	% else:
 	       <li class="ui-state-default" value="{{grade}}">{{grade}}</li>
 	% end
@@ -31,8 +31,9 @@
       <br/>
       <textarea id="comment" name="comment" cols="60"></textarea>
       <input type="hidden" id="submit_grade" name="grade" value="None" />
-      <input type="submit" name="usenew" value="Grade" />
+      <input type="submit" id="gradebutton" name="usenew" value="Grade" />
       <br/>
+      <div id="show_result"></div>
       <p style="margin-bottom:0">Previously used comments:</p>
 
       <select name="prevcomments" class="prevcomments" size="3">
@@ -47,7 +48,7 @@
       <input  type="submit" name="editcomment"
              value="edit selected comment"/>
     </form>
-      <p style="margin-bottom:0">Exisiting comments on this</p>
+      <p style="margin-bottom:0">Exisiting comments on this problem</p>
       <div class="existingcomment">
       % if existingcomments == [] or existingcomments == None:
         (none yet)

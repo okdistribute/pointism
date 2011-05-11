@@ -29,8 +29,8 @@
         }
        });        
         
-        $( "button, input:submit, a", ".student").button();
-        $( "button, input:submit, a", ".grading").button();
+        $( ":button, input:submit, a").button();
+        $( ":button, input:submit, a").button();
      });
 </script>
 

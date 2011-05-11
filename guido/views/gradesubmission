@@ -22,7 +22,7 @@
       <ol id="grade">
       % for grade in grades:
       	% if default_grade == grade:
-	       <li class="ui-state-default" value="{{default_grade}}">{{default_grade}}</li>
+	       <li class="ui-state-selected ui-state-hover" value="{{default_grade}}">{{default_grade}}</li>
 	% else:
 	       <li class="ui-state-default" value="{{grade}}">{{grade}}</li>
 	% end
@@ -46,7 +46,7 @@
       <input  type="submit" name="editcomment"
              value="edit selected comment"/>
     </form><br>
-      <p style="margin-bottom:0">Exisiting comments on this</p>
+      <p style="margin-bottom:0">Exisiting comments on this submission</p>
       <div class="existingcomment">
       % if existingcomments == [] or exisitngcomments == None:
         (none yet)
