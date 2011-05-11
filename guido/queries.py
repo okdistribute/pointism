@@ -38,7 +38,7 @@ def get_submission(student, assignment):
         return submission
 
 
-def get_comment(student, assignment, problem):
+def get_comments(student, assignment, problem):
     """Returns the text associated with the given student's solution to a
     problem, or None if none is set."""
     with sqlite3.connect(THEDB) as conn:
@@ -49,11 +49,12 @@ def get_comment(student, assignment, problem):
                            and CS.username=?
                            and CS.commentid = C.commentid"""
         c.execute(commentsql, (assignment,problem,student))
-        existingcomment = c.fetchone()
-        if existingcomment:
-            return existingcomment[0]
-        else:
-            return None
+        comments = c.fetchall()
+        stripped = []
+        for c in comments:
+            stripped.append(c[0])
+        return stripped
+
 
 def get_student_comments(student, assignment):
     """Returns the text associated with the given student's solution to a

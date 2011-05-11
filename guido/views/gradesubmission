@@ -1,14 +1,15 @@
 %include gradeheader title='grading a submission', past_comments=past_comments
 
-  <!-- left -->
+
 <div class="gradingContainer">
+  <!-- left -->
   <div class="student">
   <div class="code"><div class="linenumbers">{{linenumbers}}</div> {{source}}</div>
     <form method="GET" action="/guido/codesearch/">
     <input type="hidden" name="student" value="{{student}}"/>
     <input type="hidden" name="assignment" value="{{assignment}}"/>
     <input name="query" type="textbox" /> 
-    <a href="#" class="primary pill button">Search code</a>
+    <button id="searchbutton">Search code</button>
     </form>
   </div>
 
@@ -44,31 +45,33 @@
              value="grade with selected comment"/>
       <input  type="submit" name="editcomment"
              value="edit selected comment"/>
-    </form>
-      <p style="margin-bottom:0">Comments on this</p>
+    </form><br>
+      <p style="margin-bottom:0">Exisiting comments on this</p>
       <div class="existingcomment">
-      % for comment in existingcomments:
-        {{comment}}<br>
-      % end
+      % if existingcomments == [] or exisitngcomments == None:
+        (none yet)
+	%else:
+          % for comment in existingcomments:
+            {{comment}}<br>
+          % end
+	%end
       </div>	
       <br />
     <table width="300" border="0">
     <tr>
+Navigation:
     % if prevstudent != None:
-    <a href="/grade_whole/{{assignment}}/{{prevstudent}}"
-         class="left pill button" >Previous Student</a>
+    <button id="prevstudentbutton" onclick="window.location='/grade_whole/{{assignment}}/{{prevstudent}}';">Previous</button>
     % end
     % if nextstudent != None:
-    <a href="/grade_whole/{{assignment}}/{{nextstudent}}"
-         class="right pill button" >Next Student</a>
+    <button id="nextstudentbutton" onclick="window.location='/grade_whole/{{assignment}}/{{nextstudent}}';">Next</button>
     % end
-    <br><br>
+    <br>
     </tr>
     <tr>
-    <a href="/specific_problem"
-         class="pill button" >Pick a new assignment</a> &nbsp;
-    <a href="/specific_problem/{{assignment}}"
-         class="pill button" >Pick a new problem</a> 
+    Change:
+    <a href="/specific_problem">assignment</a>
+    <a href="/specific_problem/{{assignment}}" >problem</a> 
     </tr>
     </table>
   </div>

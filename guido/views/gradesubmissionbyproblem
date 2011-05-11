@@ -60,12 +60,15 @@
     <table width="300" border="0">
     <tr>
     % if prevstudent != None:
-    <a href="/grade/{{assignment}}/{{prevstudent}}">Previous Student</a>
+    <button id="prevstudentbutton" onclick="window.location='/grade/{{assignment}}/{{prevstudent}}';">Previous</button>
     % end
     % if nextstudent != None:
-    <a href="/grade/{{assignment}}/{{nextstudent}}">Next Student</a>
+    <button id="nextstudentbutton" onclick="window.location='/grade/{{assignment}}/{{nextstudent}}';">Next</button>
     % end
-    <br><br>
+    <br>
+    </tr>
+    <tr>
+    <a href="/specific_submission">Change assignment</a>
     </tr>
     </table>
     </div>

@@ -22,14 +22,14 @@ def grade(username, assignment, problemname):
 
     fullprevcomments = queries.get_all_past_comments()
     linenumbers = makelinenumbers(studentsolution)
-    commenttext = queries.get_comment(username, assignment, problemname)
+    commenttext = queries.get_comments(username, assignment, problemname)
 
     students = queries.get_usernames(assignment, problemname)
     p,n = find_prev_next(students, username)
     
     return template("gradeoneproblem",
                     source=studentsolution,
-                    existingcomment=commenttext,
+                    existingcomments=commenttext,
                     linenumbers=linenumbers,
                     past_comments=fullprevcomments,
                     prevcomments=comments_firstline(fullprevcomments),
