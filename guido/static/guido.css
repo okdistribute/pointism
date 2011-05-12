@@ -1,6 +1,7 @@
 div.gradingContainer {
 	border-radius: 15px;
 	-moz-border-radius: 15px;
+	border-style: 1px #000;
 	position: absolute;
 	width: 95%;
         height: 95%;
@@ -143,243 +144,164 @@ select.prevcomments {
 }
 
 /* layout */
+
+.logo {
+ background: #000 url("/static/images/guido.png") no-repeat top center;
+ width: 480px;
+ height: 100px;
+ left: 50%;
+ margin-left: -240px;
+ margin-bottom: 15px;
+ position: relative;
+}
+
 body {
-	font: 100%/1.4  Georgia, "Times New Roman", Times, serif;
+        font-family: "Trebuchet MS", Verdana, Helvetica, Arial,sans-serif;
 	background: #fff;
 	margin: 0;
 	padding: 0;
 	color: #000;
+	background: #000;
+	margin: 0 auto;
+
 }
 
+#guido {
+  width:950px;
+  margin: 0 auto;
+
+}
 
 ul, ol, dl {
 	padding: 0;
 	margin: 0;
 }
+
 h1, h2, h3, h4, h5, h6, p {
-	margin-top: 0;
+   margin-top: 0;
 }
+
 a img { 
-	border: none;
+   border: none;
 }
 
 a:hover, a:active, a:focus { 
-	text-decoration: none;
-}
-
-.header {
-width: 800px;
+   text-decoration: none;
 }
 
 .container {        
-	border-radius: 15px;
-	-moz-border-radius: 15px;
-	position: absolute;
-	width: 90%;
-        height: 80%;
-	background: #fff;
-	margin: 0px 50px 50px 50px;
+	background: #000;
+	margin: 0px 30px 30px 30px;
 	overflow: auto;
-	border: 1px solid #fff;
+	padding: .7em 40px;
 }
-
 
 .sidebar1 {
-	position: fixed;
-	margin: 10px 0px 10px 0px;
-	width: 17%;
-	margin-left: 10px;
+    position: relative;
+    margin: 0px 22px 0px 22px;
+    float:left;
 }
 
-
 .sidebar1 a {
-	color: #fff;
+   color: #000;
 }
 
 .content_container {
-	position: absolute;
-	right: 0;
-	width: 80%;
-	height: 100%;
-
-	text-align: center;
+   width: 100%;
+   margin-left:10px;
+   position: relative;
+   float: left;
+   display: inline;
+   background: #fff;
+   overflow: visible;
+   text-align: center;
+   padding: 0px 0px 1em 0px;
+   min-height: 200px;
 }
+
+.section-title {
+   margin:0;
+   border: none;
+   background: #49497a;
+   padding: 6px 10px;
+}
+
+ h3 {
+   color: white;
+   font-size: 1em;
+}
+
+ h2 {
+   font-size: 1.2em;
+   color: black;
+}
+
+ h1 {
+   font-size: 1.4em;
+   color: white;
+}
+
 .content_header {
-	text-align: center;
-	font-family: arial;
-	font-weight: bold;
-	font-size: 28px;
-	font-style: italic;
-	height: 10%;
-}
-.content {
-	margin: 0px 20px 0px 20px;
-	border-style: solid;
-	border-color: #ccc;
-	border-bottom: 0px;
-	border-right: 0px;
-	border-left: 0px;
+   text-align: center;
+   font-weight: bold;
 }
 
-.legalstuff {
-	width: 1000px;
-	font-size: 10px;
-	color: #fff;
-	left-margin: 250Spx;
+.content {
+    margin: 10px 20px 0px 20px;
+    color: black;
 }
+
 .content ul, .content ol { 
-	padding: 0 15px 15px 40px;
+    padding: 0 15px 15px 40px;
+}
+
+
+.nav_section {
+      padding: 5px 20px 15px 20px;
+      background: #fff;
 }
 
 ul.nav {
 	list-style: none; 
-	border-top: 1px solid #000000; 
-	border-bottom: 1px solid #000; 
-	margin-bottom: 15px;
 }
 
 ul.nav:last-child{ 
 	margin-bottom: 0px;
 }
 
+ul.nav_container li {
+   margin: 10px;
+   float: left;
+   list-style: none;
+   position:relative;
+}
+
 ul.nav li {
     font-color: #fff;
+    float: none;
+    margin:3px;
+    border-bottom: 1px dotted #6D6D95;
 }
 
 ul.nav a, ul.nav a:visited a:link {
-	padding: 5px 5px 5px 15px;
-	display: block;
-	text-decoration: none;
-	font-color:#fff;
-	background: #222;
+    margin:0;
+    display: block;
+    text-decoration: none;
+    font-color:#fff;
 }
+
 ul.nav a:hover, ul.nav a:active, ul.nav a:focus { 
-	background: #BBF;
-	color: #000;
+    color: #333;
 }
-
-.fltrt {
-	float: right;
-	margin-left: 8px;
-}
-.fltlft { 
-	float: left;
-	margin-right: 8px;
-}
-.clearfloat { 
-	clear:both;
-	height:0;
-	font-size: 1px;
-	line-height: 0px;
-}
-
-
-/* Header */
-#banner {
- position: relative;
- width: 100%;
- height: 80px;
- padding: 0;
-}
-
-#banner-wrapper1 {
- width: 100%;
- height: 80px;
- padding: 0;
-}
-
-#banner-wrapper2 {
- width: 100%;
- height: 80px;
- padding: 0;
-}
-
-.logo {
- background-image: url("/static/images/guido.png");
- width: 480px;
- height: 100px;
- position: relative;
-}
-
-#banner h1 {
- font-size: 200%;
- color: #000;
- font-weight: bolder;
- position: absolute;
- top: -10px;
- right: 7px;
- padding: 0;
- margin: 0;
-}
-
-
-
-#header hr { display: none }
-#header h1 { margin-left: 6em; margin-top: -1.1em; }
-#header :link, #header :visited, #header :link:hover, #header
-:visited:hover {
- background: transparent;
- color: #555;
- margin-bottom: 2px;
- border: none;
-}
-
-#header {
-  margin-top: 2em;
-  margin-left: 2em;
-}
-#header h1 :link:hover, #header h1 :visited:hover { color: #000 }
-
-#navmenu {
-  top: 0.5em;
-  position: relative;
-  color: green;
-  margin-left: 2em;
-  margin-right: 2em;
-}
-
-#path {
-  top: -10px;
-  position: relative;
-  color: green;
-  margin-left: 2em;
-  margin-right: 10em;
-}
-.pathclass  A:link {text-decoration: none; color: green;}
-.pathclass  A:visited {text-decoration: none; color: green;}
-.pathclass  A:active {text-decoration: none; color: green;}
-.pathclass  A:hover {text-decoration: underline; color: green;}
-#path :link, #path:link:visited:hover { color: green; }
-
-#content {
-  padding: 1em;
-  padding-bottom: 2em;
-  position: relative;
-  top: 0px;
-  margin-top: -6px;
-  margin-left: 2em;
-  margin-right: 2em;
-  border: 1px solid #bce09c ;
-  min-height: 400px;
-}
-
-
-@media print {
- #header, #altlinks, #footer, #help { display: none }
- .nav, form, .buttons form, form .buttons, form .inlinebuttons { display: none }
- form.printableform { display: block }
-}
-
-#footer hr { display: none; }
 
 #byline{ 
     padding: 2px;
     text-align: center;
     bottom: 0px;
-    position: absolute;
+    position: relative;
     width: 95%;
-    margin: auto;
-    border-top: 1px solid #ccb;
+    margin-bottom: 3em;
+    border-top: 1px solid #fff;
     font-size: x-small;
 }
 
@@ -393,11 +315,6 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus {
     font-size: x-small;
 }
 #byline p { color: #000; margin: 0; position:relative; }
-
-.crclass  A:link {text-decoration: none; }
-.crclass  A:visited {text-decoration: none; color: black; }
-.crclass  A:active {text-decoration: none; color: black; }
-.crclass  A:hover {text-decoration: underline; color: black; }
 
 /* jquery-ui */
 
@@ -418,3 +335,30 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus {
 #grade .ui-selected { background: #F39814; color: white; }
 #grade { list-style-type: none; margin: 0; padding: 0; }
 #grade li { margin: 3px; padding: 1px; float: left; width: 50px; height: 40px; font-size: 2em; text-align: center; cursor: pointer;}
+
+/* other */
+
+.roundBottom {
+   -moz-border-radius-bottomleft: 6px;
+   -moz-border-radius-bottomright: 6px;
+   -webkit-border-bottom-left-radius: 6px;
+   -webkit-border-bottom-right-radius: 6px;
+   border-radius-bottomleft: 6px;
+   border-radius-bottomright: 6px;
+   border-top: none;
+   border-bottom-left-radius: 6px 6px;
+   border-bottom-right-radius: 6px 6px;
+   margin: 0px 0px 10px 0px;
+}
+
+.roundTop {
+   -moz-border-radius-topleft: 6px;
+   -moz-border-radius-topright: 6px;
+   -webkit-border-top-left-radius: 6px;
+   -webkit-border-top-right-radius: 6px;
+   border-radius-topleft: 6px;
+   border-radius-topright: 6px;
+   border-top-left-radius: 6px 6px;
+   border-top-right-radius: 6px 6px;
+}
+
