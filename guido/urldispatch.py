@@ -92,6 +92,10 @@ def grade_submission_with_graded_problem_table(assignment, username):
     """Routes the user to the grading a submission by problem"""
     return grading.submissionbyproblem(assignment, username)
 
+# final report iframe #
+@route('/framesbp/:assignment/:username')
+def framesbp(assignment, username):
+    return template('framesbp', problems=grading.finalreport(assignment, username))
 
 ################################
 # Grading the whole submission #
@@ -134,7 +138,7 @@ def grade_whole_submissions(assignment, username):
 def submission_frame(assignment, username):
     solution = queries.get_submission(username, assignment)
     ss = solution[0]
-    return template('submissionframe', source=ss,linenumbers=grading.makelinenumbers(ss))
+    return template('framesubmission', source=ss,linenumbers=grading.makelinenumbers(ss))
 
                 #################
 ################# Other Stuff #################

@@ -4,20 +4,7 @@
   <!-- left -->
   <div class="finalgrade">
       <h4 class="section-title roundTop">Student Code and Grade</h4>
-  <div class="code roundBottom">
-    <table class="reportTable" width="400" border="0">
-    % for problem in problems:
-      <tr>
-        <td>
-        {{problem.source}}
-        </td>
-        <td>
-        {{problem.grade}}
-        </td>
-      </tr>
-    %end
-    </table>
-   </div>
+      <iframe src="/framesbp/{{assignment}}/{{student}}" style='width:99%;height:100%'></iframe>
   </div>
 
   <!-- right -->

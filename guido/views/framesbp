@@ -1,0 +1,21 @@
+<html>
+<head>
+    <link rel="stylesheet" href="/static/guido.css" type="text/css" />
+</head>
+<body>
+    <table class="reportTable" border="0" >
+    % for problem in problems:
+      <tr>
+        <td>
+	<div class="code">
+        {{problem.source}}
+	</div>
+        </td>
+        <td>
+        <center> {{problem.grade}} </center>
+        </td>
+      </tr>
+    %end
+    </table>
+</body>
+</html>

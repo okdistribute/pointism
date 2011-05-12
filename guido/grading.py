@@ -44,18 +44,13 @@ def grade(username, assignment, problemname):
                     grades=possible_grades())
 
 def submissionbyproblem(assignment, username):
-    problems = []
-    query = queries.get_graded_problems(assignment, username)
-    for problem in query:
-        problems.append(ProblemGrade(problem[0],problem[1]))
-
     fullprevcomments = queries.get_all_past_comments()
-
+    
     students = queries.who_turned_in(assignment)
     p,n = find_prev_next(students, username)
 
     return template("gradesubmissionbyproblem",
-                    problems=problems,
+                    problems=finalreport(assignment, username),
                     prevstudent=p,
                     nextstudent=n,
                     student=username,
@@ -152,6 +147,16 @@ class ProblemGrade:
     def __init__(self, source,grade):
         self.source = source
         self.grade = grade
+
+
+def finalreport(assignment, username):
+    problems = []
+    query = queries.get_graded_problems(assignment, username)
+    for problem in query:
+        problems.append(ProblemGrade(problem[0],problem[1]))
+    return problems
+        
+
 
 def comments_firstline(list_of_prevcommenttext):
     prevcomments = list( map( lambda pair: model.Comment(pair[0],pair[1]),
