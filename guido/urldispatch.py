@@ -128,7 +128,13 @@ def grade_whole_submissions(assignment, username):
     queries.insert_problem_comment(comment, username, assignment, None)
     return grading.whole_submission(assignment, username)
 
+# submission iframe #
 
+@route('/submissionframe/:assignment/:username')
+def submission_frame(assignment, username):
+    solution = queries.get_submission(username, assignment)
+    ss = solution[0]
+    return template('submissionframe', source=ss,linenumbers=grading.makelinenumbers(ss))
 
                 #################
 ################# Other Stuff #################

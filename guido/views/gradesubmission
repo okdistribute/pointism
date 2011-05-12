@@ -1,85 +1,107 @@
 %include gradeheader title='grading a submission', past_comments=past_comments
-
-
 <div class="gradingContainer">
   <!-- left -->
-  <div class="student">
-  <div class="code"><div class="linenumbers">{{linenumbers}}</div> {{source}}</div>
+  <div class="student ">
+      <h4 class="section-title roundTop">Student Code</h4>
+    <iframe src="/submissionframe/{{assignment}}/{{student}}" style='width:99%;height:100%'></iframe>
     <form method="GET" action="/guido/codesearch/">
     <input type="hidden" name="student" value="{{student}}"/>
     <input type="hidden" name="assignment" value="{{assignment}}"/>
     <input name="query" type="textbox" /> 
     <button id="searchbutton">Search code</button>
     </form>
+
   </div>
 
   <!-- right -->
   <div class="gradingWrapper">
-    <div class="grading">
-    <div class="code">{{autograder}}</div>
-    <div class="code" id="gradedCode"></div>
+  <div class="autograder roundTop">
+    <h4 class="section-title roundTop">Autograder Report</h4>
+      <div class="code roundBottom">
+     %if autograder=='' or autograder==None:
+       No output.
+     %else:
+       {{autograder}}
+     %end
+      </div>
+    </div>
+
+  <div class="grading roundTop roundBottom">
+    <div class="grading_header"> <h4 class="section-title roundTop">Grading</h4> </div>
+    <div class="grading_content">
     <form method="POST" action="" autocomplete="off">
       <ol id="grade">
       % for grade in grades:
       	% if default_grade == grade:
-	       <li class="ui-state-selected ui-state-hover" value="{{default_grade}}">{{default_grade}}</li>
+	       <li class="ui-selected ui-state-default" value="{{default_grade}}">{{default_grade}}</li>
 	% else:
 	       <li class="ui-state-default" value="{{grade}}">{{grade}}</li>
 	% end
       % end
       </ol>
-      <br/>
-      <textarea id="comment" name="comment" cols="60"></textarea>
-      <br/>
+      <br clear="all">
+      <textarea id="comment" name="comment" cols=100 rows=5></textarea>
       <input type="hidden" id="submit_grade" name="grade" value="None" />
-      <input type="submit" name="usenew" value="grade"/>
-      <p style="margin-bottom:0">Previously used comments:</p>
+      <input type="submit" id="gradecommentbutton" name="newgradecomment" value="Grade & Comment" />
+      <input type="submit" id="gradebutton" name="newgrade" value="Grade" />
+      <input type="submit" id="commentbutton" name="newcomment" value="Comment" />
+    </div>
+   </div>
 
+   <div class="grading roundTop roundBottom">
+    <div class="grading_header"> <h4 class="section-title roundTop">Comment Database</h4> </div>
+     <div class="grading_content">
       <select name="prevcomments" class="prevcomments" size="3">
       % for comment in prevcomments:
         <option value="{{past_comments[comment.commentid]}}">{{comment.firstline}}</option>
       % end
       </select>
-      <br/>
+
       <input  type="submit" name="useprevious"
              value="grade with selected comment"/>
       <input  type="submit" name="editcomment"
              value="edit selected comment"/>
-    </form><br>
-      <p style="margin-bottom:0">Exisiting comments on this submission</p>
-      <div class="existingcomment">
-      % if existingcomments == [] or exisitngcomments == None:
-        (none yet)
-	%else:
-          % for comment in existingcomments:
-            {{comment}}<br>
-          % end
-	%end
-      </div>	
-      <br />
-    <table width="300" border="0">
-    <tr>
-Navigation:
+    </form>
+   </div>
+  </div>
+
+   <ul class="nav_container">
+    <li>
+    <h3 class="roundTop section-title">Pick a Student</h3>
+    <div class="roundBottom nav_section">
+    <ul class="nav">
     % if prevstudent != None:
     <button id="prevstudentbutton" onclick="window.location='/grade_whole/{{assignment}}/{{prevstudent}}';">Previous</button>
     % end
     % if nextstudent != None:
     <button id="nextstudentbutton" onclick="window.location='/grade_whole/{{assignment}}/{{nextstudent}}';">Next</button>
     % end
-    <br>
-    </tr>
-    <tr>
-    Change:
-    <a href="/specific_problem">assignment</a>
-    <a href="/specific_problem/{{assignment}}" >problem</a> 
-    </tr>
-    </table>
-  </div>
-  </div>
+      </ul>
+    </div>
+   </li>
+    <li>
+    <h3 class="roundTop section-title">Select Different</h3>
+    <div class="roundBottom nav_section">
+    <ul class="nav">
+    <button onclick="window.location='/specific_problem';">assignment</button>
+    <button onclick="window.location='/specific_problem/{{assignment}}';">problem</button>
+      </ul>    </div>
+   </li>
+</ul>
+
+  <div class="grading roundTop roundBottom" style="padding-bottom:0;">
+    <div class="grading_header">  <h4 class="section-title roundTop">Comments Already Attached</h4></div>
+    <div class="existingcomment roundBottom" style="margin:0px 0px 0px 0px;">
+      % if existingcomments == [] or existingcomments == None:
+        (none yet)
+      % else:
+         % for comment in existingcomments:
+           {{comment}}<br><br>
+         % end	    
+      %end
+   </div>
 </div>
 
 
-  <br/>
-
-
-%include byline
+  </div>
+</div>

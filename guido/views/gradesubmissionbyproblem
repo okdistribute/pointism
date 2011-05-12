@@ -1,11 +1,11 @@
 %include gradeheader title='grading the submission', past_comments=past_comments
 
-  <!-- left -->
 <div class="gradingContainer">
-  <div class="student">
-  <div class="code">
-    <table width="400" border="0">
-
+  <!-- left -->
+  <div class="finalgrade">
+      <h4 class="section-title roundTop">Student Code and Grade</h4>
+  <div class="code roundBottom">
+    <table class="reportTable" width="400" border="0">
     % for problem in problems:
       <tr>
         <td>
@@ -21,63 +21,68 @@
   </div>
 
   <!-- right -->
-  <div class="gradingWrapper">
-    <div class="grading">
-    <br/>
+<div class="gradingWrapper">
+
+  <div class="grading roundTop roundBottom">
+    <div class="grading_header"> <h4 class="section-title roundTop">Grading</h4> </div>
+    <div class="grading_content">
     <form method="POST" action="" autocomplete="off">
       <ol id="grade">
       % for grade in grades:
       	% if default_grade == grade:
-	       <li class="ui-selected ui-state-hover" value="{{default_grade}}">{{default_grade}}</li>
+	       <li class="ui-selected ui-state-default" value="{{default_grade}}">{{default_grade}}</li>
 	% else:
 	       <li class="ui-state-default" value="{{grade}}">{{grade}}</li>
 	% end
       % end
       </ol>
-      <br/>
-      <br/>
-      <br/>
-      % if existingcomment is None:
-      <textarea id="comment" name="comment" cols="60"></textarea>
-      % else:
-      <div class="existingcomment">{{existingcomment}}</div>
-      % end
+      <br clear="all">
+      <textarea id="comment" name="comment" cols=100 rows=5></textarea>
+      <input type="hidden" id="submit_grade" name="grade" value="None" />
+      <input type="submit" id="gradecommentbutton" name="usenew" value="Grade & Comment" />
+      <input type="submit" id="gradebutton" name="usenew" value="Grade" />
+      <input type="submit" id="commentbutton" name="usenew" value="Comment" />
+    </div>
+   </div>
 
-      <input type="submit" name="usenew" value="grade"/>
-      <br/>
-
-      <p style="margin-bottom:0">Previously used comments:</p>
-
+   <div class="grading roundTop roundBottom">
+    <div class="grading_header"> <h4 class="section-title roundTop">Comment Database</h4> </div>
+     <div class="grading_content">
       <select name="prevcomments" class="prevcomments" size="3">
       % for comment in prevcomments:
         <option value="{{past_comments[comment.commentid]}}">{{comment.firstline}}</option>
       % end
       </select>
 
-      <br/>
       <input  type="submit" name="useprevious"
              value="grade with selected comment"/>
       <input  type="submit" name="editcomment"
              value="edit selected comment"/>
     </form>
-<br>
-    <table width="300" border="0">
-    <tr>
+   </div>
+  </div>
+<ul class="nav_container">
+    <li>
+    <h3 class="roundTop section-title">Pick a Student</h3>
+    <div class="roundBottom nav_section">
+    <ul class="nav">
     % if prevstudent != None:
     <button id="prevstudentbutton" onclick="window.location='/grade/{{assignment}}/{{prevstudent}}';">Previous</button>
     % end
     % if nextstudent != None:
     <button id="nextstudentbutton" onclick="window.location='/grade/{{assignment}}/{{nextstudent}}';">Next</button>
     % end
-    <br>
-    </tr>
-    <tr>
-    <a href="/specific_submission">Change assignment</a>
-    </tr>
-    </table>
+      </ul>
     </div>
+   </li>
+    <li>
+    <h3 class="roundTop section-title">Select Different</h3>
+    <div class="roundBottom nav_section">
+    <ul class="nav">
+    <button onclick="window.location='/specific_submission';">assignment</button>
+      </ul>    </div>
+   </li>
+</ul></div>
 </div>
 </div>
-  <br/>
 
-%include byline

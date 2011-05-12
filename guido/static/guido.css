@@ -1,36 +1,32 @@
 div.gradingContainer {
-	border-radius: 15px;
-	-moz-border-radius: 15px;
-	border-style: 1px #000;
-	position: absolute;
-	width: 95%;
-        height: 95%;
-	margin: 10px;
-	overflow: auto;
-	border: 1px solid #fff;
+  overflow: visible;	    
+  margin: 0px 10px 30px 10px;
+ height:835px;
+}
+
+div.gradingContainer h4 {
+  color: #fff;			 
 }
 
 div.student {
-  background-color: #ddd;
-  width: 48%;
+  width: 50%;
+  display:inline;
   overflow: auto;
   float: left;
+  position:relative;
   text-align: left;
   padding-bottom: .5em;
-  padding-top: .5em;
-  border-radius: 15px;
-  -moz-border-radius: 15px;
+  padding-top: 1em;
 }
 
 div.code {
   font-family: 'Droid Sans Mono', arial, serif;
   margin-bottom: 1em;
-
+  background: #ddd;
+  padding: .5em;
   font-size: 10pt;
   white-space: pre-wrap;
   position:relative;
-  border-radius: 15px;
-  -moz-border-radius: 15px;
 }
 
 div.linenumbers {
@@ -46,25 +42,33 @@ div.grading {
   position: relative;
   width: 100%;
   margin: auto;
-  
-  padding-left: 1em;
-  border-radius: 15px;
-  -moz-border-radius: 15px;
+  margin-bottom: 1em;
   padding-bottom: .5em;
+  text-align: center;
+}
+
+div.grading_header {
+  text-align: left;
+}
+
+div.grading_content {
+  padding: .5em;
 }
 
 div.gradingWrapper {
-  left: 50%;
-  position: fixed;
-  width: 41%;
-  float: left;
-
+  position: relative;
+  float: right;
+  display: inline;
+  width: 44%;
+  padding: 1em;
 }
 
 div.existingcomment {
   color: black;
-  background-color: #ddd;
-  margin-right: 1em;
+  background-color: #fff;
+  padding:1em;
+  text-align:left;
+ 
 }
 
 
@@ -84,6 +88,15 @@ a.frontbutton {
 div.codesearchbox {
   float: right;
   width: 45%;
+}
+
+/* gradesubmissionbyproblem */
+
+div.finalgrade {
+  width:600px;
+  position:relative;
+  float:left;
+  padding-top:1em;
 }
 
 .reportTable td {
@@ -146,12 +159,11 @@ select.prevcomments {
 /* layout */
 
 .logo {
- background: #000 url("/static/images/guido.png") no-repeat top center;
- width: 480px;
- height: 100px;
- left: 50%;
- margin-left: -240px;
- margin-bottom: 15px;
+ background: #777 url("/static/images/guido.gif") no-repeat top left;
+ width: 1000px;
+ height: 95px;
+ top: -3%;
+ left: -3%;
  position: relative;
 }
 
@@ -163,13 +175,14 @@ body {
 	color: #000;
 	background: #000;
 	margin: 0 auto;
-
+        background: #333 url("/static/images/background.jpg");
 }
 
 #guido {
   width:950px;
+  height: 500px;
   margin: 0 auto;
-
+  background: #333 url("/static/images/background.jpg");
 }
 
 ul, ol, dl {
@@ -185,21 +198,24 @@ a img {
    border: none;
 }
 
+a {
+  color: #fff;
+}
+
 a:hover, a:active, a:focus { 
-   text-decoration: none;
+   color: #c77405;
 }
 
 .container {        
-	background: #000;
-	margin: 0px 30px 30px 30px;
-	overflow: auto;
-	padding: .7em 40px;
+   margin: 0px 30px 30px 30px;
+   overflow: auto;
+   padding: .1em 40px;
 }
 
 .sidebar1 {
     position: relative;
-    margin: 0px 22px 0px 22px;
-    float:left;
+    margin: 0px 0px 0px 40px;
+    float: left;
 }
 
 .sidebar1 a {
@@ -228,7 +244,8 @@ a:hover, a:active, a:focus {
 
  h3 {
    color: white;
-   font-size: 1em;
+   font-size: .9em;
+   text-align: center;
 }
 
  h2 {
@@ -242,8 +259,9 @@ a:hover, a:active, a:focus {
 }
 
 .content_header {
-   text-align: center;
+   text-align: left;
    font-weight: bold;
+   font-style: italic;
 }
 
 .content {
@@ -258,7 +276,7 @@ a:hover, a:active, a:focus {
 
 .nav_section {
       padding: 5px 20px 15px 20px;
-      background: #fff;
+      background: #ddd;
 }
 
 ul.nav {
@@ -277,32 +295,42 @@ ul.nav_container li {
 }
 
 ul.nav li {
-    font-color: #fff;
+    font-size: .9em;
     float: none;
     margin:3px;
-    border-bottom: 1px dotted #6D6D95;
 }
 
 ul.nav a, ul.nav a:visited a:link {
     margin:0;
+    padding: 1px 2px 1px 2px;
     display: block;
     text-decoration: none;
-    font-color:#fff;
 }
 
 ul.nav a:hover, ul.nav a:active, ul.nav a:focus { 
-    color: #333;
+    color: #c77405;
+    padding: 1px 2px 1px 2px;
+    background-color: #ddd;
+    font-style: none;
 }
 
 #byline{ 
-    padding: 2px;
     text-align: center;
     bottom: 0px;
     position: relative;
-    width: 95%;
-    margin-bottom: 3em;
-    border-top: 1px solid #fff;
+    width: 100%;
+    background: #333;
+    height: 100%;
+    margin-top: 3em;
+    border-top: 1px solid #555;
     font-size: x-small;
+    color: #fff;
+   
+}
+
+#byline a:link a:hover {
+   font-style: italic;
+   text-decoration: underline;
 }
 
 #footer{ 
@@ -314,7 +342,6 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus {
     border-top: 1px solid #ccb;
     font-size: x-small;
 }
-#byline p { color: #000; margin: 0; position:relative; }
 
 /* jquery-ui */
 
