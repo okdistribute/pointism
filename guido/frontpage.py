@@ -30,7 +30,7 @@ def specific_submission():
 def submission_report():
     return template("assignment_selection",
                     assignments=queries.get_assignments(),
-                    title="View Reports",
+                    title="View Student Reports",
                     target="/specific_report/pick_username")
 
 def submission_report_choice(aid):
@@ -43,7 +43,7 @@ def assignment_notes():
     return template("assignment_selection", 
                     assignments=queries.get_assignments(),
                     target="/assignment_notes/edit",
-                    title="Assignment Notes")
+                    title="Edit Assignment Notes")
 
 def startpage():
     return template("startpage")
