@@ -26,15 +26,13 @@
 	% end
       % end
       </ol>
-      <br/>
-      <br/>
-      <br/>
-      <textarea id="comment" name="comment" cols="60"></textarea>
+      <br clear="all">
+      <textarea id="comment" name="comment" cols=100></textarea>
       <input type="hidden" id="submit_grade" name="grade" value="None" />
       <input type="submit" id="gradebutton" name="usenew" value="Grade" />
       <br/>
-      <div id="show_result"></div>
-      <p style="margin-bottom:0">Previously used comments:</p>
+      <br/>
+       <p style="margin-bottom:0">Previously Used Comments:</p>
 
       <select name="prevcomments" class="prevcomments" size="3">
       % for comment in prevcomments:
@@ -42,12 +40,12 @@
       % end
       </select>
 
-      <br/>
       <input  type="submit" name="useprevious"
              value="grade with selected comment"/>
       <input  type="submit" name="editcomment"
              value="edit selected comment"/>
     </form>
+      <br/>
       <p style="margin-bottom:0">Exisiting comments on this problem</p>
       <div class="existingcomment">
       % if existingcomments == [] or existingcomments == None:

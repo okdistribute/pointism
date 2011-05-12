@@ -76,8 +76,6 @@ div.assignmentlist {
   width: 55%;
 }
 
-
-
 a.frontbutton {
   font-size: 2em;
 }
@@ -179,8 +177,8 @@ width: 800px;
 	position: absolute;
 	width: 90%;
         height: 80%;
-	background: #ddd;
-	margin: 50px;
+	background: #fff;
+	margin: 0px 50px 50px 50px;
 	overflow: auto;
 	border: 1px solid #fff;
 }
@@ -253,7 +251,7 @@ ul.nav a, ul.nav a:visited a:link {
 	display: block;
 	text-decoration: none;
 	font-color:#fff;
-	background: #838383;
+	background: #222;
 }
 ul.nav a:hover, ul.nav a:active, ul.nav a:focus { 
 	background: #BBF;
@@ -296,10 +294,11 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus {
  padding: 0;
 }
 
-#logo {
- position: absolute;
- top: 35px;
- left: 2.5em;
+.logo {
+ background-image: url("/static/images/guido.png");
+ width: 480px;
+ height: 100px;
+ position: relative;
 }
 
 #banner h1 {
