@@ -18,8 +18,8 @@
     <div class="roundBottom nav_section">
     <ul class="nav">
       <li><a href="/specific_problem">Specific Problem</a></li>
-      <li><a href="/specific_submission">Submission by Problem</a></li>
-      <li><a href="/grade_whole/pick"> Whole Submission</a></li>
+      <li><a href="/grade_whole/pick"> Whole Submissions</a></li>
+      <li><a href="/specific_submission">Submissions by Problem</a></li>
       </ul>
     </div>
    </li>
