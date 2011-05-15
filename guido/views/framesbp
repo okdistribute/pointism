@@ -1,10 +1,19 @@
 <html>
 <head>
     <link rel="stylesheet" href="/static/guido.css" type="text/css" />
+    <link type="text/css" href="/static/css/ui-lightness/jquery-ui-1.8.12.custom.css" rel="Stylesheet" />
 </head>
 <body>
-    <table class="reportTable" border="0" >
-    % for problem in problems:
+  <div id="report">
+    <table class="ui-widget ui-widget-content">
+      <thead>
+        <tr class="ui-widget-header">
+              <th>Problem</th>
+	      <th>Grade</th>
+        </tr>
+      </thead>
+      <tbody>
+    % for problem in problems:    
       <tr>
         <td>
 	<div class="code">
@@ -16,6 +25,8 @@
         </td>
       </tr>
     %end
+     </tbody>
     </table>
+ </div>
 </body>
 </html>

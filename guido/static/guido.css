@@ -9,9 +9,10 @@ h4 {
 }
 
 div.student {
-  width: 50%;
+  height: 600px;
+  width: 600px;
   display:inline;
-  overflow: auto;
+  overflow: visible;
   float: left;
   position:relative;
   text-align: left;
@@ -89,10 +90,14 @@ div.codesearchbox {
   width: 45%;
 }
 
+div#report table { margin: 1em 0; border-collapse: collapse; width: 100%; }
+div#report table td, div#framesbp table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
+
 /* gradesubmissionbyproblem */
 
 div.finalgrade {
   width:600px;
+  height:600px;
   position:relative;
   float:left;
   padding-top:1em;

@@ -1,6 +1,5 @@
 %include gradeheader title='grading a submission', past_comments=past_comments
 <div id="bigContainer">
-<div class="gradingContainer">
   <!-- left -->
   <div class="student ">
       <h4 class="section-title roundTop">Student Code</h4>
@@ -101,7 +100,5 @@
    </div>
 </div>
 
-
-  </div>
 </div>
 </div>

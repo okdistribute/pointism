@@ -1,7 +1,7 @@
 %include gradeheader title='submission report for' + ' ' + student + ' , ' + assignment, past_comments=[]
 
   <!-- left -->
-  <h1> {{student}}</h1><h2>{{assignment}}</h2>
+  <h1> {{assignment}} {{student}}</h1>
 
   <table>
     <tr>
@@ -18,13 +18,22 @@
     </table>
 
 
-  <div class="report" dir="LTR">
-    <table class=reportTable width="400" border="0">
-      <td><h2>Your Code</h2></td> <td><h2>Comments<h2></td> <td><h2>Autograder report<h2></td>	
+  <div id="report" dir="LTR">
+    <table class="iu-widget ui-widget-content">
+      <thead>
+       <tr class="ui-widget-header">
+        <th>Code</th> 
+        <th>Comments</th> 
+	<th>Autograder report</th>	
+       </tr>
+      <thead>
+      <tbody>
     % for key in problems.keys():
       <tr>
         <td>
+         <div class="code">
         {{problems[key][0]}}
+         </div>
         </td>
         <td>
 	<ul>
@@ -38,13 +47,9 @@
         </td>
       </tr>
     %end
+     </tbody>
     </table>
   </div>
 
-
-
-  <br clear="all"/>
-
-  <br/>
-
+</div>
 
