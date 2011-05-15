@@ -1,7 +1,7 @@
 %include gradeheader title='grading the problem', past_comments=past_comments
-<div class="gradingContainer">
+<div id="bigContainer">
   <!-- left -->
-  <div class="student ">
+  <div class="student">
       <h4 class="section-title roundTop">Student Code</h4>
     <div class="code  roundBottom"><div class="linenumbers">{{linenumbers}}</div>{{source}}</div>
     <form method="GET" action="/guido/codesearch/">
@@ -55,9 +55,8 @@
       <br clear="all">
       <textarea id="comment" name="comment" cols=100 rows=5></textarea>
       <input type="hidden" id="submit_grade" name="grade" value="None" />
-      <input type="submit" id="gradecommentbutton" name="usenew" value="Grade & Comment" />
-      <input type="submit" id="gradebutton" name="usenew" value="Grade" />
-      <input type="submit" id="commentbutton" name="usenew" value="Comment" />
+      <input type="submit" id="gradebutton" name="btnGrade" value="Grade" />
+
     </div>
    </div>
    <div class="grading roundTop roundBottom">
@@ -75,7 +74,6 @@
              value="edit selected comment"/>
     </form>
    </div>
-  </div>
 </div>
 <ul class="nav_container">
     <li>
@@ -104,4 +102,3 @@
 
 </div>
 </div>
-%include byline

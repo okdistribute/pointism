@@ -1,6 +1,5 @@
-%include gradeheader title='grading the submission', past_comments=past_comments
-
-<div class="gradingContainer">
+%include gradeheader title='grading submission by problem', past_comments=past_comments
+<div id="bigContainer">
   <!-- left -->
   <div class="finalgrade">
       <h4 class="section-title roundTop">Student Code and Grade</h4>
@@ -26,9 +25,7 @@
       <br clear="all">
       <textarea id="comment" name="comment" cols=100 rows=5></textarea>
       <input type="hidden" id="submit_grade" name="grade" value="None" />
-      <input type="submit" id="gradecommentbutton" name="usenew" value="Grade & Comment" />
       <input type="submit" id="gradebutton" name="usenew" value="Grade" />
-      <input type="submit" id="commentbutton" name="usenew" value="Comment" />
     </div>
    </div>
 
@@ -71,5 +68,3 @@
    </li>
 </ul></div>
 </div>
-</div>
-

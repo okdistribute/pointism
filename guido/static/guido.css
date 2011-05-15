@@ -4,7 +4,7 @@ div.gradingContainer {
  height:835px;
 }
 
-div.gradingContainer h4 {
+h4 {
   color: #fff;			 
 }
 
@@ -70,7 +70,6 @@ div.existingcomment {
   text-align:left;
  
 }
-
 
 div.grading textarea {
   max-width: 95%;
@@ -181,6 +180,12 @@ body {
 #guido {
   width:950px;
   height: 500px;
+  margin: 0 auto;
+  background: #333 url("/static/images/background.jpg");
+}
+
+#bigContainer {
+  width:1130px;
   margin: 0 auto;
   background: #333 url("/static/images/background.jpg");
 }
