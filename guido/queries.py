@@ -174,6 +174,8 @@ def get_graded_problems(assignment, username):
         return request
 
 def insert_problem_grade(grade, username, assignment, problemname):
+    if grade == 'None':
+        return
     conn = sqlite3.connect(THEDB)
     c = conn.cursor()
     print("inserting grade {0} for {1}".format(grade, username))
@@ -186,6 +188,8 @@ def insert_problem_grade(grade, username, assignment, problemname):
     c.close()
 
 def insert_submission_grade(grade, username, assignment):
+    if grade == 'None':
+        return
     conn = sqlite3.connect(THEDB)
     c = conn.cursor()
     print("inserting grade {0} for {1}".format(grade, username))
@@ -198,19 +202,18 @@ def insert_submission_grade(grade, username, assignment):
     c.close()
 
 def insert_problem_comment(comment, username, assignment, problemname):
-    conn = sqlite3.connect(THEDB)
-    c = conn.cursor()
-    ##check to make sure we won't get 'None' comments
-    if comment == None:
-        return;
+    if comment == None or comment == 'None':
+        return
     ##check to make sure comments that contain just whitespace won't get added
     if comment.replace(" ","") == "":
-        return;
-
+        return
+    conn = sqlite3.connect(THEDB)
+    c = conn.cursor()
     sql = """select commentid, text from Comment 
            where text=?"""
     c.execute(sql, (comment,))
     request = c.fetchone()
+
     #if this will be a duplicate comment, use the original commentid 
     if request != None:
         commentid = request[0]
