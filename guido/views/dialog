@@ -1,0 +1,12 @@
+ <!-- begin dialog -->
+<div id="comment-dialog" title="Edit Comment">
+     <p class="validateTips"></p>
+     <form id="submitedit">  
+     <label for="editablecomment">Comment:</label>
+     <textarea id="editablecomment" name="editablecomment" class="text ui-widget-content ui-corner-all" cols=50 rows=5></textarea>
+     </form>
+</div>
+<div id="confirm-delete" title="Delete Comment?">
+     <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>This cannot be reversed. Are you sure?</p>
+</div>
+<!-- end dialog -->

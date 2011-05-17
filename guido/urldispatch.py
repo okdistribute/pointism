@@ -239,3 +239,29 @@ def server_static(path, to, extension, filename):
 def startpage():
     return frontpage.startpage()
 
+@route('/commentdb.ajax')
+def update_commentdb():
+    prevcomments = grading.comments_firstline(queries.get_all_past_comments())
+    return template('commentdb.ajax',
+                    prevcomments=prevcomments)                    
+
+@route('/commentedit.ajax', method='POST')
+def edit_comment():
+    commentid = request.POST.get('commentid')
+    text = request.POST.get('text')
+    queries.update_comment_text(commentid, text)
+    redirect('/commentdb.ajax')
+
+@route('/commenttext.ajax')
+def getcommenttext():
+    commentid = request.GET.get('commentid')
+    try:
+        return queries.get_comment(commentid)[1]
+    except:
+        return "No comment with id " + commentid    
+
+@route('/commentdelete.ajax', method='POST')
+def commentdelete():
+    commentid = request.POST.get('commentid')
+    queries.delete_comment(commentid)
+    redirect('commentdb.ajax')

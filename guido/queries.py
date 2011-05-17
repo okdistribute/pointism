@@ -248,15 +248,11 @@ def get_assignment_notes(assignment):
 def get_all_past_comments():
     with sqlite3.connect(THEDB) as conn:
         c = conn.cursor()
-        sql=  """SELECT DISTINCT C.text from Comment C 
+        sql=  """SELECT DISTINCT C.commentid, C.text from Comment C 
                  left join CommentSolution CS
                  where C.commentid=CS.commentid"""
         c.execute(sql)
-        comments = c.fetchall()
-        stripped = []
-        for c in comments:
-            stripped.append(c[0])
-        return stripped
+        return c.fetchall()
 
 def get_report(assignment, username):
     """Returns a list of solution, comment, and autograder"""
@@ -271,3 +267,32 @@ def get_report(assignment, username):
                  and C.problemname=S.problemname"""
         c.execute(sql, (assignment, username))
         return c.fetchall()
+
+def get_comment(commentid):
+    with sqlite3.connect(THEDB) as conn:
+        c = conn.cursor()
+        sql = """Select * from Comment where
+                 Comment.commentid=?"""
+        c.execute(sql, (commentid,))
+        return c.fetchone()
+
+def update_comment_text(commentid, text):
+    with sqlite3.connect(THEDB) as conn:
+        c = conn.cursor()
+        sql = ("""update Comment 
+               set text=?
+               where commentid=?""")
+        param = (text, commentid)
+        c.execute(sql, param)
+        conn.commit()
+        c.close()
+
+def delete_comment(commentid):
+    with sqlite3.connect(THEDB) as conn:
+        c = conn.cursor()
+        sql = ("""delete from Comment 
+               where commentid=?""")
+        param = (commentid,)
+        c.execute(sql, param)
+        conn.commit()
+        c.close()

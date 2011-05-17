@@ -53,28 +53,32 @@
       % end
       </ol>
       <br clear="all">
-      <textarea id="comment" name="comment" cols=100 rows=5></textarea>
+      <textarea id="comment" name="comment" cols=100 rows=4></textarea>
       <input type="hidden" id="submit_grade" name="grade" value="None" />
       <input type="submit" id="gradebutton" name="btnGrade" value="Grade" />
-
+      </form>
     </div>
    </div>
    <div class="grading roundTop roundBottom">
     <div class="grading_header"> <h4 class="section-title roundTop">Comment Database</h4> </div>
      <div class="grading_content">
-      <select name="prevcomments" class="prevcomments" size="3">
+      <form method="POST" id="formCommentdb" action="" autocomplete="off">	
+      <div id="divprevcomments">
+      <select id="prevcomments" name="prevcomments" class="prevcomments" size="3">
       % for comment in prevcomments:
-        <option value="{{past_comments[comment.commentid]}}">{{comment.firstline}}</option>
+        <option value="{{comment.commentid}}">{{comment.firstline}}</option>
       % end
       </select>
-
-      <input  type="submit" name="useprevious"
-             value="grade with selected comment"/>
-      <input  type="submit" name="editcomment"
-             value="edit selected comment"/>
+      </div>
+      %include dialog
+      <input type="hidden" id="editedcomment" name="editedcomment" value="None" />
+      <input type="submit" name="useprevious" value="grade with selected comment"/>
+      <button id="btnEditcomment"> edit selected comment</button>
+      <br> <div id="commentdbstatus"></div>
     </form>
    </div>
 </div>
+<!-- begin navigation -->
 <ul class="nav_container">
     <li>
     <h3 class="roundTop section-title">Pick a Student</h3>
