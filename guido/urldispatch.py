@@ -69,6 +69,13 @@ def grade_problem(username, assignment, problemname):
     queries.insert_problem_comment(comment, username, assignment, problemname)
     return grading.grade(username, assignment, problemname)
 
+# Problem iframe #
+@route('/solutionframe/:assignment/:problem/:username')
+def solution_frame(assignment, problem, username):
+    solution = queries.get_solution(username, assignment, problem)
+    ss = solution[0]
+    return template('framestudent', source=ss,linenumbers=grading.makelinenumbers(ss))
+
 
 #############################################################
 # Submission by problem, assuming problems have been graded #
@@ -138,7 +145,7 @@ def grade_whole_submissions(assignment, username):
 def submission_frame(assignment, username):
     solution = queries.get_submission(username, assignment)
     ss = solution[0]
-    return template('framesubmission', source=ss,linenumbers=grading.makelinenumbers(ss))
+    return template('framestudent', source=ss,linenumbers=grading.makelinenumbers(ss))
 
                 #################
 ################# Other Stuff #################
