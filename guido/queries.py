@@ -201,7 +201,7 @@ def insert_submission_grade(grade, username, assignment):
     conn.commit()
     c.close()
 
-def insert_problem_comment(comment, username, assignment, problemname):
+def insert_problem_comment(comment, code, username, assignment, problemname):
     if comment == None or comment == 'None':
         return
     ##check to make sure comments that contain just whitespace won't get added
@@ -229,9 +229,9 @@ def insert_problem_comment(comment, username, assignment, problemname):
     
     ##insert into commentsolution now
     sql = ("insert into CommentSolution "
-           "(commentid, username, assignmentid, problemname) "
-           "values (?, ?, ?, ?) ")
-    param = (commentid, username, assignment, problemname)
+           "(commentid, studentcode, username, assignmentid, problemname) "
+           "values (?, ?, ?, ?, ?) ")
+    param = (commentid, code, username, assignment, problemname)
     c.execute(sql, param)
     conn.commit()
     c.close()

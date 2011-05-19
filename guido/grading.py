@@ -24,7 +24,6 @@ def grade(username, assignment, problemname):
     fullprevcomments = queries.get_all_past_comments()
     linenumbers = makelinenumbers(studentsolution)
     commenttext = queries.get_comments(username, assignment, problemname)
-
     students = queries.get_usernames(assignment, problemname)
     p,n = find_prev_next(students, username)
     
@@ -41,7 +40,8 @@ def grade(username, assignment, problemname):
                     nextstudent=n,
                     prevstudent=p,
                     default_grade=get_grade(username, assignment, problemname), 
-                    grades=possible_grades())
+                    grades=possible_grades(),
+                    hideHelp=request.COOKIES.get('hideHelp'))
 
 def submissionbyproblem(assignment, username):
     fullprevcomments = queries.get_all_past_comments()
@@ -86,7 +86,8 @@ def whole_submission(assignment, username):
                     nextstudent=n,
                     prevstudent=p,
                     default_grade=get_grade(username, assignment, None),
-                    grades=possible_grades())
+                    grades=possible_grades(),
+                    hideHelp=request.COOKIES.get('hideHelp'))
 
 
 def submission_report(assignment, username):
@@ -111,7 +112,8 @@ def submission_report(assignment, username):
                     prevstudent=p,
                     nextstudent=n,
                     student=username,
-                    assignment=assignment)
+                    assignment=assignment,
+                    hideHelp=request.COOKIES.get('hideHelp'))
 
 def possible_grades():
     """Returns the possible grades (as a list of strings) for a given

@@ -82,6 +82,7 @@ create table if not exists CommentSolution (
     username text,
     assignmentid text,
     problemname text,
+    studentcode text,
     foreign key(username) references Student(username),
     foreign key(problemname) references Problem(name),
     foreign key(assignmentid) references Assignment(assignmentid)

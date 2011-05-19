@@ -66,7 +66,8 @@ def grade_problem(username, assignment, problemname):
     grade = request.forms.get('grade')
     queries.insert_problem_grade(grade, username, assignment, problemname)
     comment = request.forms.get('comment')
-    queries.insert_problem_comment(comment, username, assignment, problemname)
+    code = request.forms.get('code')
+    queries.insert_problem_comment(comment, code, username, assignment, None)
     return grading.grade(username, assignment, problemname)
 
 # Problem iframe #
@@ -97,6 +98,11 @@ def specific_submission():
 @route('/grade/:assignment/:username')
 def grade_submission_with_graded_problem_table(assignment, username):
     """Routes the user to the grading a submission by problem"""
+    return grading.submissionbyproblem(assignment, username)
+
+@route('/grade/:assignment/:username')
+def grade_submission_with_graded_problem_table(assignment, username):
+    """When the user posts, they are grading a whole submission."""
     return grading.submissionbyproblem(assignment, username)
 
 # final report iframe #
@@ -135,8 +141,8 @@ def grade_whole_submissions(assignment, username):
     grade = request.forms.get('grade')
     queries.insert_submission_grade(grade, username, assignment)
     comment = request.forms.get('comment')
-    selectedtext=""
-    queries.insert_problem_comment(comment, username, assignment, None)
+    code = request.forms.get('code')
+    queries.insert_problem_comment(comment, code, username, assignment, None)
     return grading.whole_submission(assignment, username)
 
 # submission iframe #
