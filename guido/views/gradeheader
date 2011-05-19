@@ -7,6 +7,7 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
     <script type="text/javascript" src="/static/js/jquery-ui-1.8.12.custom.min.js"></script>
     <script type="text/javascript" src="/static/js/guido.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
 <script type="text/javascript"> 
      $(function() {
     	var comments = {{past_comments}};	 
@@ -22,7 +23,7 @@
         icons: {
           primary:"ui-icon-arrowthick-1-w"
         }
-       });
+       });       
         $( "#nextstudentbutton").button({
         icons: {
           secondary:"ui-icon-arrowthick-1-e"
@@ -31,6 +32,17 @@
         
         $( ":button, input:submit").button();
         $( ":button, input:submit").button();
+        $( "#help" ).accordion({
+               collapsible: true,
+               active: false,
+               icons: { 'header': 'ui-icon-help', 'headerSelected': 'ui-icon-minus' }
+
+         });
+       $( "#btnHide").button().click(function() {
+             $('#help').hide('slide');
+             $('#btnHide').hide();
+             $.cookie('hideHelp', 'true');
+          });
      });
 </script>
 
