@@ -7,6 +7,6 @@
      </form>
 </div>
 <div id="confirm-delete" title="Delete Comment?">
-     <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>This cannot be reversed. Are you sure?</p>
+     <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Deleting a comment will completely remove it from the comment database, also removing all those comments in student assignments. This cannot be reversed. <br>Are you sure?</p>
 </div>
 <!-- end dialog -->
