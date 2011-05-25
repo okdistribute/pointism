@@ -1,26 +1,18 @@
 %include gradeheader title='grading a submission', past_comments=past_comments
-%if not hideHelp:
- <div id="help" style="width:300px">
-     <h3><a href="#">help</a></h3>
-     <div>
-     <p> help here.</p>
-     </div>
-</div>
-<button id="btnHide"> hide </button>
-%end
-
 <div id="bigContainer">
   <!-- left -->
   <div class="student ">
       <h4 class="section-title roundTop">Student Code</h4>
     <iframe id="studentframe" src="/submissionframe/{{assignment}}/{{student}}" style='width:99%;height:100%'></iframe>
+  <div id="tools">
     <form method="GET" action="/guido/codesearch/">
     <input type="hidden" name="student" value="{{student}}"/>
     <input type="hidden" name="assignment" value="{{assignment}}"/>
     <input name="query" type="textbox" /> 
     <button id="searchbutton">Search code</button>
     </form>
- 
+ </div>
+
 <div class="grading roundTop roundBottom" style="margin-top:10px;">
     <div class="grading_header"> 
      <h4 class="section-title roundTop">Comments Already Attached</h4>

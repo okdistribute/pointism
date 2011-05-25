@@ -1,19 +1,10 @@
 %include gradeheader title='grading the problem', past_comments=past_comments
-%if not hideHelp:
- <div id="help" style="width:300px">
-     <h3><a href="#">help</a></h3>
-     <div>
-     <p> help here.</p>
-     </div>
-</div>
-<button id="btnHide"> hide </button>
-%end
-
 <div id="bigContainer">
   <!-- left -->
   <div class="student">
       <h4 class="section-title roundTop">Student Code</h4>
     <iframe id="studentframe" src="/solutionframe/{{assignment}}/{{problem}}/{{student}}" style='width:99%;height:50%'></iframe>
+<div id="tools">
     <form method="GET" action="/guido/codesearch/">
     <input type="hidden" id="student" name="student" value="{{student}}"/>
     <input type="hidden" id="problem" name="problem" value="{{problem}}"/>
@@ -21,6 +12,7 @@
     <input name="query" type="textbox" /> 
     <button id="searchbutton">Search code</button>
     </form>
+</div>
 
     <div class="reportcomments">
       <br/>
@@ -34,8 +26,9 @@
          % end	    
       %end
       </div>	
-   </div>
-</div>
+    </div>
+
+  </div>
 
   <!-- right -->
   <div class="gradingWrapper">

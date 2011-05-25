@@ -1,19 +1,11 @@
 %include gradeheader title='grading submission by problem', past_comments=past_comments
-%if not hideHelp:
- <div id="help" style="width:300px">
-     <h3><a href="#">help</a></h3>
-     <div>
-     <p> help here.</p>
-     </div>
-</div>
-<button id="btnHide"> hide </button>
-%end
 <div id="bigContainer">
   <!-- left -->
   <div class="finalgrade">
       <h4 class="section-title roundTop">Student Code and Grade</h4>
       <iframe id="studentframe" src="/framesbp/{{assignment}}/{{student}}" style='width:99%;height:100%'></iframe>
-  </div>
+</div>
+
   <!-- right -->
 <div class="gradingWrapper">
 
