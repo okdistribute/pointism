@@ -388,6 +388,12 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus {
     font-size: small !important;
 }
 
+.warning {
+    font-size: small;
+    color: red;
+    font-style: italic;               
+}
+
 #grade .ui-selecting { background: #FECA40; }
 #grade .ui-selected { background: #F39814; color: white; }
 #grade { list-style-type: none; margin: 0; padding: 0; }

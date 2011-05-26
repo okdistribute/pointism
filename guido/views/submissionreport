@@ -1,22 +1,27 @@
-%include gradeheader title='submission report for' + ' ' + student + ' , ' + assignment, past_comments=[]
+%include gradeheader title=student + ', ' + assignment + ' report', past_comments=[]
 
   <!-- left -->
-  <h1> {{assignment}} {{student}}</h1>
+  <h1> Viewing {{assignment}} Report for {{student}}</h1>
 
   <table>
     <tr>
+     <button id="sendreportbutton">Send Report</button>
+    <div class="warning">Beware: reports cannot be "unsent"</div>
+    </tr>
+    <tr><br><br><br></tr>
+    <tr>
+    <td>
     % if prevstudent != None:
     <button id="prevstudentbutton" onclick="window.location='/specific_report/{{assignment}}/{{prevstudent}}';">Previous Student</button>
     % end
     % if nextstudent != None:
     <button id="nextstudentbutton" onclick="window.location='/specific_report/{{assignment}}/{{nextstudent}}';">Next Student</button>
     % end
-    <br><br>
+    </td>
     </tr>
-       <button id="back" onclick="window.location='/specific_report';">Go Back</button>
-	 <br><br>
     </table>
-
+       <button id="back" onclick="window.location='/specific_report';">Back to Guido</button>
+<br><br><br>
 
   <div id="report" dir="LTR">
     <table class="iu-widget ui-widget-content">
@@ -51,5 +56,7 @@
     </table>
   </div>
 
+<button id="sendreportbutton">Send Report</button>
+<div class="warning"> Beware: reports cannot be "unsent"</div>
 </div>
 
