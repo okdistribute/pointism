@@ -47,6 +47,7 @@ def submissionbyproblem(assignment, username):
     p,n = find_prev_next(students, username)
 
     return template("gradesubmissionbyproblem",
+                    problems=finalreport(assignment, username),
                     past_comments=list(map(lambda pair: pair[1], fullprevcomments)),
                     prevcomments=comments_firstline(fullprevcomments),
                     prevstudent=p,
