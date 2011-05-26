@@ -109,7 +109,7 @@ def grade_submission_with_graded_problem_table(assignment, username):
 # final report iframe #
 @route('/framesbp/:assignment/:username')
 def framesbp(assignment, username):
-    reports.framesbp(assignment, username)
+    return reports.framesbp(assignment, username)
 
 ################################
 # Grading the whole submission #
