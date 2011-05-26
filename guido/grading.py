@@ -4,7 +4,6 @@ from bottle import template
 from bottle import request
 from bottle import redirect
 
-import fakedata
 import queries
 import sqlite3
 import model
@@ -48,7 +47,6 @@ def submissionbyproblem(assignment, username):
     p,n = find_prev_next(students, username)
 
     return template("gradesubmissionbyproblem",
-                    problems=finalreport(assignment, username),
                     past_comments=list(map(lambda pair: pair[1], fullprevcomments)),
                     prevcomments=comments_firstline(fullprevcomments),
                     prevstudent=p,
@@ -85,31 +83,6 @@ def whole_submission(assignment, username):
                     prevstudent=p,
                     default_grade=get_grade(username, assignment, None),
                     grades=possible_grades())
-
-
-def submission_report(assignment, username):
-    query = queries.get_report(assignment, username)
-    report = defaultdict(lambda: ('',[],''))
-    ### problem = (problemname, code, comment, autograder)
-    for problem in query:
-        problemname = problem[0]
-        code = problem[1]
-        comment = problem[2]
-        autograder = problem[3]     
-        if(comment != None):
-            commentlist = report[problemname][1]
-            commentlist.append(comment)
-            report[problemname] = (code, commentlist ,autograder)
-
-    students = queries.who_turned_in(assignment)
-    p,n = find_prev_next(students, username)
-
-    return template("submissionreport",
-                    problems=report,
-                    prevstudent=p,
-                    nextstudent=n,
-                    student=username,
-                    assignment=assignment)
 
 def possible_grades():
     """Returns the possible grades (as a list of strings) for a given

@@ -10,6 +10,7 @@ This module handles all of the URL dispatching for Guido, mapping from URLs to
 the functions that will be called in response.
 """
 
+import reports
 import grading
 import frontpage
 import assignment_notes
@@ -108,7 +109,7 @@ def grade_submission_with_graded_problem_table(assignment, username):
 # final report iframe #
 @route('/framesbp/:assignment/:username')
 def framesbp(assignment, username):
-    return template('framesbp', problems=grading.finalreport(assignment, username))
+    reports.framesbp(assignment, username)
 
 ################################
 # Grading the whole submission #
@@ -146,7 +147,6 @@ def grade_whole_submissions(assignment, username):
     return grading.whole_submission(assignment, username)
 
 # submission iframe #
-
 @route('/submissionframe/:assignment/:username')
 def submission_frame(assignment, username):
     solution = queries.get_submission(username, assignment)
@@ -189,7 +189,7 @@ def submission_report(assignment):
 
 @route('/specific_report/:assignment/:username')
 def submission_report(assignment, username):
-    return grading.submission_report(assignment, username)
+    return reports.submission_report(assignment, username)
 
 ################################
 # Editing the assignment notes #
