@@ -3,7 +3,7 @@
   <!-- left -->
   <div class="finalgrade">
       <h4 class="section-title roundTop">Student Code and Grade</h4>
-      <iframe id="studentframe" src="/framesbp/{{assignment}}/{{student}}" style='width:99%;height:100%'></iframe>
+      <iframe id="studentframe" src="/framesbp/{{assignment}}/{{student}}"></iframe>
 </div>
 
   <!-- right -->

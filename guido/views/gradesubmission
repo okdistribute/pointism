@@ -3,7 +3,7 @@
   <!-- left -->
   <div class="student ">
       <h4 class="section-title roundTop">Student Code</h4>
-    <iframe id="studentframe" src="/submissionframe/{{assignment}}/{{student}}" style='width:99%;height:100%'></iframe>
+    <iframe id="studentframe" src="/submissionframe/{{assignment}}/{{student}}"></iframe>
   <div id="tools">
     <form method="GET" action="/guido/codesearch/">
     <input type="hidden" name="student" value="{{student}}"/>
