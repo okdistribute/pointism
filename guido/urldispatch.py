@@ -64,11 +64,14 @@ def grade_problem(username, assignment, problemname):
 def grade_problem(username, assignment, problemname):
     """inserts a problem grade (when there's been a post) and routes back
     to the same page"""
-    grade = request.forms.get('grade')
+    grade = request.POST.get('grade')
     queries.insert_problem_grade(grade, username, assignment, problemname)
-    comment = request.forms.get('comment')
-    code = request.forms.get('code')
-    queries.insert_problem_comment(comment, code, username, assignment, None)
+    comment = request.POST.get('comment')
+    code = request.POST.get('code')
+    queries.insert_problem_comment(comment, code, username, assignment, problemname)
+    nextstudent = request.POST.get('nextstudent')
+    if(nextstudent != None and nextstudent != 'None' and request.COOKIES.get('autoNext') == 'true'):
+        username = nextstudent #if we want to and can advance to the next student, do it.
     return grading.grade(username, assignment, problemname)
 
 # Problem iframe #
@@ -101,7 +104,7 @@ def grade_submission_with_graded_problem_table(assignment, username):
     """Routes the user to the grading a submission by problem"""
     return grading.submissionbyproblem(assignment, username)
 
-@route('/grade/:assignment/:username')
+@route('/grade/:assignment/:username' , method='POST')
 def grade_submission_with_graded_problem_table(assignment, username):
     """When the user posts, they are grading a whole submission."""
     return grading.submissionbyproblem(assignment, username)
@@ -139,11 +142,15 @@ def grade_whole_submissions(assignment, username):
 @route('/grade_whole/:assignment/:username', method='POST')
 def grade_whole_submissions(assignment, username):
     """Inserting grade and comment for a whole submission"""
-    grade = request.forms.get('grade')
+    grade = request.POST.get('grade')
     queries.insert_submission_grade(grade, username, assignment)
-    comment = request.forms.get('comment')
-    code = request.forms.get('code')
+    comment = request.POST.get('comment')
+    code = request.POST.get('code')
     queries.insert_problem_comment(comment, code, username, assignment, None)
+    nextstudent = request.POST.get('nextstudent')
+    if(nextstudent != None and nextstudent != 'None' and request.COOKIES.get('autoNext') == 'true'):
+        username = nextstudent #if we want to and can advance to the next student, do it.
+
     return grading.whole_submission(assignment, username)
 
 # submission iframe #

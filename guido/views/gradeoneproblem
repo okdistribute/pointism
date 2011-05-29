@@ -2,7 +2,7 @@
 <div id="bigContainer">
   <!-- left -->
   <div class="student">
-      <h4 class="section-title roundTop">Student Code</h4>
+      <h4 class="section-title roundTop">{{assignment}} :: Problem {{problem}} :: {{student}}</h4>
     <iframe id="studentframe" src="/solutionframe/{{assignment}}/{{problem}}/{{student}}"></iframe>
 <div id="tools">
     <form method="GET" action="/guido/codesearch/">
@@ -46,7 +46,7 @@
   <div class="grading roundTop roundBottom">
     <div class="grading_header"> <h4 class="section-title roundTop">Grading</h4> </div>
     <div class="grading_content">
-    <form method="POST" action="" autocomplete="off">
+    <form id="formGrade" method="POST" action="" autocomplete="off">
       <ol id="grade">
       % for grade in grades:
       	% if default_grade == grade:
@@ -61,6 +61,10 @@
       <input type="hidden" id="submit_grade" name="grade" value="None" />
       <input type="hidden" id="submit_code" name="code" value="None" />
       <button id="gradebutton">Grade</button>
+      <div class="options">
+      <input type="checkbox" id="chkNext" name="chkNext" /><label for="chkNext">Automatically Advance</label>
+      <input type="hidden" id="nextstudent" name="nextstudent" value="{{nextstudent}}"/>        
+      </div>
       </form>
     </div>
    </div>

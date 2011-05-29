@@ -34,9 +34,27 @@ $(function() {
     assignment = $("#assignment").attr("value"),
     problem = $("#problem").attr("value");
     
-    $( "#gradebutton" ).click(function() {
+
+    $( "#formGrade" ).submit(function() {
 	var code = getSelectedText();
-	$("#submit_code").attr("value", code);
+
+        if ($("#chkNext").is(":checked")) {
+            $.cookie('autoNext', autoNext);
+            $("#nextstudentbutton").click();
+        }
+        else {
+            $.cookie('autoNext', autoNext);
+        }
+        $.post(window.location.pathname,
+               {'grade':$("#submit_grade").attr("value"),
+                'comment':$("input:#comment").val(),
+                'code': code,
+                'nextstudent' : $("input:#nextstudent").attr("value")},
+               function(data) {
+                   window.open();
+                   document.write(data);
+               });
+        return false;
     });
 
     var comment = $( "textarea#editablecomment"),

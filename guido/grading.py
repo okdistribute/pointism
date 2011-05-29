@@ -15,7 +15,7 @@ THEDB = "guidodb"
 def grade(username, assignment, problemname):
     solution = queries.get_solution(username, assignment, problemname)
     if(solution == None):
-        redirect('/specific_assignment/' + assignment)
+        redirect('/specific_problem/' + assignment)
     studentsolution = solution[0]
     autograder_output = solution[1]
     grade = solution[2]
