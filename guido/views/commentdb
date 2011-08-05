@@ -1,0 +1,20 @@
+   <div class="grading roundTop roundBottom">
+    <div class="grading_header"> <h4 class="section-title roundTop">Comment Database</h4> </div>
+     <div class="grading_content">
+      <form method="POST" id="formCommentdb" action="" autocomplete="off">	
+      <div id="divprevcomments">
+      <select id="prevcomments" name="prevcomments" class="prevcomments" size="3">
+      % for comment in prevcomments:
+        <option value="{{comment.commentid}}">{{comment.firstline}}</option>
+      % end
+      </select>
+      </div>
+      %include dialog
+      <input type="hidden" id="editedcomment" name="editedcomment" value="None" />
+      <input type="submit" name="useprevious" value="grade with selected comment"/>
+      <button id="btnEditcomment"> edit selected comment</button>
+      <br> <div id="commentdbstatus"></div>
+      </form>
+     </div>
+    </div>
+   </div>

@@ -1,37 +1,29 @@
-div.gradingContainer {
-  overflow: visible;	    
-  margin: 0px 10px 30px 10px;
- height:835px;
-}
-
 h4 {
   color: #fff;			 
 }
 
 div.student {
-  height: 600px;
-  width: 600px;
+  height: 80%;
+  width: 50%;
   display:inline;
   overflow: visible;
   float: left;
   position:relative;
   text-align: left;
-  padding-bottom: .5em;
-  padding-top: 1em;
 }
 
 #studentframe {
-width: 100%;
-height:50%;
-border:none;
+  width: 100%;
+  height:100%;
+  border:none;
 }
 
 div.code {
   font-family: 'Droid Sans Mono', arial, serif;
-  margin-bottom: 1em;
-  background: #ddd;
-  padding: .5em;
   font-size: 10pt;
+  border: 5px #DDD groove;
+  margin: 5px;
+  padding: 5px;
   white-space: pre-wrap;
   position:relative;
 }
@@ -62,12 +54,12 @@ div.grading_content {
   padding: .5em;
 }
 
-div.gradingWrapper {
+div.autogradingWrapper {
   position: relative;
   float: right;
   display: inline;
-  width: 44%;
-  padding: 1em;
+  width: 49.8%;
+  background-color: #ddd;
 }
 
 div.existingcomment {
@@ -79,21 +71,21 @@ div.existingcomment {
 }
 
 div.grading textarea {
-  max-width: 95%;
+    max-width: 95%;
 }
 
 div.assignmentlist {
-  float: left;
-  width: 55%;
+    float: left;
+    width: 55%;
 }
 
 a.frontbutton {
-  font-size: 2em;
+    font-size: 2em;
 }
 
 div.codesearchbox {
-  float: right;
-  width: 45%;
+    float: right;
+    width: 45%;
 }
 
 div#report table { 
@@ -103,128 +95,129 @@ div#report table {
 }
 
 div#report table td, div#framesbp table th { 
-     border-left: 1px solid #000; 
-     border-bottom: 1px solid #000;
-     text-align: left; 
+    border-left: 1px solid #000; 
+    border-bottom: 1px solid #000;
+    text-align: left; 
 }
 
 
 /* gradesubmissionbyproblem */
 
 div.finalgrade {
-  width:600px;
-  height:600px;
-  position:relative;
-  float:left;
-  padding-top:1em;
+    width:600px;
+    height:600px;
+    position:relative;
+    float:left;
+    padding-top:1em;
 }
 
 .reportTable td {
-padding: 2px 4px 2px 4px;
-border: 1px solid #660000;
-border-style: dotted;
-border-color: gray;
-background-color:white;
-width: 33%;
+    padding: 2px 4px 2px 4px;
+    border: 1px solid #660000;
+    border-style: dotted;
+    border-color: gray;
+    background-color:white;
+    width: 33%;
 }
 
 .reportTable th {
-  border-width: 1px;
-  padding: 1px;
-  border-style: dotted;
-  border-color: gray;
-  background-color: white;
+    border-width: 1px;
+    padding: 1px;
+    border-style: dotted;
+    border-color: gray;
+    background-color: white;
 }
 
 .reportTable {
-  border-width: 1px;
-  border-spacing: 2px;
-  border-style: hidden;
-  border-color: gray;
-  border-collapse: collapse;
-  background-color: rgb(250, 240, 230);
-  width: 100%;
+    border-width: 1px;
+    border-spacing: 2px;
+    border-style: hidden;
+    border-color: gray;
+    border-collapse: collapse;
+    background-color: rgb(250, 240, 230);
+    width: 100%;
 }
 
 .reportTable h2 {
-  text-align: center;
-  margin: 0px 0px 0px 0px;
-  background-color: grey;
+    text-align: center;
+    margin: 0px 0px 0px 0px;
+    background-color: grey;
 }
 
 div.report {
-  font-family: 'Droid Sans Mono', arial, serif;
-  margin-bottom: 1em;
-  font-size: 10pt;
-  white-space: pre-wrap;
+    font-family: 'Droid Sans Mono', arial, serif;
+    margin-bottom: 1em;
+    font-size: 10pt;
+    white-space: pre-wrap;
 }
 
 div.report li {
-  margin: auto;
-  width: 90%;
-  list-style-type: circle;
+    margin: auto;
+    width: 90%;
+    list-style-type: circle;
 }
 
 select.prevcomments {
-  max-width: 95%;
-  min-height:200px;
-  min-width: 200px;
+    max-width: 95%;
+    min-height:200px;
+    min-width: 200px;
 }
 
 .codesearchbox .searchinput {
-  width: 70%;
-  max-width: 300px;
-  min-width: 100px;
+    width: 70%;
+    max-width: 300px;
+    min-width: 100px;
 }
 
-#iframe {
-  background:#ddd;
+#iframe
+{
+    height: 99%;
+    background:#ddd;
+    position: relative;
+    overflow: auto;
 }
 #iframe ::selection {
-  background:#F39814;
+    background:#F39814;
 }
 #iframe ::-moz-selection {
-  background:#F39814;
+    background:#F39814;
 }
 
 /* layout */
 
 .logo {
- background: #777 url("/static/images/guido.gif") no-repeat top left;
- width: 1000px;
- height: 95px;
- top: -3%;
- left: -3%;
- position: relative;
+    background: #777 url("/static/images/guido.gif") no-repeat top left;
+    width: 1000px;
+    height: 95px;
+    top: -3%;
+    left: -3%;
+    position: relative;
 }
 
 body {
-        font-family: "Trebuchet MS", Verdana, Helvetica, Arial,sans-serif;
-	background: #fff;
-	margin: 0;
-	padding: 0;
-	color: #000;
-	background: #000;
-	margin: 0 auto;
-        background: #333 url("/static/images/background.jpg");
+    font-family: "Trebuchet MS", Verdana, Helvetica, Arial,sans-serif;
+    background: #fff;
+    margin: 0;
+    padding: 0;
+    color: #000;
+    background: #000;
+    margin: 0 auto;
+    background: #333 url("/static/images/background.jpg");
+    position: absolute;
+    height: 100%;
+    width: 100%;
 }
 
 #guido {
-  width:950px;
-  height: 500px;
-  margin: 0 auto;
-  background: #333 url("/static/images/background.jpg");
-}
-
-#bigContainer {
-  width:1130px;
-  margin: 0 auto;
-  background: #333 url("/static/images/background.jpg");
+    width:950px;
+    height: 500px;
+    margin: 0 auto;
+    background: #333 url("/static/images/background.jpg");
 }
 
 ul, ol, dl {
-	padding: 0;
-	margin: 0;
+    padding: 0;
+    margin: 0;
 }
 
 h1, h2, h3, h4, h5, h6, p {
@@ -274,8 +267,9 @@ a:hover, a:active, a:focus {
 
 .section-title {
    margin:0;
+   color: #c77405;
+   background-color: #ddd;
    border: none;
-   background: #49497a;
    padding: 6px 10px;
 }
 
@@ -317,7 +311,8 @@ a:hover, a:active, a:focus {
 }
 
 ul.nav {
-	list-style: none; 
+    list-style: none;
+    float: right;
 }
 
 ul.nav:last-child{ 
@@ -339,15 +334,12 @@ ul.nav li {
 
 ul.nav a, ul.nav a:visited a:link {
     margin:0;
-    padding: 1px 2px 1px 2px;
     display: block;
     text-decoration: none;
 }
 
 ul.nav a:hover, ul.nav a:active, ul.nav a:focus { 
     color: #c77405;
-    padding: 1px 2px 1px 2px;
-    background-color: #ddd;
     font-style: none;
 }
 
@@ -388,23 +380,63 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus {
     overflow-x: hidden;
     padding-right: 20px;
 }
-.ui-menu-item {
-    font-size: small;
-}
-.ui-button {
-    font-size: small !important;
+
+.ui-menu-item
+{
+ font-size: small;
 }
 
-.warning {
-    font-size: small;
-    color: red;
-    font-style: italic;               
+.ui-button
+{
+ font-size: small !important;
 }
 
-#grade .ui-selecting { background: #FECA40; }
-#grade .ui-selected { background: #F39814; color: white; }
-#grade { list-style-type: none; margin: 0; padding: 0; }
-#grade li { margin: 3px; padding: 1px; float: left; width: 50px; height: 40px; font-size: 2em; text-align: center; cursor: pointer;}
+.warning
+{
+ font-size: small;
+ color: red;
+ font-style: italic;               
+}
+
+#grade .ui-selecting
+{
+ background: #FECA40;
+}
+
+#grade .ui-selected
+{
+ background: #F39814;
+ color: white;
+}
+
+#grade
+{
+ list-style: none;
+ margin: 0;
+ padding: 0;
+}
+
+#grade li
+{
+ margin: 3px;
+ padding: 1px;
+ float: left;
+ width: 50px;
+ height: 40px;
+ font-size: 2em;
+ text-align: center;
+ cursor: pointer;
+}
+
+#bigContainer {
+    width:1130px;
+    position: relative;
+    height: 100%;
+    margin: auto;
+    background: #333 url("/static/images/background.jpg");
+}
+
+
 
 /* other */
 
@@ -432,3 +464,63 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus {
    border-top-right-radius: 6px 6px;
 }
 
+/* toolbar */
+
+#toolbar {
+    position: relative;
+    top: 5px;
+    left: 0px;
+    color: #fff;
+    width: 75%;
+    margin: 0px auto 5px auto;
+    height: 10%;
+}
+
+#gradingtoolbar {
+    float: left;
+    width: 65%;
+}
+
+#gradingnav {
+    float: right;
+    height: 100%;
+    width: 35%;
+}
+
+#gradingnav ul {
+    margin: 3%;
+}
+
+#grades li {
+    float: left;
+    padding: 5px;
+    margin: 0px;
+    font-size: 36px;
+}
+
+#grades {
+    list-style: none;
+}
+
+#gradebutton {
+    float: right;
+    padding: 3%;
+}
+
+#comment {
+    float: left;
+    margin: auto;
+    height: 100%;
+    width: 70%;
+}
+
+#commenting {
+    margin: 1%;
+    float: right;
+    width: 65%;
+}
+
+#sidebyside {
+    height: 100%;
+    width: 100%;
+}

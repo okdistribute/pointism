@@ -12,13 +12,19 @@ function getSelectedText() {
 }
 
 $(function() {
-   var ajax_load = "<img src='/static/images/load.gif' alt='loading...' />";
+    var links = ["#newassignment", "#newproblem", "#prevstudentbutton", "#nextstudentbutton"];
+    for (link in links) {
+        var linkObj = $(link);
+        linkObj.click(linkObj.attr("href"));
+    }
 
+    var ajax_load = "<img src='/static/images/load.gif' alt='loading...' />";
+    
     $.ajaxSetup ({
 	cache: false
     });
 
-    $( "#grade" ).selectable({
+    $( "#grades" ).selectable({
 	stop: function() {
             var result = $("input:#submit_grade");
             $(".ui-selected", this).each(function() {	

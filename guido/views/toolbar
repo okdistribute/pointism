@@ -1,0 +1,41 @@
+<div id="toolbar">
+  <div id="gradingtoolbar">
+    <form id="formGrade" method="POST" action="" autocomplete="off">
+      <ol id="grades">
+        % for grade in grades:
+        % if default_grade == grade:
+        <li value="{{default_grade}}">{{default_grade}}</li>
+        % else:
+        <li value="{{grade}}">{{grade}}</li>
+        % end
+        % end
+      </ol>
+      <div id="commenting">
+        <textarea id="comment" name="comment"></textarea>
+        <input type="hidden" id="submit_grade" name="grade" value="None" />
+        <input type="hidden" id="submit_code" name="code" value="None" />
+        <button id="gradebutton">Grade</button>
+      </div>
+    </form>
+  </div>
+  <div id="gradingnav">
+    <ul class="nav">
+      <a id="newassignment" href="/specific_{{choice}}">assignment select</a>
+      <a id="newproblem" href="/specific_{{choice}}/{{assignment}}">problem select</a>
+    </ul>
+    <ul class="nav">
+      % if prevstudent != None:
+      <a id="prevstudentbutton" 
+         href="{{studentbutton}}/{{prevstudent}}">previous student</a>
+      % else:
+      previous student
+      %end
+      % if nextstudent != None:
+      <a id="nextstudentbutton" 
+         href="{{studentbutton}}/{{nextstudent}}">next student</a>
+      % else:
+      next student
+      % end
+    </ul>
+  </div>
+</div>

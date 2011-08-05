@@ -1,0 +1,14 @@
+    <div class="reportcomments">
+      <br/>
+      <h4 class="section-title roundTop">Comments Already Attached</h4>
+      <div class="existingcomment roundBottom">
+      % if existingcomments == [] or existingcomments == None:
+        (none yet)
+      % else:
+         % for comment in existingcomments:
+           {{comment}}<br><br>
+         % end	    
+      %end
+      </div>	
+    </div>
+

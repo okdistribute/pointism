@@ -56,6 +56,7 @@ def submissionbyproblem(assignment, username):
                     assignment=assignment,
                     commenttext="",
                     grades=possible_grades(),
+                    autograder="",
                     default_grade=get_grade(username, assignment, None))
 
 def whole_submission(assignment, username):

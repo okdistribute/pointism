@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" /> 
     <link rel="stylesheet" href="/static/guido.css" type="text/css" />
     <link type="text/css" href="/static/css/ui-lightness/jquery-ui-1.8.12.custom.css" rel="Stylesheet" />
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
     <script type="text/javascript" src="/static/js/jquery-ui-1.8.12.custom.min.js"></script>
     <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
     <script type="text/javascript" src="/static/js/guido.js"></script>
@@ -19,19 +19,7 @@
            secondary:"ui-icon-search"
           }
         });
-        $( "#prevstudentbutton").button({
-        icons: {
-          primary:"ui-icon-arrowthick-1-w"
-        }
-       });       
-        $( "#nextstudentbutton").button({
-        icons: {
-          secondary:"ui-icon-arrowthick-1-e"
-        }
-       });        
         
-        $( ":button, input:submit").button();
-        $( ":button, input:submit").button();
         $( "#help" ).accordion({
                collapsible: true,
                active: false,
