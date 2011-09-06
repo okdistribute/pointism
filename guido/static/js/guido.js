@@ -31,7 +31,6 @@ $(function() {
 		grade = $(this).text();
 		result.attr("value" , grade);
 		$(this).siblings().removeClass("ui-selected");
-                var refreshVal = $(this).attr("value");
             });
         }
     });
@@ -40,17 +39,9 @@ $(function() {
     assignment = $("#assignment").attr("value"),
     problem = $("#problem").attr("value");
     
-
     $( "#formGrade" ).submit(function() {
 	var code = getSelectedText();
 
-        if ($("#chkNext").is(":checked")) {
-            $.cookie('autoNext', autoNext);
-            $("#nextstudentbutton").click();
-        }
-        else {
-            $.cookie('autoNext', autoNext);
-        }
         $.post(window.location.pathname,
                {'grade':$("#submit_grade").attr("value"),
                 'comment':$("input:#comment").val(),
@@ -99,11 +90,9 @@ $(function() {
     
     $( "#comment-dialog" ).dialog({
 	autoOpen: false,
+        modal: true,
 	height: 320,
 	width: 625,
-	position: ['left', 'bottom'],
-	show: 'slide',
-	hide: 'slide',
 	open: function(event, ui) {
 	    commentid = $("#prevcomments option:selected").attr("value");
 	    $.get("/commenttext.ajax", {commentid: commentid}, function(data) {
@@ -149,13 +138,23 @@ $(function() {
 	    }
 	});
 
+    $( "#btnDeletecomment" )
+       .button()
+       .click(function() {
+	    if($("#prevcomments option:selected").text() !== '') {		
+		$( "#confirm-delete" ).dialog( "open" );
+	    }
+	    else {
+		updateStatus("No comment selected");
+	    }
+       });
+
     $( "#confirm-delete" ).dialog({
 	autoOpen: false,
 	resizable: false,
-	height:280,
-	position: ['left', 'bottom'],
+	height: 320,
+        width: 320,
 	modal: true,
-	hide: 'slide',
 	buttons: {
 	    "Delete Comment": function() {
 		$("#divprevcomments")
@@ -168,7 +167,6 @@ $(function() {
 	    },
 	    Cancel: function() {
 		$( this ).dialog( "close" );
-		$( "#btnEditcomment" ).click();
 	    }
 	}
     });

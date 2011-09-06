@@ -35,6 +35,10 @@ div.linenumbers {
   color: #666;
 }
 
+.input {
+    background-color: #fff;
+}
+
 div.grading {
   background-color: #eee;
   float: right;
@@ -91,7 +95,11 @@ div.codesearchbox {
 div#report table { 
      margin: 0; 
      border-collapse: collapse; 
-     width: 100%; 
+     width: 100%;
+}
+
+div#report li {
+     list-style: none;
 }
 
 div#report table td, div#framesbp table th { 
@@ -236,10 +244,10 @@ a:hover, a:active, a:focus {
    color: #c77405;
 }
 
-.container {        
-   margin: 0px 30px 30px 30px;
+.container {
+   width: 60%;
+   margin: 0px auto;
    overflow: auto;
-   padding: .1em 40px;
 }
 
 .sidebar1 {
@@ -254,14 +262,12 @@ a:hover, a:active, a:focus {
 
 .content_container {
    width: 100%;
-   margin-left:10px;
    position: relative;
    float: left;
    display: inline;
    background: #fff;
    overflow: visible;
    text-align: center;
-   padding: 0px 0px 1em 0px;
    min-height: 200px;
 }
 
@@ -269,7 +275,7 @@ a:hover, a:active, a:focus {
    margin:0;
    color: #c77405;
    background-color: #ddd;
-   border: none;
+   border-bottom: 1px black solid;
    padding: 6px 10px;
 }
 
@@ -304,7 +310,6 @@ a:hover, a:active, a:focus {
     padding: 0 15px 15px 40px;
 }
 
-
 .nav_section {
       padding: 5px 20px 15px 20px;
       background: #ddd;
@@ -312,11 +317,11 @@ a:hover, a:active, a:focus {
 
 ul.nav {
     list-style: none;
-    float: right;
+    float: left;
 }
 
 ul.nav:last-child{ 
-	margin-bottom: 0px;
+
 }
 
 ul.nav_container li {
@@ -334,8 +339,8 @@ ul.nav li {
 
 ul.nav a, ul.nav a:visited a:link {
     margin:0;
-    display: block;
     text-decoration: none;
+    display: block;
 }
 
 ul.nav a:hover, ul.nav a:active, ul.nav a:focus { 
@@ -396,17 +401,6 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus {
  font-size: small;
  color: red;
  font-style: italic;               
-}
-
-#grade .ui-selecting
-{
- background: #FECA40;
-}
-
-#grade .ui-selected
-{
- background: #F39814;
- color: white;
 }
 
 #grade
@@ -504,6 +498,7 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus {
 
 #gradebutton {
     float: right;
+    margin: 0;
     padding: 3%;
 }
 
@@ -515,12 +510,31 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus {
 }
 
 #commenting {
+    padding: 1%;
     margin: 1%;
     float: right;
-    width: 65%;
+    width: 60%;
 }
+
+li.ui-selected.ui-selectee {
+    background-color: #ddd;
+}
+
+.ui-selected a {
+    background-color: #ddd;
+    color:#c77405;
+}
+
+a.ui-selectee {
+    text-decoration: none;
+}
+
 
 #sidebyside {
     height: 100%;
     width: 100%;
+}
+
+.notalink {
+    text-decoration: line-through;
 }

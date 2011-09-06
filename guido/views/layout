@@ -11,56 +11,46 @@
 <span class="logo"></span>
  </div>
  <div class="container">
-  <div class="sidebar1">
   <ul class="nav_container">
     <li>
-    <h3 class="roundTop section-title">Grade</h3>
-    <div class="roundBottom nav_section">
+    <h3 class="section-title">Grade</h3>
     <ul class="nav">
-      <li><a href="/specific_problem">Specific Problem</a></li>
-      <li><a href="/grade_whole/pick"> Whole Submissions</a></li>
-      <li><a href="/specific_submission">Submissions by Problem</a></li>
+      <li><a href="/grade_whole/pick">submission by student</a></li>
+      <li><del><a href="/specific_problem">problem by student</a></del></li>
+      <li><del><a href="/specific_submission">after grading by problem</a></del></li>
       </ul>
-    </div>
    </li>
    <li>
-  <h3 class="roundTop section-title">View</h3>
-  <div class="roundBottom nav_section">
+  <h3 class="section-title">View</h3>
     <ul class="nav">
-      <li><a href="/specific_report">Student Reports</a></li>
-      <li><a href="/none">Statistics</a></li>
+      <li><a href="/specific_report">student reports</a></li>
+      <li><a href="/none">statistics</a></li>
     </ul>
-  </div>
   </li>
   <li>
-  <h3 class="roundTop section-title">Admin</h3>
-  <div class="roundBottom nav_section">
+  <h3 class="section-title">Admin</h3>
     <ul class="nav">
-      <li><a href="/assignment_notes">Edit Assignment Notes</a></li>
-      <li><a href="/none">Edit Problem Notes</a></li>
-      <li><a href="/none">Send Reports </a></li>
-    <ul class="nav">		  
-  </div>
+      <li><a href="/assignment_notes">assignment notes</a></li>
+      <li><a href="/edit_database">database</a></li>
+      <li><a href="/none">problem notes</a></li>
+      <li><a href="/none">send all reports</a></li>
+    </ul>
   </li>
   <li>
-  <h3 class="roundTop section-title">Guido</h3>
-  <div class="roundBottom nav_section">
+  <h3 class="section-title">Guido</h3>
     <ul class="nav">
-      <li><a href="http://code.google.com/p/iucs-guido/" target="_blank">About</a></li>
-      <li><a href="/none">Options</a></li>
-      <li><a href="/none">Help</a></li>
-    <ul class="nav">		  
-  </div>
+      <li><a href="http://code.google.com/p/iucs-guido/" target="_blank">about</a></li>
+      <li><a href="/none">options</a></li>
+      <li><a href="/none">help</a></li>
+    </ul>
   </li>
- </ul>
 </div>
-<div class="roundTop roundBottom content_container">
-   <div class="content_header"> <h1 class="section-title roundTop">{{title}}</h1> </div>
+<div class="content_container">
+   <div class="content_header"> <h1 class="section-title">{{title}}</h1> </div>
 	<div class="content">
            %include
         </div>
    </div>
- </div>
 </div>
 %include byline
 </body>
