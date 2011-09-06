@@ -2,13 +2,7 @@
 
   <!-- left -->
   <h1> Viewing {{assignment}} Report for {{student}}</h1>
-
   <table>
-    <tr>
-     <button id="sendreportbutton">Send Report</button>
-    <div class="warning">Beware: reports cannot be "unsent"</div>
-    </tr>
-    <tr><br><br><br></tr>
     <tr>
     <td>
     % if prevstudent != None:
@@ -21,8 +15,7 @@
     </tr>
     </table>
        <button id="back" onclick="window.location='/specific_report';">Back to Guido</button>
-<br><br><br>
-
+<br><br>
   <div id="report" dir="LTR">
     <table class="iu-widget ui-widget-content">
       <thead>

@@ -8,7 +8,7 @@
     <iframe id="studentframe" 
             src="/solutionframe/{{assignment}}/{{problem}}/{{student}}">
     </iframe>
-            <div id="tools">
+     <div id="tools">
       <form method="GET" action="/guido/codesearch/">
         <input type="hidden" id="student" name="student" value="{{student}}"/>
         <input type="hidden" id="problem" name="problem" value="{{problem}}"/>
@@ -20,14 +20,5 @@
   </div>
   
   <!-- right -->
-  <div class="autogradingWrapper">
-      <h4 class="section-title">Autograder Report</h4>
-      <div class="code">
-        %if autograder=='' or autograder==None:
-        No output.
-        %else:
-        {{autograder}}
-        %end
-      </div>
-  </div> 
+  %include autograderreport autograder=autograder
 </div>

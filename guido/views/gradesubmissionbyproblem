@@ -1,6 +1,6 @@
 %include gradeheader title='grading submission by problem', past_comments=past_comments
 <div id="bigContainer">
- %include toolbar studentbutton="/grade/" + assignment ,  prevstudent=prevstudent, nextstudent=nextstudent, assignment=assignment, choice="submission", grades=grades, default_grade=default_grade
+ %include toolbar studentbutton="/grade/" + assignment, prevstudent=prevstudent, nextstudent=nextstudent, assignment=assignment, choice="submission", grades=grades, default_grade=default_grade
 <div id="sidebyside">
   <!-- left -->
   <div class="student">
@@ -9,15 +9,7 @@
   </div>
 
   <!-- right -->
-<div class="autogradingWrapper">
-  <h4 class="section-title">Autograder Report</h4>
-  <div class="code">
-    %if autograder=='' or autograder==None:
-    No output.
-    %else:
-    {{autograder}}
-    %end
-  </div>
+  %include autograderreport autograder=autograder
 </div> 
 </div>
 </div>

@@ -1,15 +1,15 @@
 <div id="toolbar">
   <div id="gradingtoolbar">
     <form id="formGrade" method="POST" action="" autocomplete="off">
-      <ol id="grades">
+      <ul id="grades">
         % for grade in grades:
         % if default_grade == grade:
-        <li value="{{default_grade}}">{{default_grade}}</li>
+        <li class="ui-selected" value="{{default_grade}}"><a href="#">{{default_grade}}</a></li>
         % else:
-        <li value="{{grade}}">{{grade}}</li>
+        <li value="{{grade}}"><a href="#">{{grade}}</a></li>
         % end
         % end
-      </ol>
+      </ul>
       <div id="commenting">
         <textarea id="comment" name="comment"></textarea>
         <input type="hidden" id="submit_grade" name="grade" value="None" />
@@ -20,21 +20,21 @@
   </div>
   <div id="gradingnav">
     <ul class="nav">
-      <a id="newassignment" href="/specific_{{choice}}">assignment select</a>
-      <a id="newproblem" href="/specific_{{choice}}/{{assignment}}">problem select</a>
+      <a id="newassignment" href="{{newassignmenturl}}">assignment select</a>
+      <a id="newproblem" href="{{newproblemurl}}">problem select</a>
     </ul>
     <ul class="nav">
       % if prevstudent != None:
       <a id="prevstudentbutton" 
          href="{{studentbutton}}/{{prevstudent}}">previous student</a>
       % else:
-      previous student
+      <span class="notalink">previous student</span>
       %end
       % if nextstudent != None:
       <a id="nextstudentbutton" 
          href="{{studentbutton}}/{{nextstudent}}">next student</a>
       % else:
-      next student
+      <span class="notalink">next student</span>
       % end
     </ul>
   </div>

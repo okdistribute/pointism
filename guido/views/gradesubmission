@@ -1,12 +1,13 @@
 %include gradeheader title='grading a submission', past_comments=past_comments
 <div id="bigContainer">
-  %include toolbar studentbutton="/grade_whole/" + assignment, prevstudent=prevstudent, nextstudent=nextstudent, assignment=assignment, choice="assignment", grades=grades, default_grade=default_grade
+  %include toolbar studentbutton="/grade_whole/" + assignment, prevstudent=prevstudent, nextstudent=nextstudent, assignment=assignment, newassignmenturl="/grade_whole/pick", newproblemurl="#", grades=grades, default_grade=default_grade
 <div id="sidebyside">
   <!-- left -->
   <div class="student">
     <h4 class="section-title">{{assignment}} :: {{student}}</h4>
-      <iframe id="studentframe" src="/submissionframe/{{assignment}}/{{student}}"></iframe>
-            <div id="tools">
+    <iframe id="studentframe" 
+            src="/submissionframe/{{assignment}}/{{student}}"></iframe>
+    <div id="tools">
       <form method="GET" action="/guido/codesearch/">
         <input type="hidden" id="student" name="student" value="{{student}}"/>
         <input type="hidden" id="assignment" name="assignment" value="{{assignment}}"/>
@@ -17,14 +18,5 @@
   </div>
   
   <!-- right -->
-  <div class="autogradingWrapper">
-      <h4 class="section-title">Autograder Report</h4>
-      <div class="code">
-        %if autograder=='' or autograder==None:
-        No output.
-        %else:
-        {{autograder}}
-        %end
-      </div>
-  </div> 
+  %include autograderreport autograder=autograder
 </div>
