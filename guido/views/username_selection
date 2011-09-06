@@ -2,7 +2,7 @@
 <div id="box">
 <h2>Student Selection</h2>
 <form method="POST" action={{target}}>
-      <select name="username">
+      <select class="input" name="username">
       % for username in usernames:
  	       <option value={{username}}>{{username}}</option>
       % end

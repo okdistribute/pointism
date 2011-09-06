@@ -15,6 +15,8 @@ import grading
 import frontpage
 import assignment_notes
 import queries
+import edit_database
+import model
 
 @route('/')
 def index():
@@ -148,9 +150,6 @@ def grade_whole_submissions(assignment, username):
     code = request.POST.get('code')
     queries.insert_problem_comment(comment, code, username, assignment, None)
     nextstudent = request.POST.get('nextstudent')
-    if(nextstudent != None and nextstudent != 'None' and request.COOKIES.get('autoNext') == 'true'):
-        username = nextstudent #if we want to and can advance to the next student, do it.
-
     return grading.whole_submission(assignment, username)
 
 # submission iframe #
@@ -214,6 +213,24 @@ def see_assignment_notes():
 def update_assignment_notes(name):
     return assignment_notes.notes_update(name)
 
+############################
+# Editing Database Entries #
+############################
+
+@route('/edit_database')
+def splash():
+    return edit_database.choice()
+
+@route('/edit_database', method='POST')
+def choosing():
+    choice = request.POST.get('select')
+    return edit_database.choose(choice)
+
+@route('/edit_database_comments')
+def edit_database_comments():
+    fullprevcomments = queries.get_all_past_comments()
+    return template("edit_database_comment",
+              prevcomments= list( map( lambda pair: model.Comment(pair[0],pair[1]), fullprevcomments)))
 
 ##################
 # Error Checking #

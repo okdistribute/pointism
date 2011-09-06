@@ -2,7 +2,7 @@
 <div id="box">
 <h2>Problem Selection</h2>
 <form method="POST" action={{target}}>
-      <select name="problem">
+      <select class="input" name="problem">
       % for problem in problems:
  	       <option value={{problem}}>{{problem}}</option>
       % end
