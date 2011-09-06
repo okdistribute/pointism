@@ -3,14 +3,10 @@
 from bottle import template
 from bottle import request
 from bottle import redirect
-
-import queries
-import sqlite3
-import model
 from collections import defaultdict
 
-THEDB = "guidodb"
-
+import queries
+import model
 
 def grade(username, assignment, problemname):
     solution = queries.get_solution(username, assignment, problemname)
