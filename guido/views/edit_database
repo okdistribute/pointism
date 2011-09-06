@@ -1,0 +1,13 @@
+%rebase layout title="Edit Database Entries"
+<div id="box">
+<h2>Edit Database</h2>
+<form method="POST">
+      <select class="input" name="select">
+      <option value="comments">comments</option>
+      <option value="assignments">assignments</option>
+      <option value="students">students</option>      
+      </select>
+      <input type="submit" value="select"/>
+      <br/>
+</form>
+</div>

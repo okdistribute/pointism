@@ -1,0 +1,16 @@
+%rebase layout title="Edit Comments"
+
+<form method="POST" id="formCommentdb" action="" autocomplete="off">	
+<div id="divprevcomments">
+      <select id="prevcomments" name="prevcomments" class="prevcomments" size="3">
+      % for comment in prevcomments:
+        <option value="{{comment.commentid}}">{{comment.firstline}}</option>
+      % end
+      </select>
+      </div>
+      %include dialog
+      <input type="hidden" id="editedcomment" name="editedcomment" value="None" />
+      <button id="btnEditcomment"> edit selected comment</button>
+      <button id="btnDeletecomment"> delete selected comment</button>
+      <br> <div id="commentdbstatus"></div>
+</form>
