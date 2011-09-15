@@ -68,7 +68,7 @@ def whole_submission(assignment, username):
     students = queries.who_turned_in(assignment)
     p,n = find_prev_next(students, username)
     
-    return template("gradesubmission",
+    return template("grade_whole",
                     source=studentsolution,
                     past_comments=list(map(lambda pair: pair[1], fullprevcomments)),
                     prevcomments=comments_firstline(fullprevcomments),
@@ -83,8 +83,9 @@ def whole_submission(assignment, username):
                     grades=possible_grades())
 
 def possible_grades():
-    """Returns the possible grades (as a list of strings) for a given
-    assignment. For now, this always returns A-F."""
+    """Returns the possible grades (as a list of strings) for
+    assignments. This returns A-F. TODO: user interface to change this
+    based on assignment or for all assignments"""
     return  ("A", "B", "C", "D", "F")
 
 def get_grade(username, assignment, problemname):
