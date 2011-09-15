@@ -21,19 +21,20 @@
       </ul>
    </li>
    <li>
-  <h3 class="section-title">View</h3>
+  <h3 class="section-title">Reports</h3>
     <ul class="nav">
-      <li><a href="/specific_report">student reports</a></li>
-      <li><a href="/none">statistics</a></li>
+      <li><a href="/specific_report">reports to students</a></li>
+      <li><a href="/csv_grades">grades by csv</a></li>
+      <li><a href="/none">send all reports</a></li>      
     </ul>
   </li>
   <li>
   <h3 class="section-title">Admin</h3>
     <ul class="nav">
       <li><a href="/assignment_notes">assignment notes</a></li>
-      <li><a href="/edit_database">database</a></li>
       <li><a href="/none">problem notes</a></li>
-      <li><a href="/none">send all reports</a></li>
+      <li><a href="/edit_database">database entries</a></li>
+      <li><a href="/none">statistics</a></li>
     </ul>
   </li>
   <li>
