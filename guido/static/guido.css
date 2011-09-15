@@ -168,7 +168,7 @@ div.report li {
 select.prevcomments {
     max-width: 95%;
     min-height:200px;
-    min-width: 200px;
+    min-width: 500px;
 }
 
 .codesearchbox .searchinput {
