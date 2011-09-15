@@ -1,4 +1,4 @@
-      <select id="prevcomments" name="prevcomments" class="prevcomments" size="3">
+      <select id="prevcomments" name="prevcomments" class="prevcomments">
       % for comment in prevcomments:
         <option value="{{comment.commentid}}">{{comment.firstline}}</option>
       % end
