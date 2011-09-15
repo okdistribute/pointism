@@ -1,0 +1,15 @@
+%rebase layout title="grades.csv for " + assignment
+
+<textarea style="width:500px; height:150px;">
+%for usernamegrade in filtered_grades:
+{{usernamegrade[0]}},{{usernamegrade[1]}}
+%end
+</textarea>
+
+<br><br>
+{{len(none_grades)}}
+students with no grade<br>
+%for usernamegrade in none_grades:
+{{usernamegrade[0]}}
+%end
+<br>

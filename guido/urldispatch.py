@@ -16,6 +16,7 @@ import frontpage
 import assignment_notes
 import queries
 import edit_database
+import csv_grades
 import model
 
 @route('/')
@@ -267,6 +268,22 @@ def server_static(path, extension, filename):
 @route('/static/:path/:to/:extension/:filename')
 def server_static(path, to, extension, filename):
     return static_file(filename, root='static/%s/%s/%s' % (path, to, extension) )
+
+###########################
+# Exporting Grades by CSV #
+###########################
+
+@route('/csv_grades')
+def splash():
+    return template("assignment_selection",
+                    title="Export Grades to CSV",
+                    target="/csv_grades",
+                    assignments=queries.get_assignments()) 
+
+@route('/csv_grades', method='POST')
+def picked_an_assignment():
+    assignment = request.POST.get('assignment')
+    return csv_grades.for_assignment(assignment)
 
 #########
 # Other #

@@ -296,3 +296,12 @@ def delete_comment(commentid):
         c.execute(sql, param)
         conn.commit()
         c.close()
+
+def get_usernames_grades(assignmentid):
+    with sqlite3.connect(THEDB) as conn:
+        c = conn.cursor()
+        sql = ("""select username, grade from Submission
+               where assignmentid=?""")
+        param = (assignmentid,)
+        c.execute(sql, param)
+        return c.fetchall()
