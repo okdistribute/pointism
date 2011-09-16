@@ -283,6 +283,10 @@ def splash():
 @route('/csv_grades', method='POST')
 def picked_an_assignment():
     assignment = request.POST.get('assignment')
+    redirect("/csv_grades/" + assignment)
+
+@route('/csv_grades/:assignment')
+def routed_to_an_assignment(assignment):
     return csv_grades.for_assignment(assignment)
 
 #########
