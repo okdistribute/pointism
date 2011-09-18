@@ -8,3 +8,12 @@ guido/		the actual system
 mockups/	UI ideas, done with HTML and PHP
 uploader/	commandline uploader, meant to be deployed for real users
 prototype/	the prototype from Fall 2010
+
+How to install
+---------------------
+1.  tar -xvf anonymized.tgz
+#.  cd guido
+#.  ./initdb.py
+#.  cd uploader
+#.  ./uploadthemall
+
