@@ -28,6 +28,16 @@ div.code {
   position:relative;
 }
 
+div.autograder {
+ font-family: 'Droid Sans Mono', arial, serif;
+  font-size: 10pt;
+  border: 5px #DDD groove;
+  margin: 5px;
+  padding: 5px;
+  white-space: pre-wrap;
+  position:relative;
+}
+
 div.linenumbers {
   float: left;
   padding-right: 1em;
@@ -465,20 +475,20 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus {
     top: 5px;
     left: 0px;
     color: #fff;
-    width: 75%;
+    width: 50%;
     margin: 0px auto 5px auto;
     height: 10%;
 }
 
 #gradingtoolbar {
     float: left;
-    width: 65%;
+    width: 50%;
 }
 
 #gradingnav {
     float: right;
     height: 100%;
-    width: 35%;
+    width: 50%;
 }
 
 #gradingnav ul {
@@ -494,12 +504,6 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus {
 
 #grades {
     list-style: none;
-}
-
-#gradebutton {
-    float: right;
-    margin: 0;
-    padding: 3%;
 }
 
 #comment {
@@ -537,4 +541,8 @@ a.ui-selectee {
 
 .notalink {
     text-decoration: line-through;
+}
+
+#gradebutton {
+   margin: 10px;
 }

@@ -1,6 +1,6 @@
   <div class="autogradingWrapper">
       <h4 class="section-title">Autograder Report</h4>
-      <div class="code">
+      <div class="autograder">
         %if autograder=='' or autograder==None:
         No output.
         %else:

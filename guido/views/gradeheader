@@ -3,56 +3,23 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" /> 
     <link rel="stylesheet" href="/static/guido.css" type="text/css" />
-    <link type="text/css" href="/static/css/ui-lightness/jquery-ui-1.8.12.custom.css" rel="Stylesheet" />
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+    <link rel="stylesheet" href="/static/css/jquery.qtip.css" type="text/css" />
+    <link type="text/css" href="/static/css/ui-lightness/jquery-ui-1.8.12.custom.css" rel="Stylesheet" />   
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
     <script type="text/javascript" src="/static/js/jquery-ui-1.8.12.custom.min.js"></script>
+    <script type="text/javascript" src="/static/js/qtip/jquery.qtip-1.0.0-rc3.min.js"></script>
     <script type="text/javascript" src="/static/js/guido.js"></script>
-<script type="text/javascript"> 
-     $(function() {
+    <script type="text/javascript" src="/static/js/grade.js"></script>
+    <script type="text/javascript">
+
+      $(function() {
     	var comments = {{past_comments}};	 
         $( "#comment" ).autocomplete({
 	   source: comments
         });
-        $( "#searchbutton").button({
-        icons: {
-           secondary:"ui-icon-search"
-          }
-        });
-        
-        $( "#help" ).accordion({
-               collapsible: true,
-               active: false,
-               icons: { 'header': 'ui-icon-help', 'headerSelected': 'ui-icon-minus' }
 
-         });
-       $( "#btnHide").button().click(function() {
-             $('#help').hide('slide');
-             $('#btnHide').hide();
-             $.cookie('hideHelp', 'true');
-          });
-     
-       $( "#chkNext").button({
-              icons: { primary : "ui-icon-cancel" }});
-       $( "#chkNext").click( function() {
-          var bler = $( this ).button("option","icons");
-          var current = bler['primary'];
-          var next;
-        if (current=="ui-icon-cancel") {
-             next =  "ui-icon-check";
-        }
-        else{
-              next =  "ui-icon-cancel";
-        }
-          $( this).button("option", "icons", 
-             { primary : next });
-        });
-
-       if ($.cookie('autoNext') == 'true'){
-           $("#chkNext").click();
-     }
-     });
-</script>
-
+      });
+    </script>
     <title>{{title}}</title>
 </head>
 <body>

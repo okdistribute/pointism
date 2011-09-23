@@ -10,12 +10,8 @@
         % end
         % end
       </ul>
-      <div id="commenting">
-        <textarea id="comment" name="comment"></textarea>
         <input type="hidden" id="submit_grade" name="grade" value="None" />
-        <input type="hidden" id="submit_code" name="code" value="None" />
-        <button id="gradebutton">Grade</button>
-      </div>
+        <button id="gradebutton">grade</button>
     </form>
   </div>
   <div id="gradingnav">

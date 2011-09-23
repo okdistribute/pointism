@@ -1,22 +1,4 @@
-function getSelectedText() {
-    var iframe = document.getElementById("studentframe");
-    var idoc= iframe.contentDocument || iframe.contentWindow.document;
-    var iwin= iframe.contentWindow || iframe.contentDocument.defaultView;
-    if (idoc.getSelection) {
-        return idoc.getSelection();
-    }
-    else if (iwin.getSelection()) {
-        return ''+iwin.getSelection();
-    }
-    return '';
-}
-
 $(function() {
-    var links = ["#newassignment", "#newproblem", "#prevstudentbutton", "#nextstudentbutton"];
-    for (link in links) {
-        var linkObj = $(link);
-        linkObj.click(linkObj.attr("href"));
-    }
 
     var ajax_load = "<img src='/static/images/load.gif' alt='loading...' />";
     
@@ -24,36 +6,7 @@ $(function() {
 	cache: false
     });
 
-    $( "#grades" ).selectable({
-	stop: function() {
-            var result = $("input:#submit_grade");
-            $(".ui-selected", this).each(function() {	
-		grade = $(this).text();
-		result.attr("value" , grade);
-		$(this).siblings().removeClass("ui-selected");
-            });
-        }
-    });
     
-    var student = $("#student").attr("value"),
-    assignment = $("#assignment").attr("value"),
-    problem = $("#problem").attr("value");
-    
-    $( "#formGrade" ).submit(function() {
-	var code = getSelectedText();
-
-        $.post(window.location.pathname,
-               {'grade':$("#submit_grade").attr("value"),
-                'comment':$("input:#comment").val(),
-                'code': code,
-                'nextstudent' : $("input:#nextstudent").attr("value")},
-               function(data) {
-                   window.open();
-                   document.write(data);
-               });
-        return false;
-    });
-
     var comment = $( "textarea#editablecomment"),
     tips = $(".validateTips"),
     prevcomments = $("#prevcomments"),

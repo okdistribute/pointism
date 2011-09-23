@@ -82,7 +82,8 @@ def grade_problem(username, assignment, problemname):
 def solution_frame(assignment, problem, username):
     solution = queries.get_solution(username, assignment, problem)
     ss = solution[0]
-    return template('framestudent', source=ss,linenumbers=grading.makelinenumbers(ss))
+    return template('framestudent', source=ss,linenumbers=grading.makelinenumbers(ss),
+                    past_comments=list(map(lambda pair: pair[1], queries.get_all_past_comments())));
 
 
 #############################################################
@@ -153,12 +154,27 @@ def grade_whole_submissions(assignment, username):
     nextstudent = request.POST.get('nextstudent')
     return grading.whole_submission(assignment, username)
 
-# submission iframe #
+
+### entering a comment ###
+@route('/grading/entercomment')
+def showcommentbox():
+    return template("entercomment");
+
+@route('/grading/entercomment', method="POST")
+def insertcomment():
+    ##need to get post to work from ajax
+    ##enter comment into db
+    return template("entercomment")
+
+#grade_whole iframeframe
 @route('/submissionframe/:assignment/:username')
 def submission_frame(assignment, username):
     solution = queries.get_submission(username, assignment)
     ss = solution[0]
-    return template('framestudent', source=ss,linenumbers=grading.makelinenumbers(ss))
+    return template('framestudent', 
+                    source=ss,
+                    linenumbers=grading.makelinenumbers(ss),
+                    past_comments=list(map(lambda pair: pair[1], queries.get_all_past_comments())));
 
                 #################
 ################# Other Stuff #################
@@ -231,7 +247,7 @@ def choosing():
 def edit_database_comments():
     fullprevcomments = queries.get_all_past_comments()
     return template("edit_database_comment",
-              prevcomments= list( map( lambda pair: model.Comment(pair[0],pair[1]), fullprevcomments)))
+                    prevcomments= list( map( lambda pair: model.Comment(pair[0],pair[1]), fullprevcomments)))
 
 ##################
 # Error Checking #
@@ -323,3 +339,4 @@ def commentdelete():
     commentid = request.POST.get('commentid')
     queries.delete_comment(commentid)
     redirect('commentdb.ajax')
+

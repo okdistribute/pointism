@@ -1,0 +1,7 @@
+<form id="entercomment" method="POST" action="/grading/entercomment" autocomplete="off">
+        <div id="commenting">
+        <textarea id="comment" name="comment"></textarea>
+        <input type="hidden" id="submit_code" name="code" value="None" />
+        <button>submit</button>
+	</div>
+</form>
