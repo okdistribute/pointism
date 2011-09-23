@@ -16,10 +16,6 @@
   </div>
   <div id="gradingnav">
     <ul class="nav">
-      <a id="newassignment" href="{{newassignmenturl}}">assignment select</a>
-      <a id="newproblem" href="{{newproblemurl}}">problem select</a>
-    </ul>
-    <ul class="nav">
       % if prevstudent != None:
       <a id="prevstudentbutton" 
          href="{{studentbutton}}/{{prevstudent}}">previous student</a>
@@ -32,6 +28,9 @@
       % else:
       <span class="notalink">next student</span>
       % end
+    </ul>
+    <ul class="nav">
+      <a id="menu" href="/">main menu</a>
     </ul>
   </div>
 </div>
