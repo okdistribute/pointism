@@ -514,10 +514,7 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus {
 }
 
 #commenting {
-    padding: 1%;
-    margin: 1%;
-    float: right;
-    width: 60%;
+    width: 100%;
 }
 
 li.ui-selected.ui-selectee {
