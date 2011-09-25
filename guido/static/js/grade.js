@@ -31,6 +31,7 @@ $(function() {
     
 
     $("#linenumbers").children().each(function() {
+	linenumber = $(this).html();
 	$(this).qtip({
 	content: { prerender: false, 
 		   url: '/grading/entercomment', 
@@ -38,8 +39,9 @@ $(function() {
 		   data: { student: student,
 			   assignment: assignment,
 			   problem: problem,
-			   linenumber: $(this).attr("value")},
-		   title: { text : "enter comment",
+			   linenumber: linenumber
+			 },
+		   title: { text : linenumber + ": enter comment",
 			    button : "close" }
 		 },
 	show: { solo: true, when: { event: 'mousedown' } },
@@ -49,7 +51,7 @@ $(function() {
 	    adjust: { mouse: false }
 	},
 	style: {
-	    width: { max: 400 }
+	    width: 600
 	}
 	
 	});
