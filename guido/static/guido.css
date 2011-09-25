@@ -3,35 +3,41 @@ h4 {
 }
 
 div.student {
+  background-color: #DDD;
   height: 80%;
   width: 50%;
   display:inline;
-  overflow: visible;
   float: left;
   position:relative;
   text-align: left;
 }
 
-#studentframe {
-  width: 100%;
-  height:100%;
-  border:none;
-}
 
 div.code {
-  font-family: 'Droid Sans Mono', arial, serif;
-  font-size: 10pt;
-  border: 5px #DDD groove;
+  font-family: 'Mono', arial, serif;
+  font-size: 9pt;
+  background-color: #DDD;
   margin: 5px;
   padding: 5px;
+  height:80%;
   white-space: pre-wrap;
-  position:relative;
+  position: relative;
+  overflow: scroll;
+  overflow-x: auto;
+}
+
+div.linenumbers a {
+    color: #666 !important; 
+    float: right;
+}
+
+div.linenumbers a:hover {
+    color: #cef !important; 
 }
 
 div.autograder {
- font-family: 'Droid Sans Mono', arial, serif;
-  font-size: 10pt;
-  border: 5px #DDD groove;
+  font-family: 'Mono', arial, serif;
+  font-size: 9pt;
   margin: 5px;
   padding: 5px;
   white-space: pre-wrap;
@@ -509,15 +515,13 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus {
 #comment {
     float: left;
     margin: auto;
-    height: 100%;
-    width: 70%;
+    height: 60%;
+    width: 100%;
 }
 
 #commenting {
-    padding: 1%;
-    margin: 1%;
-    float: right;
-    width: 60%;
+   width: 100%;
+   height: 100px;
 }
 
 li.ui-selected.ui-selectee {
