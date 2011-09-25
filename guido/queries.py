@@ -201,7 +201,7 @@ def insert_submission_grade(grade, username, assignment):
     conn.commit()
     c.close()
 
-def insert_problem_comment(comment, code, username, assignment, problemname):
+def insert_problem_comment(comment, linenumber, username, assignment, problemname):
     if comment == None or comment == 'None':
         return
     ##check to make sure comments that contain just whitespace won't get added
@@ -218,7 +218,6 @@ def insert_problem_comment(comment, code, username, assignment, problemname):
     if request != None:
         commentid = request[0]
     else: #else, insert a new comment, and commentid is the last row added.
-        print("inserting comment {0} for {1}".format(comment, username))
         sql = ("insert into Comment "
                "(text, problemname, assignmentid) "
                "values (?, ?, ?) ")
@@ -227,11 +226,12 @@ def insert_problem_comment(comment, code, username, assignment, problemname):
         conn.commit()
         commentid = c.lastrowid
     
+    print("inserting comment {0} for {1} on linenumber {2}".format(comment, username, linenumber))
     ##insert into commentsolution now
     sql = ("insert into CommentSolution "
-           "(commentid, studentcode, username, assignmentid, problemname) "
+           "(commentid, linenumber, username, assignmentid, problemname) "
            "values (?, ?, ?, ?, ?) ")
-    param = (commentid, code, username, assignment, problemname)
+    param = (commentid, linenumber, username, assignment, problemname)
     c.execute(sql, param)
     conn.commit()
     c.close()
