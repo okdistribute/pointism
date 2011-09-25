@@ -1,0 +1,7 @@
+<table>
+%for comment in comments:
+     <tr>
+     <td class="viewcomment">{{comment}}</td><td class="deletecomment"><a href="#"><img src="/static/images/x_icon.jpg"></img></a></td>
+     </tr>
+%end
+</table>

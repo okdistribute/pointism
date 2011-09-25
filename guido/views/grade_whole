@@ -5,7 +5,7 @@
   <!-- left -->
   <div class="student">
 <h4 class="section-title">{{assignment}} :: {{student}}</h4>    
-%include studentcode linenumbers=linenumbers, source=source
+%include studentcode linenumbers=linenumbers, source=source, existingcomments=existingcomments
     <div id="tools">
       <form method="GET" action="/guido/codesearch/">
         <input type="hidden" id="student" name="student" value="{{student}}"/>

@@ -29,8 +29,32 @@ $(function() {
     assignment = $("#assignment").attr("value"),
     problem = $("#problem").attr("value");
     
-
-    $("#linenumbers").children().each(function() {
+    $(".existingcomment").each(function() {
+	linenumber = $(this).attr("value");
+	$(this).qtip({
+	    content: { prerender: false,
+		       url: '/grading/viewcomments',
+		       data: { linenumber: linenumber,
+			       student: student,
+			       assignment: assignment,
+			       problem: problem
+			     },
+		       title: { text: linenumber + ": view comments",
+				button: 'close' },
+		     },
+	    show: { solo: true, when: { event: 'mousedown' } },
+	    hide: { when: {event: 'unfocus' } },
+	    position: {
+		target: 'mouse',
+		adjust: { mouse: false }
+	    },
+	    style: {
+		width: 600
+	    }
+	});
+    });
+		    
+    $(".linenumber").each(function() {
 	linenumber = $(this).html();
 	$(this).qtip({
 	content: { prerender: false, 

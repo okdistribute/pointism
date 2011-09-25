@@ -132,7 +132,10 @@ def grade_whole_submissions(assignment, username):
     queries.insert_submission_grade(grade, username, assignment)
     return grading.whole_submission(assignment, username)
 
+
+##########################
 ### entering a comment ###
+##########################
 @route('/grading/entercomment', method="GET")
 def showcommentbox():
     student = request.GET.get('student');
@@ -156,6 +159,21 @@ def insertcomment():
     queries.insert_problem_comment(comment, linenumber, student, assignment, problem)
     ##this should be figured out based on the type of grading view
     redirect("/grade_whole/{0}/{1}".format(assignment, student))
+
+### viewing a comment 
+@route('/grading/viewcomments', method="GET")
+def viewcomment():
+    student = request.GET.get('student');
+    assignment = request.GET.get('assignment');
+    problem = request.GET.get('problem');
+    linenumber = request.GET.get('linenumber');
+    ### TODO: check to see if problem exists, if so query by problem as well
+    comments = queries.get_comments_by_linenumber(student, assignment, linenumber)
+    return template('viewcomments', 
+                    student=student, 
+                    assignment=assignment, 
+                    problem=problem, 
+                    comments=comments)
 
                 #################
 ################# Other Stuff #################

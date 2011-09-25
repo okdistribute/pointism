@@ -17,8 +17,6 @@ div.code {
   font-family: 'Mono', arial, serif;
   font-size: 9pt;
   background-color: #DDD;
-  margin: 5px;
-  padding: 5px;
   height:80%;
   white-space: pre-wrap;
   position: relative;
@@ -26,6 +24,14 @@ div.code {
   overflow-x: auto;
 }
 
+div.existingcomments {
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+.existingcomment {
+    float:right;
+}
 div.linenumbers a {
     color: #666 !important; 
     float: right;
@@ -38,8 +44,6 @@ div.linenumbers a:hover {
 div.autograder {
   font-family: 'Mono', arial, serif;
   font-size: 9pt;
-  margin: 5px;
-  padding: 5px;
   white-space: pre-wrap;
   position:relative;
 }
@@ -47,7 +51,6 @@ div.autograder {
 div.linenumbers {
   float: left;
   padding-right: 1em;
-  padding-left: .1em;
   color: #666;
 }
 
@@ -66,13 +69,6 @@ div.grading {
   text-align: center;
 }
 
-div.grading_header {
-  text-align: left;
-}
-
-div.grading_content {
-  padding: .5em;
-}
 
 div.autogradingWrapper {
   position: relative;
@@ -90,10 +86,6 @@ div.existingcomment {
  
 }
 
-div.grading textarea {
-    max-width: 95%;
-}
-
 div.assignmentlist {
     float: left;
     width: 55%;
@@ -108,79 +100,6 @@ div.codesearchbox {
     width: 45%;
 }
 
-div#report table { 
-     margin: 0; 
-     border-collapse: collapse; 
-     width: 100%;
-}
-
-div#report li {
-     list-style: none;
-}
-
-div#report table td, div#framesbp table th { 
-    border-left: 1px solid #000; 
-    border-bottom: 1px solid #000;
-    text-align: left; 
-}
-
-
-/* gradesubmissionbyproblem */
-
-div.finalgrade {
-    width:600px;
-    height:600px;
-    position:relative;
-    float:left;
-    padding-top:1em;
-}
-
-.reportTable td {
-    padding: 2px 4px 2px 4px;
-    border: 1px solid #660000;
-    border-style: dotted;
-    border-color: gray;
-    background-color:white;
-    width: 33%;
-}
-
-.reportTable th {
-    border-width: 1px;
-    padding: 1px;
-    border-style: dotted;
-    border-color: gray;
-    background-color: white;
-}
-
-.reportTable {
-    border-width: 1px;
-    border-spacing: 2px;
-    border-style: hidden;
-    border-color: gray;
-    border-collapse: collapse;
-    background-color: rgb(250, 240, 230);
-    width: 100%;
-}
-
-.reportTable h2 {
-    text-align: center;
-    margin: 0px 0px 0px 0px;
-    background-color: grey;
-}
-
-div.report {
-    font-family: 'Droid Sans Mono', arial, serif;
-    margin-bottom: 1em;
-    font-size: 10pt;
-    white-space: pre-wrap;
-}
-
-div.report li {
-    margin: auto;
-    width: 90%;
-    list-style-type: circle;
-}
-
 select.prevcomments {
     max-width: 95%;
     min-height:200px;
@@ -193,19 +112,6 @@ select.prevcomments {
     min-width: 100px;
 }
 
-#iframe
-{
-    height: 99%;
-    background:#ddd;
-    position: relative;
-    overflow: auto;
-}
-#iframe ::selection {
-    background:#F39814;
-}
-#iframe ::-moz-selection {
-    background:#F39814;
-}
 
 /* layout */
 
@@ -439,7 +345,7 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus {
 }
 
 #bigContainer {
-    width:1130px;
+    width:1200px;
     position: relative;
     height: 100%;
     margin: auto;

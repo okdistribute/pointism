@@ -1,7 +1,17 @@
 <div id="code" class="code">
+<div class="existingcomments">
+
+%for line in linenumbers:
+%if existingcomments.get(int(line)):
+<a class="existingcomment" value="{{line}}" href="#"><img src="/static/images/speech_bubble_icon.png"></img></a>
+%else:
+
+%end 
+%end
+</div>
 <div id="linenumbers" class="linenumbers">
-%for line in linenumbers.split("\n"):
-<a class="linenumber" value="{{line}}" href="#">{{line}}</a>
+%for line in linenumbers:
+<a class="linenumber"  href="#">{{line}}</a>
 %end
 </div>
 {{source}}
