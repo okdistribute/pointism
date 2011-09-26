@@ -18,7 +18,7 @@ div.code {
   font-size: 9pt;
   background-color: #DDD;
   height:80%;
-  white-space: pre-wrap;
+  white-space: pre;
   position: relative;
   overflow: scroll;
   overflow-x: auto;
@@ -456,3 +456,4 @@ a.ui-selectee {
 #gradebutton {
    margin: 10px;
 }
+
