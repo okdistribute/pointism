@@ -11,7 +11,7 @@
 </div>
 <div id="linenumbers" class="linenumbers">
 %for line in linenumbers:
-<a class="linenumber"  href="#">{{line}}</a>
+<span class="linenumber">{{line}}</span>
 %end
 </div>
 {{source}}

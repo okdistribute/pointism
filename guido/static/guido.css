@@ -32,13 +32,14 @@ div.existingcomments {
 .existingcomment {
     float:right;
 }
-div.linenumbers a {
+div.linenumbers * {
     color: #666 !important; 
     float: right;
+    cursor: pointer;
 }
 
-div.linenumbers a:hover {
-    color: #cef !important; 
+div.linenumbers *:hover {
+    color: #C77405 !important; 
 }
 
 div.autograder {
