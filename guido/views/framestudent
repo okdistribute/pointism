@@ -1,6 +1,0 @@
-%include gradeheader title="grade student code",past_comments=past_comments
-<body id="iframe">
-<div id="code" class="code">
-	<div id="linenumbers" class="linenumbers">{{linenumbers}}</div>{{source}}</div>
-</body>
-</html>

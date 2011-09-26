@@ -185,31 +185,30 @@ def viewcomment():
 
 # Picking the report #
 
-@route('/specific_report')
+@route('/gradingreport')
 def submission_report():
     """The user is picking an assignment"""
     return frontpage.submission_report()
 
-@route('/specific_report/pick_username', method='POST')
+@route('/gradingreport/pick_username', method='POST')
 def picked_assignment():
     """The user has just picked an assignment"""
     aid = request.forms.get('assignment')
-    redirect("/specific_report/%s" % aid)
+    redirect("/gradingreport/%s" % aid)
 
-@route('/specific_report/:assignment')
+@route('/gradingreport/:assignment')
 def submission_report(assignment):
     """The user is picking a username"""
     return frontpage.submission_report_choice(assignment)
 
-@route('/specific_report/:assignment', method='POST')
+@route('/gradingreport/:assignment', method='POST')
 def submission_report(assignment):
     """The user has just picked a username"""
     username = request.forms.get('username')
-    redirect("/specific_report/%s/%s" % (assignment, username))
+    redirect("/gradingreport/%s/%s" % (assignment, username))
 
 # Viewing the report #
-
-@route('/specific_report/:assignment/:username')
+@route('/gradingreport/:assignment/:username')
 def submission_report(assignment, username):
     return reports.submission_report(assignment, username)
 

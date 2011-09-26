@@ -15,31 +15,16 @@ THEDB = "guidodb"
 def submission_report(assignment, username):
     query = queries.get_report(assignment, username)
     report = defaultdict(lambda: ('',[],''))
-    ### problem = (problemname, code, comment, autograder)
-    for problem in query:
-        problemname = problem[0]
-        code = problem[1]
-        comment = problem[2]
-        autograder = problem[3]     
-        if(comment != None):
-            commentlist = report[problemname][1]
-            commentlist.append(comment)
-            report[problemname] = (code, commentlist ,autograder)
 
     students = queries.who_turned_in(assignment)
     p,n = grading.find_prev_next(students, username)
 
-    return template("submissionreport",
+    return template("gradingreport",
                     problems=report,
                     prevstudent=p,
                     nextstudent=n,
                     student=username,
                     assignment=assignment)
-
-def framesbp(aid, username):
-    """returns a built student report template for use in an iframe
-    for the given aid, username"""
-    return template('framesbp', problems=grading.finalreport(aid, username))
 
 def send_report(aid, username):
     """sends the most current report for the given assignment to the
@@ -73,7 +58,5 @@ def get_email(username):
 
 def send_report_to_email(report, email):
     """sends the most current report for the given assignment to the
-    given email. This is where most of the work will be done. Should
-    be called internally only"""    
+    given email."""    
     this = "not implemented. should throw an error."
-    this[4][5][6][7]

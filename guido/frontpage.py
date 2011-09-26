@@ -31,7 +31,7 @@ def submission_report():
     return template("assignment_selection",
                     assignments=queries.get_assignments(),
                     title="View Student Reports",
-                    target="/specific_report/pick_username")
+                    target="/gradingreport/pick_username")
 
 def submission_report_choice(aid):
     return template("username_selection",

@@ -243,10 +243,6 @@ ul.nav {
     float: left;
 }
 
-ul.nav:last-child{ 
-
-}
-
 ul.nav_container li {
    margin: 10px;
    float: left;
@@ -271,7 +267,7 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus {
     font-style: none;
 }
 
-#byline{ 
+#byline { 
     text-align: center;
     bottom: 0px;
     position: relative;
@@ -281,8 +277,7 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus {
     margin-top: 3em;
     border-top: 1px solid #555;
     font-size: x-small;
-    color: #fff;
-   
+    color: #fff;   
 }
 
 #byline a:link a:hover {
@@ -346,14 +341,11 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus {
 }
 
 #bigContainer {
-    width:1200px;
     position: relative;
     height: 100%;
     margin: auto;
     background: #333 url("/static/images/background.jpg");
 }
-
-
 
 /* other */
 
@@ -405,7 +397,7 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus {
 }
 
 #gradingnav ul {
-    margin: 3%;
+    margin-left: 3%;
 }
 
 #grades li {
