@@ -160,23 +160,36 @@ def insertcomment():
     ##this should be figured out based on the type of grading view
     redirect("/grade_whole/{0}/{1}".format(assignment, student))
 
-### viewing a comment with edit ability
+
 @route('/grading/viewcomments', method="GET")
 def viewcomment():
-    student = request.GET.get('student');
-    assignment = request.GET.get('assignment');
-    problem = request.GET.get('problem');
-    linenumber = request.GET.get('linenumber');
-    report = request.GET.get('report');
+    """viewing a comment with delete ability"""
+    student = request.GET.get('student')
+    assignment = request.GET.get('assignment')
+    problem = request.GET.get('problem')
+    linenumber = request.GET.get('linenumber')
+    report = request.GET.get('report')
 
     ### TODO: check to see if problem exists, if so query by problem as well
     comments = queries.get_comments_by_linenumber(student, assignment, linenumber)
     return template('viewcomments', 
                     student=student, 
+                    linenumber=linenumber,
                     assignment=assignment, 
                     problem=problem, 
                     comments=comments,
                     report=report)
+
+
+@route('/grading/deletecomment', method='POST')
+def commentdelete():
+    """deleting a comment"""
+    student = request.POST.get('student')
+    assignment = request.POST.get('assignment')
+    text = request.POST.get('comment')
+    linenumber = request.POST.get('linenumber')
+    queries.delete_commentsolution(student, assignment, text, linenumber)
+    redirect("/grade_whole/{0}/{1}".format(assignment, student))
 
                 #################
 ################# Other Stuff #################
@@ -356,3 +369,4 @@ def commentdelete():
     queries.delete_comment(commentid)
     redirect('commentdb.ajax')
 
+    

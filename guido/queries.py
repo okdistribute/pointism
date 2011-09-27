@@ -311,6 +311,19 @@ def delete_comment(commentid):
         conn.commit()
         c.close()
 
+def delete_commentsolution(student, assignment, text, linenumber):
+    with sqlite3.connect(THEDB) as conn:
+        c = conn.cursor()
+        sql = ("""delete from CommentSolution
+               where username=? 
+               and assignmentid=?  
+               and linenumber=?
+               and commentid=(SELECT commentid from Comment where text=?)""")
+        param = (student, assignment, linenumber, text)
+        c.execute(sql, param)
+        conn.commit()
+        c.close()
+
 def get_usernames_grades(assignmentid):
     with sqlite3.connect(THEDB) as conn:
         c = conn.cursor()

@@ -470,3 +470,7 @@ a.ui-selectee {
     margin: auto;
     margin-bottom: 10px;
 }
+
+.submitbutton {
+   cursor: pointer;
+}
