@@ -67,9 +67,9 @@ def get_comments_by_linenumber(student, assignment, linenumber):
             stripped.append(strip[0])
         return stripped
 
-def get_student_comments(student, assignment):
-    """Returns the text associated with the given student's solution to a
-    problem, or None if none is set."""
+def get_student_commentids(student, assignment):
+    """Returns the the linenumber, commentid associated with the given
+    student's submission"""
     with sqlite3.connect(THEDB) as conn:
         c = conn.cursor()
         commentsql = """select CS.linenumber, C.commentid from Comment C,CommentSolution CS
@@ -78,8 +78,19 @@ def get_student_comments(student, assignment):
                            and CS.commentid = C.commentid"""
         c.execute(commentsql, (assignment,student))
         return c.fetchall()
-        
 
+def get_submission_comments(assignment, username):
+    """Returns the the linenumber, comment text associated with the given
+    student's submission"""
+    with sqlite3.connect(THEDB) as conn:
+        c = conn.cursor()
+        commentsql = """select CS.linenumber, C.text from Comment C,CommentSolution CS
+                         where CS.assignmentid=?
+                           and CS.username=?
+                           and CS.commentid = C.commentid"""
+        c.execute(commentsql, (assignment, username))
+        return c.fetchall()
+        
 def get_assignments():
     """Returns all the assignmentids as a list, from the assignments in the db"""
     with sqlite3.connect(THEDB) as conn:
@@ -262,18 +273,14 @@ def get_all_past_comments():
         return c.fetchall()
 
 def get_report(assignment, username):
-    """Returns a list of solution, comment, and autograder"""
+    """Returns a list of submission, and autograder"""
     with sqlite3.connect(THEDB) as conn:
         c = conn.cursor()
-        sql=  """Select S.problemname, S.text, C.text, S.autograder 
-                 from Solution S
-                 left join CommentSolution CS, Comment C   
-                 where S.assignmentid=? and S.username=?
-                 and S.username=CS.username
-                 and C.commentid=CS.commentid
-                 and C.problemname=S.problemname"""
+        sql=  """Select S.text, S.autograder, S.grade 
+                 from Submission S
+                 where S.assignmentid=? and S.username=?"""
         c.execute(sql, (assignment, username))
-        return c.fetchall()
+        return c.fetchone()
 
 def get_comment(commentid):
     with sqlite3.connect(THEDB) as conn:

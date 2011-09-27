@@ -31,6 +31,7 @@ div.existingcomments {
 }
 .existingcomment {
     float:right;
+    cursor: pointer;
 }
 div.linenumbers * {
     color: #666 !important; 
@@ -133,7 +134,7 @@ body {
     color: #000;
     background: #000;
     margin: 0 auto;
-    background: #333 url("/static/images/background.jpg");
+    background: #333;
     position: absolute;
     height: 100%;
     width: 100%;
@@ -143,7 +144,11 @@ body {
     width:950px;
     height: 500px;
     margin: 0 auto;
-    background: #333 url("/static/images/background.jpg");
+    background: #333;
+}
+
+a {
+   color: white;
 }
 
 ul, ol, dl {
@@ -157,10 +162,6 @@ h1, h2, h3, h4, h5, h6, p {
 
 a img { 
    border: none;
-}
-
-a {
-  color: #fff;
 }
 
 a:hover, a:active, a:focus { 
@@ -342,9 +343,10 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus {
 
 #bigContainer {
     position: relative;
+    width: 95%;
     height: 100%;
     margin: auto;
-    background: #333 url("/static/images/background.jpg");
+    background-color: #333;
 }
 
 /* other */
@@ -392,8 +394,8 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus {
 
 #gradingnav {
     float: right;
-    height: 100%;
     width: 50%;
+    margin-top: 1%
 }
 
 #gradingnav ul {
@@ -450,3 +452,21 @@ a.ui-selectee {
    margin: 10px;
 }
 
+#report
+{
+  font-family: 'Mono', arial, serif;
+  font-size: 10pt;
+  background-color: #DDD;
+  white-space: pre;
+  position: relative;
+  overflow: visible;
+  margin-left:300px;
+  margin-bottom: 100px;
+}
+#reportContainer
+{
+    position: relative;
+    width: 95%;
+    margin: auto;
+    margin-bottom: 10px;
+}

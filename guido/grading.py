@@ -58,7 +58,7 @@ def whole_submission(assignment, username):
     return template("grade_whole",
                     source=studentsolution,
                     past_comments=list(map(lambda pair: pair[1], fullprevcomments)),
-                    existingcomments=dictify(queries.get_student_comments(username, assignment)),
+                    existingcomments=dictify(queries.get_student_commentids(username, assignment)),
                     linenumbers=linenumbers,
                     autograder=autograder_output,
                     student=username,

@@ -13,18 +13,22 @@ from collections import defaultdict
 THEDB = "guidodb"
 
 def submission_report(assignment, username):
-    query = queries.get_report(assignment, username)
-    report = defaultdict(lambda: ('',[],''))
-
+    submission,autograder,grade = queries.get_report(assignment, username)
+    comments = queries.get_submission_comments(assignment, username)
+    
     students = queries.who_turned_in(assignment)
     p,n = grading.find_prev_next(students, username)
-
+    
     return template("gradingreport",
-                    problems=report,
                     prevstudent=p,
                     nextstudent=n,
                     student=username,
-                    assignment=assignment)
+                    assignment=assignment,
+                    source=submission,
+                    grade=grade,
+                    autograder=autograder,
+                    linenumbers=grading.makelinenumbers(submission),
+                    existingcomments=grading.dictify(comments))
 
 def send_report(aid, username):
     """sends the most current report for the given assignment to the

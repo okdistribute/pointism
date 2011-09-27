@@ -1,7 +1,10 @@
-<table>
+<table class="viewcomment">
 %for comment in comments:
      <tr>
-     <td class="viewcomment">{{comment}}</td><td class="deletecomment"><a href="#"><img src="/static/images/x_icon.jpg"></img></a></td>
+     <td>{{comment}}</td>
+     %if report == None:
+<td class="deletecomment"><a href="#"><img src="/static/images/x_icon.jpg"></img></a></td>
+    %end
      </tr>
 %end
 </table>

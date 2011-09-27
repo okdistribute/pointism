@@ -49,7 +49,9 @@ $(function() {
 		adjust: { mouse: false }
 	    },
 	    style: {
-		width: 600
+		width: 600,
+		padding: 5,
+		tip: 'leftTop',
 	    }
 	});
     });

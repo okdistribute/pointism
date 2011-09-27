@@ -160,20 +160,23 @@ def insertcomment():
     ##this should be figured out based on the type of grading view
     redirect("/grade_whole/{0}/{1}".format(assignment, student))
 
-### viewing a comment 
+### viewing a comment with edit ability
 @route('/grading/viewcomments', method="GET")
 def viewcomment():
     student = request.GET.get('student');
     assignment = request.GET.get('assignment');
     problem = request.GET.get('problem');
     linenumber = request.GET.get('linenumber');
+    report = request.GET.get('report');
+
     ### TODO: check to see if problem exists, if so query by problem as well
     comments = queries.get_comments_by_linenumber(student, assignment, linenumber)
     return template('viewcomments', 
                     student=student, 
                     assignment=assignment, 
                     problem=problem, 
-                    comments=comments)
+                    comments=comments,
+                    report=report)
 
                 #################
 ################# Other Stuff #################
@@ -211,6 +214,21 @@ def submission_report(assignment):
 @route('/gradingreport/:assignment/:username')
 def submission_report(assignment, username):
     return reports.submission_report(assignment, username)
+
+@route('/login/getreport/:assignment', method='GET')
+def iucas():
+    #iu CAS
+    #send them to:
+    #"https://cas.iu.edu/cas/login?cassvc=IU&casurl=http://guido.whatever/login/getreport/" + assignment
+    casticket = request.GET.get('casticket')
+    #get contents of "https://cas.iu.edu/cas/validate?cassvc=IU&casticket=" + casticket
+    #firstline = 'yes' or 'no'
+    #if firstline == 'yes':
+    #  username = get the second line of the file
+    #  redirect("/gradingreport/{0}/{1}".format(assignment, username))
+    #else:
+    #  redirect("https://cas.iu.edu/cas/login?cassvc=IU&casurl=http://guido.whatever/login/getreport/" + assignment)
+    
 
 ################################
 # Editing the assignment notes #
