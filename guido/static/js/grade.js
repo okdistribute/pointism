@@ -45,13 +45,15 @@ $(function() {
 	    show: { solo: true, when: { event: 'mousedown' } },
 	    hide: { when: {event: 'unfocus' } },
 	    position: {
-		target: 'mouse',
+                corner: {
+                    target:'bottomLeft',
+                    tooltip: 'rightMiddle',
+                },
 		adjust: { mouse: false }
 	    },
 	    style: {
 		width: 600,
 		padding: 5,
-		tip: 'leftTop',
 	    }
 	});
     });
@@ -73,11 +75,16 @@ $(function() {
 	show: { solo: true, when: { event: 'mousedown' } },
 	hide: { when: { event: 'unfocus' } },
 	position: {
+            corner: {
+                target: 'bottomLeft',
+                tooltip: 'rightMiddle'
+            },
 	    target: 'mouse',
 	    adjust: { mouse: false }
 	},
 	style: {
-	    width: 600
+	    width: 600,
+            tip: 'rightMiddle'
 	}
 	
 	});

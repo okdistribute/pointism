@@ -7,7 +7,7 @@ div.student {
   height: 80%;
   width: 50%;
   display:inline;
-  float: left;
+  float: right;
   position:relative;
   text-align: left;
 }
@@ -74,7 +74,7 @@ div.grading {
 
 div.autogradingWrapper {
   position: relative;
-  float: right;
+  float: left;
   display: inline;
   width: 49.8%;
   background-color: #ddd;
