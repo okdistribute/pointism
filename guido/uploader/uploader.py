@@ -14,19 +14,24 @@ import magsautograder
 import parseassignment
 
 THEDB = "../guidodb"
-USAGE = "uploader.py <username> <assignment> <filename> [nodraft]"
+USAGE = "uploader.py <username> <assignment> <filename> <lab> [nodraft]"
 
-def insert_submission(c, username, aid, hasdraft, text, autograder):
-    print("saving {1} for {0}.".format(username, aid))
+def insert_submission(c, username, aid, lab, text, autograder):
+    print("submitting {1} for {0}.".format(username, aid))
     sql = ("insert or replace into Submission "
-           "(text, autograder, username, assignmentid, hasdraft) "
-           "values (?, ?, ?, ?, ?)")
-    param = (text, autograder, username, aid, hasdraft)
+           "(text, autograder, username, assignmentid) "
+           "values (?, ?, ?, ?)")
+    param = (text, autograder, username, aid)
     insert_assignment(c, aid)
     c.execute(sql, param)
 
+    sql = ("update Student "
+           "set lab=? "
+           "where username=? ")
+    param = (lab, username)
+    c.execute(sql, param)
+
 def insert_assignment(c, assignmentid):
-    print("creating assignment {0}.".format(assignmentid))
     sql = ("insert or ignore into Assignment "
            "(assignmentid, notes) "
            "values (?, ?) ")
@@ -55,34 +60,25 @@ def main():
     if len(sys.argv) not in (4,5):
         print(USAGE)
         return
-
     username = sys.argv[1]
     assignment = sys.argv[2]
     filename = sys.argv[3]
+    lab = sys.argv[4]
 
-    hasdraft = True
-    if len(sys.argv) == 5:
-        hasdraft = sys.argv[4] is not "nodraft"
+    upload_submission(username, assignment, filename, lab)
 
+def upload_submission(username, assignment, filename, lab):
     #results = autograder.get_autograder_results(assignment, filename)
     results = magsautograder.fake_autograder_results(assignment, filename)
-    answers = parseassignment.get_answers(filename)
+
     text = open(filename, "r").read()
 
     conn = sqlite3.connect(THEDB)
     c = conn.cursor()
     
-    insert_submission(c, username, assignment, hasdraft, text, "(none yet)")
+    insert_submission(c, username, assignment, lab, text, "(none yet)")
+
     conn.commit()
-    for key in answers.keys():
-        autograder = results[key]
-        if autograder != None and len(autograder) > 0:
-            problemname = autograder[0]
-            grade = autograder[1]
-            text = autograder[2]
-            insert_solution(c, username, assignment, key,
-                            answers[key], text, grade)
-        conn.commit()
     c.close()
 
 if __name__ == "__main__": main()

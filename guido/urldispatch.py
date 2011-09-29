@@ -370,3 +370,6 @@ def commentdelete():
     redirect('commentdb.ajax')
 
     
+@route('/settings')
+def settings():
+    return template("settings")
