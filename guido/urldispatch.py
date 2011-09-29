@@ -69,21 +69,7 @@ def grade_problem(username, assignment, problemname):
     to the same page"""
     grade = request.POST.get('grade')
     queries.insert_problem_grade(grade, username, assignment, problemname)
-    comment = request.POST.get('comment')
-    code = request.POST.get('code')
-    queries.insert_problem_comment(comment, code, username, assignment, problemname)
-    nextstudent = request.POST.get('nextstudent')
-    if(nextstudent != None and nextstudent != 'None' and request.COOKIES.get('autoNext') == 'true'):
-        username = nextstudent #if we want to and can advance to the next student, do it.
     return grading.grade(username, assignment, problemname)
-
-# Problem iframe #
-@route('/solutionframe/:assignment/:problem/:username')
-def solution_frame(assignment, problem, username):
-    solution = queries.get_solution(username, assignment, problem)
-    ss = solution[0]
-    return template('framestudent', source=ss,linenumbers=grading.makelinenumbers(ss),
-                    past_comments=list(map(lambda pair: pair[1], queries.get_all_past_comments())));
 
 
 #############################################################
@@ -113,10 +99,6 @@ def grade_submission_with_graded_problem_table(assignment, username):
     """When the user posts, they are grading a whole submission."""
     return grading.submissionbyproblem(assignment, username)
 
-# final report iframe #
-@route('/framesbp/:assignment/:username')
-def framesbp(assignment, username):
-    return reports.framesbp(assignment, username)
 
 ################################
 # Grading the whole submission #
@@ -148,33 +130,66 @@ def grade_whole_submissions(assignment, username):
     """Inserting grade and comment for a whole submission"""
     grade = request.POST.get('grade')
     queries.insert_submission_grade(grade, username, assignment)
-    comment = request.POST.get('comment')
-    code = request.POST.get('code')
-    queries.insert_problem_comment(comment, code, username, assignment, None)
-    nextstudent = request.POST.get('nextstudent')
     return grading.whole_submission(assignment, username)
 
 
+##########################
 ### entering a comment ###
-@route('/grading/entercomment')
+##########################
+@route('/grading/entercomment', method="GET")
 def showcommentbox():
-    return template("entercomment");
+    student = request.GET.get('student');
+    assignment = request.GET.get('assignment');
+    problem = request.GET.get('problem');
+    linenumber = request.GET.get('linenumber');
+    return template("entercomment", 
+                    student=student, 
+                    assignment=assignment,
+                    problem=problem,
+                    linenumber=linenumber,
+                    past_comments=list(map(lambda pair: pair[1], queries.get_all_past_comments())))
 
 @route('/grading/entercomment', method="POST")
 def insertcomment():
-    ##need to get post to work from ajax
-    ##enter comment into db
-    return template("entercomment")
+    comment = request.POST.get('comment')
+    student = request.POST.get('student')
+    assignment = request.POST.get('assignment')
+    problem = request.POST.get('problem')
+    linenumber = request.POST.get('linenumber')
+    queries.insert_problem_comment(comment, linenumber, student, assignment, problem)
+    ##this should be figured out based on the type of grading view
+    redirect("/grade_whole/{0}/{1}".format(assignment, student))
 
-#grade_whole iframeframe
-@route('/submissionframe/:assignment/:username')
-def submission_frame(assignment, username):
-    solution = queries.get_submission(username, assignment)
-    ss = solution[0]
-    return template('framestudent', 
-                    source=ss,
-                    linenumbers=grading.makelinenumbers(ss),
-                    past_comments=list(map(lambda pair: pair[1], queries.get_all_past_comments())));
+
+@route('/grading/viewcomments', method="GET")
+def viewcomment():
+    """viewing a comment with delete ability"""
+    student = request.GET.get('student')
+    assignment = request.GET.get('assignment')
+    problem = request.GET.get('problem')
+    linenumber = request.GET.get('linenumber')
+    report = request.GET.get('report')
+
+    ### TODO: check to see if problem exists, if so query by problem as well
+    comments = queries.get_comments_by_linenumber(student, assignment, linenumber)
+    return template('viewcomments', 
+                    student=student, 
+                    linenumber=linenumber,
+                    assignment=assignment, 
+                    problem=problem, 
+                    comments=comments,
+                    report=report)
+
+
+@route('/grading/deletecomment', method='POST')
+def commentdelete():
+    """deleting a comment"""
+    student = request.POST.get('student')
+    assignment = request.POST.get('assignment')
+    text = request.POST.get('comment')
+    linenumber = request.POST.get('linenumber')
+    queries.delete_commentsolution(student, assignment, text, linenumber)
+    redirect("/grade_whole/{0}/{1}".format(assignment, student))
 
                 #################
 ################# Other Stuff #################
@@ -186,33 +201,47 @@ def submission_frame(assignment, username):
 
 # Picking the report #
 
-@route('/specific_report')
+@route('/gradingreport')
 def submission_report():
     """The user is picking an assignment"""
     return frontpage.submission_report()
 
-@route('/specific_report/pick_username', method='POST')
+@route('/gradingreport/pick_username', method='POST')
 def picked_assignment():
     """The user has just picked an assignment"""
     aid = request.forms.get('assignment')
-    redirect("/specific_report/%s" % aid)
+    redirect("/gradingreport/%s" % aid)
 
-@route('/specific_report/:assignment')
+@route('/gradingreport/:assignment')
 def submission_report(assignment):
     """The user is picking a username"""
     return frontpage.submission_report_choice(assignment)
 
-@route('/specific_report/:assignment', method='POST')
+@route('/gradingreport/:assignment', method='POST')
 def submission_report(assignment):
     """The user has just picked a username"""
     username = request.forms.get('username')
-    redirect("/specific_report/%s/%s" % (assignment, username))
+    redirect("/gradingreport/%s/%s" % (assignment, username))
 
 # Viewing the report #
-
-@route('/specific_report/:assignment/:username')
+@route('/gradingreport/:assignment/:username')
 def submission_report(assignment, username):
     return reports.submission_report(assignment, username)
+
+@route('/login/getreport/:assignment', method='GET')
+def iucas():
+    #iu CAS
+    #send them to:
+    #"https://cas.iu.edu/cas/login?cassvc=IU&casurl=http://guido.whatever/login/getreport/" + assignment
+    casticket = request.GET.get('casticket')
+    #get contents of "https://cas.iu.edu/cas/validate?cassvc=IU&casticket=" + casticket
+    #firstline = 'yes' or 'no'
+    #if firstline == 'yes':
+    #  username = get the second line of the file
+    #  redirect("/gradingreport/{0}/{1}".format(assignment, username))
+    #else:
+    #  redirect("https://cas.iu.edu/cas/login?cassvc=IU&casurl=http://guido.whatever/login/getreport/" + assignment)
+    
 
 ################################
 # Editing the assignment notes #
@@ -340,3 +369,7 @@ def commentdelete():
     queries.delete_comment(commentid)
     redirect('commentdb.ajax')
 
+    
+@route('/settings')
+def settings():
+    return template("settings")

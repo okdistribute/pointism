@@ -10,16 +10,6 @@
     <script type="text/javascript" src="/static/js/qtip/jquery.qtip-1.0.0-rc3.min.js"></script>
     <script type="text/javascript" src="/static/js/guido.js"></script>
     <script type="text/javascript" src="/static/js/grade.js"></script>
-    <script type="text/javascript">
-
-      $(function() {
-    	var comments = {{past_comments}};	 
-        $( "#comment" ).autocomplete({
-	   source: comments
-        });
-
-      });
-    </script>
     <title>{{title}}</title>
 </head>
 <body>

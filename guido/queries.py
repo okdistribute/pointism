@@ -38,41 +38,59 @@ def get_submission(student, assignment):
         return submission
 
 
-def get_comments(student, assignment, problem):
-    """Returns the text associated with the given student's solution to a
+def get_problem_comments(student, assignment, problem):
+    """Returns the comment text associated with the given student's solution to a
     problem, or None if none is set."""
     with sqlite3.connect(THEDB) as conn:
         c = conn.cursor()
-        commentsql = """select C.text from Comment C,CommentSolution CS
+        commentsql = """select CS.linenumber, C.text from Comment C,CommentSolution CS
                          where CS.assignmentid=?
                            and CS.problemname=?
                            and CS.username=?
                            and CS.commentid = C.commentid"""
         c.execute(commentsql, (assignment,problem,student))
-        comments = c.fetchall()
-        stripped = []
-        for c in comments:
-            stripped.append(c[0])
-        return stripped
+        return c.fetchall()
 
-
-def get_student_comments(student, assignment):
-    """Returns the text associated with the given student's solution to a
-    problem, or None if none is set."""
+def get_comments_by_linenumber(student, assignment, linenumber):
+    """Returns the comments given a student, assignment, and linenumber"""
     with sqlite3.connect(THEDB) as conn:
         c = conn.cursor()
-        commentsql = """select C.text from Comment C,CommentSolution CS
+        commentsql = """select C.text from Comment C, CommentSolution CS 
+                        where CS.assignmentid=?
+                        and CS.username=?
+                        and CS.linenumber=?
+                        and CS.commentid=C.commentid"""
+        c.execute(commentsql, (assignment, student, linenumber))
+        stripping = c.fetchall()
+        stripped = []
+        for strip in stripping:
+            stripped.append(strip[0])
+        return stripped
+
+def get_student_commentids(student, assignment):
+    """Returns the the linenumber, commentid associated with the given
+    student's submission"""
+    with sqlite3.connect(THEDB) as conn:
+        c = conn.cursor()
+        commentsql = """select CS.linenumber, C.commentid from Comment C,CommentSolution CS
                          where CS.assignmentid=?
                            and CS.username=?
                            and CS.commentid = C.commentid"""
         c.execute(commentsql, (assignment,student))
-        comments = c.fetchall()
-        stripped = []
-        for c in comments:
-            stripped.append(c[0])
-        return stripped
-        
+        return c.fetchall()
 
+def get_submission_comments(assignment, username):
+    """Returns the the linenumber, comment text associated with the given
+    student's submission"""
+    with sqlite3.connect(THEDB) as conn:
+        c = conn.cursor()
+        commentsql = """select CS.linenumber, C.text from Comment C,CommentSolution CS
+                         where CS.assignmentid=?
+                           and CS.username=?
+                           and CS.commentid = C.commentid"""
+        c.execute(commentsql, (assignment, username))
+        return c.fetchall()
+        
 def get_assignments():
     """Returns all the assignmentids as a list, from the assignments in the db"""
     with sqlite3.connect(THEDB) as conn:
@@ -201,7 +219,7 @@ def insert_submission_grade(grade, username, assignment):
     conn.commit()
     c.close()
 
-def insert_problem_comment(comment, code, username, assignment, problemname):
+def insert_problem_comment(comment, linenumber, username, assignment, problemname):
     if comment == None or comment == 'None':
         return
     ##check to make sure comments that contain just whitespace won't get added
@@ -218,7 +236,6 @@ def insert_problem_comment(comment, code, username, assignment, problemname):
     if request != None:
         commentid = request[0]
     else: #else, insert a new comment, and commentid is the last row added.
-        print("inserting comment {0} for {1}".format(comment, username))
         sql = ("insert into Comment "
                "(text, problemname, assignmentid) "
                "values (?, ?, ?) ")
@@ -227,11 +244,12 @@ def insert_problem_comment(comment, code, username, assignment, problemname):
         conn.commit()
         commentid = c.lastrowid
     
+    print("inserting comment {0} for {1} on linenumber {2}".format(comment, username, linenumber))
     ##insert into commentsolution now
     sql = ("insert into CommentSolution "
-           "(commentid, studentcode, username, assignmentid, problemname) "
+           "(commentid, linenumber, username, assignmentid, problemname) "
            "values (?, ?, ?, ?, ?) ")
-    param = (commentid, code, username, assignment, problemname)
+    param = (commentid, linenumber, username, assignment, problemname)
     c.execute(sql, param)
     conn.commit()
     c.close()
@@ -255,18 +273,14 @@ def get_all_past_comments():
         return c.fetchall()
 
 def get_report(assignment, username):
-    """Returns a list of solution, comment, and autograder"""
+    """Returns a list of submission, and autograder"""
     with sqlite3.connect(THEDB) as conn:
         c = conn.cursor()
-        sql=  """Select S.problemname, S.text, C.text, S.autograder 
-                 from Solution S
-                 left join CommentSolution CS, Comment C   
-                 where S.assignmentid=? and S.username=?
-                 and S.username=CS.username
-                 and C.commentid=CS.commentid
-                 and C.problemname=S.problemname"""
+        sql=  """Select S.text, S.autograder, S.grade 
+                 from Submission S
+                 where S.assignmentid=? and S.username=?"""
         c.execute(sql, (assignment, username))
-        return c.fetchall()
+        return c.fetchone()
 
 def get_comment(commentid):
     with sqlite3.connect(THEDB) as conn:
@@ -297,6 +311,19 @@ def delete_comment(commentid):
         conn.commit()
         c.close()
 
+def delete_commentsolution(student, assignment, text, linenumber):
+    with sqlite3.connect(THEDB) as conn:
+        c = conn.cursor()
+        sql = ("""delete from CommentSolution
+               where username=? 
+               and assignmentid=?  
+               and linenumber=?
+               and commentid=(SELECT commentid from Comment where text=?)""")
+        param = (student, assignment, linenumber, text)
+        c.execute(sql, param)
+        conn.commit()
+        c.close()
+
 def get_usernames_grades(assignmentid):
     with sqlite3.connect(THEDB) as conn:
         c = conn.cursor()
@@ -305,3 +332,4 @@ def get_usernames_grades(assignmentid):
         param = (assignmentid,)
         c.execute(sql, param)
         return c.fetchall()
+

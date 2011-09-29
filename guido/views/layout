@@ -23,7 +23,7 @@
    <li>
   <h3 class="section-title">Reports</h3>
     <ul class="nav">
-      <li><a href="/specific_report">reports to students</a></li>
+      <li><a href="/gradingreport">reports to students</a></li>
       <li><a href="/csv_grades">grades by csv</a></li>
       <li><a href="/none">send all reports</a></li>      
     </ul>
@@ -41,7 +41,7 @@
   <h3 class="section-title">Guido</h3>
     <ul class="nav">
       <li><a href="http://code.google.com/p/iucs-guido/" target="_blank">about</a></li>
-      <li><a href="/none">options</a></li>
+      <li><a href="/settings">settings</a></li>
       <li><a href="/none">help</a></li>
     </ul>
   </li>

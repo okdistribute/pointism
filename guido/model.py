@@ -34,11 +34,5 @@ class Student(object):
         self.section = section
         
 
-class ProblemGrade(object):
-    def __init__(self, source,grade):
-        self.source = source
-        self.grade = grade
-
-
 
                  

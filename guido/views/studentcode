@@ -1,0 +1,15 @@
+<div id="code" class="code"><div class="existingcomments">
+%for line in linenumbers:
+%if existingcomments.get(int(line)):
+<a class="existingcomment" value="{{line}}" href="#"><img src="/static/images/speech_bubble_icon.png"></img></a>
+%else:
+
+%end 
+%end
+</div>
+<div id="linenumbers" class="linenumbers">
+%for line in linenumbers:
+<span class="linenumber">{{line}}</span>
+%end
+</div>
+{{source}}</div>

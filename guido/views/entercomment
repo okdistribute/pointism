@@ -1,7 +1,24 @@
+<link type="text/css" href="/static/css/ui-lightness/jquery-ui-1.8.12.custom.css" rel="Stylesheet" />   
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery-ui-1.8.12.custom.min.js"></script>
+<script type="text/javascript">
+    $(function() {
+    	var comments = {{past_comments}};	 
+        $( "#comment" ).autocomplete({
+	   source: comments
+        });
+	$(".commentbutton").button();
+    });
+</script>
+
 <form id="entercomment" method="POST" action="/grading/entercomment" autocomplete="off">
         <div id="commenting">
-        <textarea id="comment" name="comment"></textarea>
+        <textarea id="comment" name="comment" autofocus></textarea>
         <input type="hidden" id="submit_code" name="code" value="None" />
-        <button>submit</button>
+        <input type="hidden" id="assignment" name="assignment" value="{{assignment}}" />
+        <input type="hidden" id="student" name="student" value="{{student}}" />
+        <input type="hidden" id="linenumber" name="linenumber" value="{{linenumber}}" />
+        <input type="hidden" id="problem" name="problem" value="{{problem}}" />
+        <button class="commentbutton">submit</button>
 	</div>
 </form>

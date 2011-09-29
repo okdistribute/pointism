@@ -1,5 +1,0 @@
-%include header title='Hello World'
-
-<h1>Hello Guido</h1>
-
-%include footer

@@ -3,10 +3,12 @@
   %include toolbar studentbutton="/grade_whole/" + assignment, prevstudent=prevstudent, nextstudent=nextstudent, assignment=assignment, grades=grades, default_grade=default_grade
 <div id="sidebyside">
   <!-- left -->
+  %include autograderreport autograder=autograder
+
+  <!-- right -->
   <div class="student">
-    <h4 class="section-title">{{assignment}} :: {{student}}</h4>
-    <iframe id="studentframe" 
-            src="/submissionframe/{{assignment}}/{{student}}"></iframe>
+<h4 class="section-title">{{assignment}} :: {{student}}</h4>    
+%include studentcode linenumbers=linenumbers, source=source, existingcomments=existingcomments
     <div id="tools">
       <form method="GET" action="/guido/codesearch/">
         <input type="hidden" id="student" name="student" value="{{student}}"/>
@@ -16,8 +18,6 @@
       </form>
     </div>
   </div>
-  
-  <!-- right -->
-  %include autograderreport autograder=autograder
+ 
 </div>
 </div>

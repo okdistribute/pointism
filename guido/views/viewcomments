@@ -1,0 +1,26 @@
+<script type="text/javascript" src="/static/js/jquery-1.5.1.min.js" />
+<script type="text/javascript">
+    $(function() {
+	$(".deletesubmit").click(function() {
+	    $("#deleteCommentForm").submit();
+	});
+    });
+</script>
+<table class="viewcomment">
+%for comment in comments:
+     <tr>
+     <td>{{comment}}</td>
+     %if report == None:
+<td class="deletecomment">
+    <form id="deleteCommentForm" method="POST" action="/grading/deletecomment">
+    <input type="hidden" name="student" value="{{student}}" />
+    <input type="hidden" name="assignment" value="{{assignment}}" />
+    <input type="hidden" name="comment" value="{{comment}}" />
+    <input type="hidden" name="linenumber" value="{{linenumber}}" />	
+    <span class="deletesubmit submitbutton"><img src="/static/images/x_icon.jpg"></img></span>
+    </td>
+    </form>
+    %end
+     </tr>
+%end
+</table>

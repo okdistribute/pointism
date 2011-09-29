@@ -27,7 +27,6 @@ def grade(username, assignment, problemname):
                     existingcomments=commenttext,
                     linenumbers=linenumbers,
                     past_comments=list(map(lambda pair: pair[1], fullprevcomments)),
-                    prevcomments=comments_firstline(fullprevcomments),
                     autograder=autograder_output,
                     student=username,
                     assignment=assignment,
@@ -38,22 +37,10 @@ def grade(username, assignment, problemname):
                     grades=possible_grades())
 
 def submissionbyproblem(assignment, username):
-    fullprevcomments = queries.get_all_past_comments()
     students = queries.who_turned_in(assignment)
     p,n = find_prev_next(students, username)
 
-    return template("gradesubmissionbyproblem",
-                    problems=finalreport(assignment, username),
-                    past_comments=list(map(lambda pair: pair[1], fullprevcomments)),
-                    prevcomments=comments_firstline(fullprevcomments),
-                    prevstudent=p,
-                    nextstudent=n,
-                    student=username,
-                    assignment=assignment,
-                    commenttext="",
-                    grades=possible_grades(),
-                    autograder="",
-                    default_grade=get_grade(username, assignment, None))
+    return template("unsupported")
 
 def whole_submission(assignment, username):
     solution = queries.get_submission(username, assignment)
@@ -71,8 +58,7 @@ def whole_submission(assignment, username):
     return template("grade_whole",
                     source=studentsolution,
                     past_comments=list(map(lambda pair: pair[1], fullprevcomments)),
-                    prevcomments=comments_firstline(fullprevcomments),
-                    existingcomments=queries.get_student_comments(username, assignment),
+                    existingcomments=dictify(queries.get_student_commentids(username, assignment)),
                     linenumbers=linenumbers,
                     autograder=autograder_output,
                     student=username,
@@ -111,12 +97,11 @@ def get_grade(username, assignment, problemname):
     else: 
         return grade
 
-def finalreport(assignment, username):
-    problems = []
-    query = queries.get_graded_problems(assignment, username)
-    for problem in query:
-        problems.append(model.ProblemGrade(problem[0],problem[1]))
-    return problems     
+def dictify(l):
+    ret = {}
+    for x,y in l:
+        ret[x] = y
+    return ret
 
 def comments_firstline(idstext):
     prevcomments = list( map( lambda pair: model.Comment(pair[0],pair[1]), idstext))
@@ -127,7 +112,7 @@ def makelinenumbers(text):
     text. Output is a string with newlines in it."""
     nlines = text.count("\n")
     numbers = "\n".join(map(str, range(1, nlines+1)))
-    return numbers
+    return numbers.split("\n")
 
 def find_prev_next(students, current):
     """Out of a list of students, return the previous student and next student

@@ -21,52 +21,78 @@ $(function() {
 
     $("button").button();
 
-    $("#code").bind("contextmenu",function(e){
+    $("#linenumbers").bind("contextmenu",function(e){
         return false;
     }); 
 
-
-    $("#code").qtip({
-	content: { prerender: true, url: '/grading/entercomment' },
-	show: { solo: true, when: { event: 'mousedown' } },
-	hide: { when: { event: 'click' } },
-	position: {
-	    target: 'mouse',
-	    adjust: { mouse: false }
-	}
-    });
-
-            
     var student = $("#student").attr("value"),
     assignment = $("#assignment").attr("value"),
     problem = $("#problem").attr("value");
     
-    $( "#entercomment" ).submit(function() {
-	var code = getSelectedText();
-        $.post("/grading/entercomment",
-	       {
-		   'student' : student,
-		   'assignment' : assignment,
-		   'problem' : problem,
-                   'comment':$("input:#comment").val(),
-                   'code': code
-	       },
-	       function(data) {
-		   window.open();
-		   document.write(data);
-	       });
-
+    $(".existingcomment").each(function() {
+	linenumber = $(this).attr("value");
+	$(this).qtip({
+	    content: { prerender: false,
+		       url: '/grading/viewcomments',
+		       data: { linenumber: linenumber,
+			       student: student,
+			       assignment: assignment,
+			       problem: problem
+			     },
+		       title: { text: linenumber + ": view comments",
+				button: 'close' },
+		     },
+	    show: { solo: true, when: { event: 'mousedown' } },
+	    hide: { when: {event: 'unfocus' } },
+	    position: {
+                corner: {
+                    target:'bottomLeft',
+                    tooltip: 'rightMiddle',
+                },
+		adjust: { mouse: false }
+	    },
+	    style: {
+		width: 600,
+		padding: 5,
+	    }
+	});
+    });
+		    
+    $(".linenumber").each(function() {
+	linenumber = $(this).html();
+	$(this).qtip({
+	content: { prerender: false, 
+		   url: '/grading/entercomment', 
+		   method:'get',
+		   data: { student: student,
+			   assignment: assignment,
+			   problem: problem,
+			   linenumber: linenumber
+			 },
+		   title: { text : linenumber + ": enter comment",
+			    button : "close" }
+		 },
+	show: { solo: true, when: { event: 'mousedown' } },
+	hide: { when: { event: 'unfocus' } },
+	position: {
+            corner: {
+                target: 'bottomLeft',
+                tooltip: 'rightMiddle'
+            },
+	    target: 'mouse',
+	    adjust: { mouse: false }
+	},
+	style: {
+	    width: 600,
+            tip: 'rightMiddle'
+	}
+	
+	});
     });
 
-
     $( "#formGrade" ).submit(function() {
-
         $.post(window.location.pathname,
-               {'grade':$("#submit_grade").attr("value")},
-               function(data) {
-                   window.open();
-                   document.write(data);
-               });
+               {'grade':$("#submit_grade").attr("value")});
         return false;
     });
 
