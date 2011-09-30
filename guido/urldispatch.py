@@ -114,7 +114,7 @@ def grade_whole_pick():
 @route('/grade_whole/pick', method='POST')
 def grade_whole_pick():
     """User has picked an assignment"""
-    aid = request.forms.get('assignment')
+    aid = request.POST.get('assignment')
     first = queries.get_first_student(aid, None)
     redirect("/grade_whole/%s/%s" % (aid, first))
 

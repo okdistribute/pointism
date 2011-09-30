@@ -125,7 +125,7 @@ def get_first_student(assignment, problemname):
     with sqlite3.connect(THEDB) as conn:
         c = conn.cursor()
         if problemname == None:
-            sql = """select username from Solution
+            sql = """select username from Submission
                   where assignmentid=?                 
                   order by username asc"""
             c.execute(sql, (assignment, ))
