@@ -24,12 +24,23 @@ def insert_submission(c, username, aid, lab, text, autograder):
     param = (text, autograder, username, aid)
     insert_assignment(c, aid)
     c.execute(sql, param)
-
-    sql = ("update Student "
-           "set lab=? "
-           "where username=? ")
-    param = (lab, username)
+    sql = ("select * from Student "
+           "where username=?")
+    c.execute(sql, (username,))
+    student = c.fetchone()
+    
+    if(student == None):
+        sql = ("insert into Student "
+               "(lab, email, lecture, username) "
+               "values (?, ?, ?, ?) ")
+        param = (lab, username + "@indiana.edu", "Unknown", username)
+    else:
+        sql = ("update Student "
+               "set lab=? "
+               "where username=? ")
+        param = (lab, username)
     c.execute(sql, param)
+        
 
 def insert_assignment(c, assignmentid):
     sql = ("insert or ignore into Assignment "

@@ -119,26 +119,34 @@ def get_problems(assignment):
         this = sort_probs.sort_prob(stripped)
         return this
 
-def get_first_student(assignment, problemname):
+def get_first_student(assignment, section):
     """Returns the first student, by alpha order, who submitted an assignment
     and problemname."""
     with sqlite3.connect(THEDB) as conn:
         c = conn.cursor()
-        if problemname == None:
+        if section == None:
             sql = """select username from Submission
                   where assignmentid=?                 
                   order by username asc"""
             c.execute(sql, (assignment, ))
         else:
-            sql = """select username from Solution
-                  where assignmentid=?
-                  and problemname=?
-                  order by username asc"""
-            c.execute(sql, (assignment, problemname))
+            sql = """select St.username from Student St, Submission S
+                  where S.assignmentid=?
+                  and St.lab=?
+                  order by St.username asc"""
+            c.execute(sql, (assignment, section))
         result = c.fetchone()
         if result:
             return result[0]
         return None
+
+def get_sections():
+    with sqlite3.connect(THEDB) as conn:
+        c = conn.cursor()
+        sql = ("select distinct lab from Student")
+        c.execute(sql)
+        sections = c.fetchall()
+        return sections
 
 def get_usernames(assignment, problemname):
     """Returns all usernames from a given assignment and problemname, that

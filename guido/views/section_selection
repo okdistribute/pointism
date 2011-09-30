@@ -1,0 +1,5 @@
+      <select class="input" name="section">
+         %for section in sections:
+	   <option value={{section[0]}}>{{section[0]}}</option>
+	 %end
+      </select>

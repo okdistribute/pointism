@@ -25,13 +25,15 @@ def specific_submission():
     return template("assignment_selection",
                     assignments=queries.get_assignments(),
                     title="Grade Submission by Problem",
-                    target="")
+                    target="",
+                    sections=queries.get_sections())
 
 def submission_report():
     return template("assignment_selection",
                     assignments=queries.get_assignments(),
                     title="View Student Reports",
-                    target="/gradingreport/pick_username")
+                    target="/gradingreport/pick_username",
+                    sections=None)
 
 def submission_report_choice(aid):
     return template("username_selection",
@@ -43,7 +45,8 @@ def assignment_notes():
     return template("assignment_selection", 
                     assignments=queries.get_assignments(),
                     target="/assignment_notes/edit",
-                    title="Edit Assignment Notes")
+                    title="Edit Assignment Notes",
+                    sections=None)
 
 def startpage():
     return template("startpage")
@@ -52,5 +55,6 @@ def grade_whole():
     return template("assignment_selection",
                     title="Grade Whole Submissions",
                     assignments=queries.get_assignments(),
-                    target="")
+                    target="",
+                    sections=queries.get_sections())
                     

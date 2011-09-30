@@ -1,12 +1,19 @@
 %rebase layout title=title
+<script type="text/javascript">
+    $(function() {
+	var usernames = {{usernames}};
+	$("#username_select").autocomplete({
+	    source: usernames,
+	    autoFocus: true,
+	    minLength: 0
+	});
+    });
+</script>
 <div id="box">
 <h2>Student Selection</h2>
 <form method="POST" action={{target}}>
-      <select class="input" name="username">
-      % for username in usernames:
- 	       <option value={{username}}>{{username}}</option>
-      % end
-      </select>
+      <input type="text" id="username_select" class="input" name="username">
+      </input>
       <input type="submit" value="select"/>
       <br/>
 </form>

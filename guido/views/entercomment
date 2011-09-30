@@ -5,7 +5,9 @@
     $(function() {
     	var comments = {{past_comments}};	 
         $( "#comment" ).autocomplete({
-	   source: comments
+	   source: comments,
+	    autoFocus: true,
+	    minLength: 0
         });
 	$(".commentbutton").button();
     });

@@ -6,7 +6,11 @@
       % for assignment in assignments:
  	       <option value={{assignment}}>{{assignment}}</option>
       % end
+      
       </select>
+      %if sections:
+       %include section_selection sections=sections
+       %end
       <input type="submit" value="select"/>
       <br/>
 </form>
