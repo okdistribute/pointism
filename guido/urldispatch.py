@@ -321,15 +321,12 @@ def server_static(path, to, extension, filename):
 
 @route('/csv_grades')
 def splash():
-    return template("assignment_selection",
-                    title="Export Grades to CSV",
-                    target="/csv_grades",
-                    assignments=queries.get_assignments()) 
+    return frontpage.csv_grades()
 
 @route('/csv_grades', method='POST')
 def picked_an_assignment():
     assignment = request.POST.get('assignment')
-    redirect("/csv_grades/" + assignment)
+    redirect("/csv_grades/{0}".format(assignment))
 
 @route('/csv_grades/:assignment')
 def routed_to_an_assignment(assignment):

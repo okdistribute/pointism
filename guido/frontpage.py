@@ -58,3 +58,10 @@ def grade_whole():
                     target="",
                     sections=queries.get_sections())
                     
+def csv_grades():
+    return template("assignment_selection",
+                    title="Export Grades to CSV",
+                    target="/csv_grades",
+                    assignments=queries.get_assignments(),
+                    sections = None)
+
