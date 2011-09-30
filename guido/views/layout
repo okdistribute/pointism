@@ -16,8 +16,8 @@
     <h3 class="section-title">Grade</h3>
     <ul class="nav">
       <li><a href="/grade_whole/pick">submission by student</a></li>
-      <li><del><a href="/specific_problem">problem by student</a></del></li>
-      <li><del><a href="/specific_submission">after grading by problem</a></del></li>
+      <li><a href="/none">problem by student</a></li>
+      <li><a href="/none">post problem by student</a></li>
       </ul>
    </li>
    <li>
