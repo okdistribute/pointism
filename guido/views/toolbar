@@ -10,8 +10,10 @@
         % end
         % end
       </ul>
+        <input type="hidden" id="submit_grade" name="grade" value="None" />
+        <button id="gradebutton">grade</button>
     </form>
-    </div>
+  </div>
   <div id="gradingnav">
     <ul class="nav">
       % if prevstudent != None:
