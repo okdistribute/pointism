@@ -30,10 +30,14 @@ def main():
     all_sections = os.path.join(handins_path, assignment)
     if(sections):
         for section in os.listdir(all_sections):
-            for handin in os.listdir(os.path.join(all_sections, section)):
-                filename = os.path.join(all_sections, section, handin)
-                username = handin.split('.')[0]
-                uploader.upload_submission(username, assignment, filename, section)
-        
+            traverse_section(assignment, all_sections, section)
+    else:
+        traverse_section(assignment, all_sections, "Unknown")
 
+def traverse_section(assignment, all_sections, section):
+    for handin in os.listdir(os.path.join(all_sections, section)):
+        filename = os.path.join(all_sections, section, handin)
+        username = handin.split('.')[0]
+        uploader.upload_submission(username, assignment, filename, section)
+        
 if __name__ == "__main__": main()
