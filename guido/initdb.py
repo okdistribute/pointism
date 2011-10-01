@@ -16,7 +16,7 @@ create table if not exists Student (
     username text primary key,
     email text not null,
     lecture text not null,
-    lab text not null,
+    section text not null,
     notes text
 )"""
 
