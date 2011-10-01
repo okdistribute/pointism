@@ -10,8 +10,6 @@ import model
 
 def grade(username, assignment, problemname):
     solution = queries.get_solution(username, assignment, problemname)
-    if(solution == None):
-        redirect('/specific_problem/' + assignment)
     studentsolution = solution[0]
     autograder_output = solution[1]
     grade = solution[2]
@@ -37,22 +35,23 @@ def grade(username, assignment, problemname):
                     grades=possible_grades())
 
 def submissionbyproblem(assignment, username):
-    students = queries.who_turned_in(assignment)
-    p,n = find_prev_next(students, username)
-
     return template("unsupported")
 
-def whole_submission(assignment, username):
+def whole_submission(assignment, username, by_section):
+    """by_section should be True or False, whether or not to get the
+    first/last by section or not"""
     solution = queries.get_submission(username, assignment)
-    if(solution == None):
-        redirect('/grade_whole/pick')
     studentsolution = solution[0]
     autograder_output = solution[1]
     grade = solution[2]
 
     fullprevcomments = queries.get_all_past_comments()
     linenumbers = makelinenumbers(studentsolution)
-    students = queries.who_turned_in(assignment)
+    if(by_section):
+        section = queries.get_section(username)
+        students = queries.who_turned_in_by_section(assignment, section)
+    else:
+        students = queries.who_turned_in(assignment)
     p,n = find_prev_next(students, username)
     
     return template("grade_whole",

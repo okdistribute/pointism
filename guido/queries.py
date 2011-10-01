@@ -132,7 +132,7 @@ def get_first_student(assignment, section):
         else:
             sql = """select St.username from Student St, Submission S
                   where S.assignmentid=?
-                  and St.lab=?
+                  and St.section=?
                   order by St.username asc"""
             c.execute(sql, (assignment, section))
         result = c.fetchone()
@@ -143,7 +143,7 @@ def get_first_student(assignment, section):
 def get_sections():
     with sqlite3.connect(THEDB) as conn:
         c = conn.cursor()
-        sql = ("select distinct lab from Student")
+        sql = ("select distinct section from Student")
         c.execute(sql)
         sections = c.fetchall()
         return sections
@@ -169,13 +169,31 @@ def who_turned_in(assignment):
     with sqlite3.connect(THEDB) as conn:
         c = conn.cursor()
         sql = """select username from Submission
-                  where assignmentid=?"""
+                  where assignmentid=?
+                  order by username asc"""
         c.execute(sql, (assignment,))
         usernames = c.fetchall()
         stripped = []
         for name in usernames:
             stripped.append(name[0])
-        return sorted(stripped)
+        return stripped
+
+def who_turned_in_by_section(assignment, section):
+    """Returns all usernames from a given assignment, that
+    is all usernames that have a submission."""
+    with sqlite3.connect(THEDB) as conn:
+        c = conn.cursor()
+        sql = """select St.username from Submission S, Student St
+                  where S.assignmentid=?
+                  and St.section=?
+                  and St.username=S.username
+                  order by St.username asc"""
+        c.execute(sql, (assignment,section))
+        usernames = c.fetchall()
+        stripped = []
+        for name in usernames:
+            stripped.append(name[0])
+        return stripped
 
 def one_who_turned_in(assignment):
     """Returns all usernames from a given assignment, that
@@ -341,3 +359,13 @@ def get_usernames_grades(assignmentid):
         c.execute(sql, param)
         return c.fetchall()
 
+def get_section(username):
+    with sqlite3.connect(THEDB) as conn:
+        c = conn.cursor()
+        sql = ("select section from Student "
+               "where username=?")
+        param = (username,)
+        c.execute(sql, param)
+        section = c.fetchone()
+        if(section):
+            return section[0]

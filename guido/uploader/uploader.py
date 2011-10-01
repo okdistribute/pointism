@@ -14,9 +14,9 @@ import magsautograder
 import parseassignment
 
 THEDB = "../guidodb"
-USAGE = "uploader.py <username> <assignment> <filename> <lab> [nodraft]"
+USAGE = "uploader.py <username> <assignment> <filename> <section> [nodraft]"
 
-def insert_submission(c, username, aid, lab, text, autograder):
+def insert_submission(c, username, aid, section, text, autograder):
     print("submitting {1} for {0}.".format(username, aid))
     sql = ("insert or replace into Submission "
            "(text, autograder, username, assignmentid) "
@@ -31,14 +31,14 @@ def insert_submission(c, username, aid, lab, text, autograder):
     
     if(student == None):
         sql = ("insert into Student "
-               "(lab, email, lecture, username) "
+               "(section, email, lecture, username) "
                "values (?, ?, ?, ?) ")
-        param = (lab, username + "@indiana.edu", "Unknown", username)
+        param = (section, username + "@indiana.edu", "Unknown", username)
     else:
         sql = ("update Student "
-               "set lab=? "
+               "set section=? "
                "where username=? ")
-        param = (lab, username)
+        param = (section, username)
     c.execute(sql, param)
         
 
@@ -74,11 +74,11 @@ def main():
     username = sys.argv[1]
     assignment = sys.argv[2]
     filename = sys.argv[3]
-    lab = sys.argv[4]
+    section = sys.argv[4]
 
-    upload_submission(username, assignment, filename, lab)
+    upload_submission(username, assignment, filename, section)
 
-def upload_submission(username, assignment, filename, lab):
+def upload_submission(username, assignment, filename, section):
     #results = autograder.get_autograder_results(assignment, filename)
     results = magsautograder.fake_autograder_results(assignment, filename)
 
@@ -87,7 +87,7 @@ def upload_submission(username, assignment, filename, lab):
     conn = sqlite3.connect(THEDB)
     c = conn.cursor()
     
-    insert_submission(c, username, assignment, lab, text, "(none yet)")
+    insert_submission(c, username, assignment, section, text, "(none yet)")
 
     conn.commit()
     c.close()

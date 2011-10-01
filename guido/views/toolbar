@@ -1,3 +1,20 @@
+<script type="text/javascript">
+    $(function() {
+        var pathArray = location.pathname.split('/');
+        newPathname = "";
+        for ( i = 1; i < pathArray.length -1; i++ ) {
+            newPathname += "/";
+            newPathname += pathArray[i];
+        }
+
+        var nextstudenthref = newPathname + "/" + "{{nextstudent}}";
+        var prevstudenthref = newPathname + "/" + "{{prevstudent}}";
+        
+        $("#prevstudentbutton").attr("href", prevstudenthref);
+        $("#nextstudentbutton").attr("href", nextstudenthref);
+    });     
+</script>
+
 <div id="toolbar">
   <div id="gradingtoolbar">
     <form id="formGrade" method="POST" action="" autocomplete="off">
@@ -17,14 +34,12 @@
   <div id="gradingnav">
     <ul class="nav">
       % if prevstudent != None:
-      <a id="prevstudentbutton" 
-         href="{{studentbutton}}/{{prevstudent}}">previous student</a>
+      <a id="prevstudentbutton" >previous student</a>
       % else:
       <span class="notalink">previous student</span>
       %end
       % if nextstudent != None:
-      <a id="nextstudentbutton" 
-         href="{{studentbutton}}/{{nextstudent}}">next student</a>
+      <a id="nextstudentbutton" >next student</a>
       % else:
       <span class="notalink">next student</span>
       % end

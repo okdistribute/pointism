@@ -117,21 +117,35 @@ def grade_whole_pick():
     aid = request.POST.get('assignment')
     section = request.POST.get('section')    
     first = queries.get_first_student(aid, section)
-    redirect("/grade_whole/%s/%s" % (aid, first))
+    redirect("/grade_whole/%s/%s/%s" % (aid, section, first))
 
 # Routing to the submission #
 
+#by section
+@route('/grade_whole/:assignment/:section/:username')
+def grade_whole_sections(assignment, section, username):
+    """grading a whole submission by section"""
+    return grading.whole_submission(assignment, username, True)
+
+@route('/grade_whole/:assignment/:section/:username', method='POST')
+def grade_whole_submissions(assignment, section, username):
+    """Inserting grade and comment for a whole submission"""
+    grade = request.POST.get('grade')
+    queries.insert_submission_grade(grade, username, assignment)
+    return grading.whole_submission(assignment, username, True)
+
+#not by section
 @route('/grade_whole/:assignment/:username')
 def grade_whole_submissions(assignment, username):
     """Grading a whole submission"""
-    return grading.whole_submission(assignment, username)
+    return grading.whole_submission(assignment, username, False)
 
 @route('/grade_whole/:assignment/:username', method='POST')
 def grade_whole_submissions(assignment, username):
     """Inserting grade and comment for a whole submission"""
     grade = request.POST.get('grade')
     queries.insert_submission_grade(grade, username, assignment)
-    return grading.whole_submission(assignment, username)
+    return grading.whole_submission(assignment, username, False)
 
 
 ##########################
