@@ -61,7 +61,7 @@
 
 <h4 class="section-title">Your Submission</h4><div class="existingcomments">
 %for line in linenumbers:
-%if existingcomments.get(int(line)):
+%if existingcomments and type(line) is int and existingcomments.get(int(line)):
 <span class="existingcomment" value="{{line}}" href="#"><img src="/static/images/speech_bubble_icon.png" /></span>
 %else:
   
