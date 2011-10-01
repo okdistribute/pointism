@@ -18,6 +18,7 @@ import queries
 import edit_database
 import csv_grades
 import model
+import urllib.request
 
 @route('/')
 def index():
@@ -244,18 +245,20 @@ def submission_report(assignment, username):
     return reports.submission_report(assignment, username)
 
 @route('/login/getreport/:assignment', method='GET')
-def iucas():
+def iucas(assignment):
     #iu CAS
     #send them to:
-    #"https://cas.iu.edu/cas/login?cassvc=IU&casurl=http://guido.whatever/login/getreport/" + assignment
+    #"https://cas.iu.edu/cas/login?cassvc=IU&casurl=http://guido/login/getreport/" + assignment
     casticket = request.GET.get('casticket')
-    #get contents of "https://cas.iu.edu/cas/validate?cassvc=IU&casticket=" + casticket
-    #firstline = 'yes' or 'no'
-    #if firstline == 'yes':
-    #  username = get the second line of the file
-    #  redirect("/gradingreport/{0}/{1}".format(assignment, username))
-    #else:
-    #  redirect("https://cas.iu.edu/cas/login?cassvc=IU&casurl=http://guido.whatever/login/getreport/" + assignment)
+    f = urllib.request.urlopen("https://cas.iu.edu/cas/validate?cassvc=IU&casticket=" + casticket)
+    s = f.read().decode()
+    f.close()
+    resp = s.split("\n")
+    if(resp[0].find("yes") != -1):
+        username = resp[1]
+        redirect("/gradingreport/{0}/{1}".format(assignment, username))
+    else:
+        return resp[1]
     
 
 ################################
