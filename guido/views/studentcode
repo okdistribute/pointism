@@ -6,10 +6,8 @@
 
 %end 
 %end
-</div>
-<div id="linenumbers" class="linenumbers">
+</div><div id="linenumbers" class="linenumbers">
 %for line in linenumbers:
 <span class="linenumber">{{line}}</span>
 %end
-</div>
-{{source}}</div>
+</div><pre class="prettyprint lang-scm">{{source}}</pre></div>

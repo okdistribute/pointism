@@ -4,12 +4,15 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" /> 
     <link rel="stylesheet" href="/static/guido.css" type="text/css" />
     <link rel="stylesheet" href="/static/css/jquery.qtip.css" type="text/css" />
-    <link type="text/css" href="/static/css/ui-lightness/jquery-ui-1.8.12.custom.css" rel="Stylesheet" />   
+    <link type="text/css" href="/static/css/ui-lightness/jquery-ui-1.8.12.custom.css" rel="Stylesheet" />      
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
     <script type="text/javascript" src="/static/js/jquery-ui-1.8.12.custom.min.js"></script>
     <script type="text/javascript" src="/static/js/qtip/jquery.qtip-1.0.0-rc3.min.js"></script>
     <script type="text/javascript" src="/static/js/guido.js"></script>
     <script type="text/javascript" src="/static/js/grade.js"></script>
+    <link href="/static/google-code-prettify/prettify.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="/static/google-code-prettify/prettify.js"></script>
+    <script type="text/javascript" src="/static/google-code-prettify/lang-lisp.js"></script>
     <title>{{title}}</title>
 </head>
-<body>
+<body onload="prettyPrint()">
