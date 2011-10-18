@@ -1095,7 +1095,7 @@ class Response(threading.local):
             save, not to store secret information at client side.
         '''
         if secret:
-            value = touni(cookie_encode((key, value), secret))
+            value = touni(cookie_encode((key, value), secret.encode()))
         elif not isinstance(value, str):
             raise TypeError('Secret missing for non-string Cookie.')
 
@@ -1538,7 +1538,7 @@ def cookie_decode(data, key):
     data = tob(data)
     if cookie_is_encoded(data):
         sig, msg = data.split(tob('?'), 1)
-        if _lscmp(sig[1:], base64.b64encode(hmac.new(key, msg).digest())):
+        if _lscmp(sig[1:], base64.b64encode(hmac.new(key.encode(), msg).digest())):
             return pickle.loads(base64.b64decode(msg))
     return None
 
