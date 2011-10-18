@@ -4,6 +4,7 @@ from bottle import route
 from bottle import static_file
 from bottle import request, redirect, response
 from bottle import template
+from bottle import abort
 
 """
 This module handles all of the URL dispatching for Guido, mapping from URLs to
@@ -244,29 +245,34 @@ def submission_report(assignment):
 # Viewing the report #
 @route('/gradingreport/:assignment/:username')
 def submission_report(assignment, username):
-    logged_in = request.get_cookie('account', str.encode('some-secret-key'))
+    logged_in = request.get_cookie('account', secret='some-secret-key')
     if(logged_in == username):
         return reports.submission_report(assignment, username)
     else:
-        return logged_in
+        return abort(401)
 
 @route('/login/getreport/:assignment', method='GET')
 def iucas(assignment):
-    #iu CAS
-    #send them to:    
+    #iu CAS: http://kb.iu.edu/data/atfc.html
+    # get casticket from query parameters
     casticket = request.GET.get('casticket')
+    # if no casticket, go to CAS, will redirect back to this site
     if not casticket:
         redirect("https://cas.iu.edu/cas/login?cassvc=IU&casurl=http://{0}/login/getreport/{1}".format(guidourl, assignment))
 
-    f = urllib.request.urlopen("https://cas.iu.edu/cas/validate?cassvc=IU&casticket=" + casticket)
+    validate_url = "https://cas.iu.edu/cas/validate?cassvc=IU&casticket=" + casticket
+    
+    # validate CAS
+    f = urllib.request.urlopen(validate_url)
     s = f.read().decode()
     f.close()
 
     resp = s.split("\n")
-    if(resp[0].find("yes") != -1):
-        username = resp[1]
-        response.set_cookie("account", username, secret=str.encode('some-secret-key'))
-        redirect("/gradingreport/{0}/{1}".format(assignment, username))
+    if resp[0].strip() == "yes":
+        username = resp[1].strip()
+        response.set_cookie("account", username, secret='some-secret-key')
+        return submission_report(assignment, username)
+        #redirect("/gradingreport/{0}/{1}".format(assignment, username))
     else:
         return 'login failed'
     
