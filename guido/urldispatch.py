@@ -2,7 +2,7 @@
 
 from bottle import route
 from bottle import static_file
-from bottle import request, redirect
+from bottle import request, redirect, response
 from bottle import template
 
 """
@@ -19,6 +19,8 @@ import edit_database
 import csv_grades
 import model
 import urllib.request
+
+guidourl = "localhost:8083"
 
 @route('/')
 def index():
@@ -242,25 +244,32 @@ def submission_report(assignment):
 # Viewing the report #
 @route('/gradingreport/:assignment/:username')
 def submission_report(assignment, username):
-    return reports.submission_report(assignment, username)
+    logged_in = request.get_cookie('account', str.encode('some-secret-key'))
+    if(logged_in == username):
+        return reports.submission_report(assignment, username)
+    else:
+        return logged_in
 
 @route('/login/getreport/:assignment', method='GET')
 def iucas(assignment):
     #iu CAS
-    #send them to:
-    #"https://cas.iu.edu/cas/login?cassvc=IU&casurl=http://guido/login/getreport/" + assignment
+    #send them to:    
     casticket = request.GET.get('casticket')
+    if not casticket:
+        redirect("https://cas.iu.edu/cas/login?cassvc=IU&casurl=http://{0}/login/getreport/{1}".format(guidourl, assignment))
+
     f = urllib.request.urlopen("https://cas.iu.edu/cas/validate?cassvc=IU&casticket=" + casticket)
     s = f.read().decode()
     f.close()
+
     resp = s.split("\n")
     if(resp[0].find("yes") != -1):
         username = resp[1]
+        response.set_cookie("account", username, secret=str.encode('some-secret-key'))
         redirect("/gradingreport/{0}/{1}".format(assignment, username))
     else:
-        return resp[1]
+        return 'login failed'
     
-
 ################################
 # Editing the assignment notes #
 ################################

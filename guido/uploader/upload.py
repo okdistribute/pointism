@@ -14,7 +14,7 @@ import sys
 
 roster_re = re.compile(r'^.*\.roster$')
 THE_CONFIG = '../config.cfg'
-USAGE= "c211upload.py <assignment>"
+USAGE= "upload.py <assignment>"
 
 def main(): 
     if len(sys.argv) != 2:
