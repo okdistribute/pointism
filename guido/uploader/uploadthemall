@@ -1,4 +1,4 @@
 #!/bin/bash
-
 python upload.py a3
 python upload.py a4
+
