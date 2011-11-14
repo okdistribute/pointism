@@ -242,23 +242,29 @@ def submission_report(assignment):
     username = request.forms.get('username')
     redirect("/gradingreport/%s/%s" % (assignment, username))
 
+def iucas_url(assignment):
+    redirect("https://cas.iu.edu/cas/login?cassvc=IU&casurl=http://{0}/login/getreport/{1}".format(guidourl, assignment))
+
 # Viewing the report #
 @route('/gradingreport/:assignment/:username')
 def submission_report(assignment, username):
     logged_in = request.get_cookie('account', secret='some-secret-key')
     if(logged_in == username):
         return reports.submission_report(assignment, username)
-    else:
-        return abort(401)
+    if(logged_in == None):
+        iucas_url(assignment)
+    ##now, we need a way to authenticate if its an instructor that is logged in
+    abort(403)
 
 @route('/login/getreport/:assignment', method='GET')
 def iucas(assignment):
-    #iu CAS: http://kb.iu.edu/data/atfc.html
+    # iu CAS: http://kb.iu.edu/data/atfc.html
     # get casticket from query parameters
     casticket = request.GET.get('casticket')
+
     # if no casticket, go to CAS, will redirect back to this site
     if not casticket:
-        redirect("https://cas.iu.edu/cas/login?cassvc=IU&casurl=http://{0}/login/getreport/{1}".format(guidourl, assignment))
+        iucas_url(assignment)
 
     validate_url = "https://cas.iu.edu/cas/validate?cassvc=IU&casticket=" + casticket
     
@@ -267,12 +273,12 @@ def iucas(assignment):
     s = f.read().decode()
     f.close()
 
+    # parse CAS response
     resp = s.split("\n")
     if resp[0].strip() == "yes":
         username = resp[1].strip()
         response.set_cookie("account", username, secret='some-secret-key')
         return submission_report(assignment, username)
-        #redirect("/gradingreport/{0}/{1}".format(assignment, username))
     else:
         return 'login failed'
     
