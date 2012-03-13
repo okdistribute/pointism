@@ -9,7 +9,10 @@ Given the path to the handins (submissions), uploads all of the information.
 import uploader
 import re
 import os
-import ConfigParser
+try:
+    import ConfigParser as configparser
+except:
+    import configparser
 import sys
 
 roster_re = re.compile(r'^.*\.roster$')
@@ -21,7 +24,7 @@ def main():
         print(USAGE)
         return
 
-    config = ConfigParser.ConfigParser()
+    config = configparser.ConfigParser()
     config.read(THE_CONFIG)
     handins_path = config.get('paths', 'handins')
     sections = config.get('config', 'sections')
