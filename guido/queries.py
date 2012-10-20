@@ -9,6 +9,8 @@ queries.get_foo(username, assignment, problem)
 
 import sqlite3
 import sort_probs
+import grading
+## from grading import letter_grades_to_numbers
 
 THEDB = 'guidodb'
 
@@ -232,8 +234,7 @@ def insert_problem_grade(grade, username, assignment, problemname):
     c.close()
 
 def insert_submission_grade(grade, username, assignment):
-    if grade == 'None':
-        return
+    assert grade in grading.letter_grades_to_numbers.keys()
     conn = sqlite3.connect(THEDB)
     c = conn.cursor()
     print("inserting grade {0} for {1}".format(grade, username))

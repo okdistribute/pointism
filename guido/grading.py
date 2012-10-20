@@ -8,6 +8,20 @@ from collections import defaultdict
 import queries
 import model
 
+letter_grades_to_numbers = {
+    'A' : 7,
+    'B' : 6,
+    'C' : 5,
+    'D' : 4,
+    'F' : 1,
+    'Z' : 'Z',
+    '?' : None,
+}
+
+## reverse the mapping.
+numbers_to_letter_grades = \
+    dict((v,k) for k, v in letter_grades_to_numbers.items())
+
 def grade(username, assignment, problemname):
     solution = queries.get_solution(username, assignment, problemname)
     studentsolution = solution[0]
@@ -71,30 +85,27 @@ def possible_grades():
     """Returns the possible grades (as a list of strings) for
     assignments. This returns A-F. TODO: user interface to change this
     based on assignment or for all assignments"""
-    return  ("A", "B", "C", "D", "F")
+    return  ("A", "B", "C", "D", "F", "Z", "?")
 
 def get_grade(username, assignment, problemname):
     """This method returns the grade given a username, assignment, and
     problemname. If you've graded this problem previously, we return
     the current grade.  This returns "A" if the autograder output
     returns True (or passed); else, return "F"."""
+
     if(problemname==None):
+        ## This happens when grading a whole submission at once.
         solution = queries.get_submission(username, assignment)
     else:
+        ## This happens if we're just grading a single problem.
         solution = queries.get_solution(username, assignment, problemname)
 
-    if(solution != None):
-        grade = solution[2]
+    if solution is None or solution[2] is None:
+        grade = "?"
     else:
-        grade = "C"
-
-    #if has already been graded, return that grade, converting from an integer.
-    #to a string within the possible_grades range. This assumes
-    #a 3-7 grading scale, where 3 is F and 7 is A.
-    if((grade != None) & isinstance(grade, int)): 
-        return possible_grades()[(len(possible_grades()) - grade) + 2]
-    else: 
-        return grade
+        grade = solution[2]
+    assert grade in letter_grades_to_numbers.keys(), grade
+    return grade
 
 def dictify(l):
     ret = {}

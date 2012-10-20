@@ -41,7 +41,7 @@ Solution = """\
 create table if not exists Solution (
     text text,
     autograder text,
-    grade integer,
+    grade text,
     username text,
     assignmentid text,
     problemname text,
@@ -55,7 +55,7 @@ Submission = """\
 create table if not exists Submission (
     text text,
     autograder text,
-    grade integer,
+    grade text,
     notes text,
     hasdraft boolean,
     username text,
