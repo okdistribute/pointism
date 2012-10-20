@@ -1,6 +1,6 @@
 %rebase layout title="grades.csv for " + assignment
 
-<textarea style="width:500px; height:150px;">
+<textarea style="width:500px; height:150px;" readonly>
 %for usernamegrade in filtered_grades:
 {{usernamegrade[0]}},{{usernamegrade[1]}}
 %end
