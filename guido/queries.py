@@ -57,17 +57,13 @@ def get_comments_by_linenumber(student, assignment, linenumber):
     """Returns the comments given a student, assignment, and linenumber"""
     with sqlite3.connect(THEDB) as conn:
         c = conn.cursor()
-        commentsql = """select C.text from Comment C, CommentSolution CS 
+        commentsql = """select C.commentid, C.text from Comment C, CommentSolution CS 
                         where CS.assignmentid=?
                         and CS.username=?
                         and CS.linenumber=?
                         and CS.commentid=C.commentid"""
         c.execute(commentsql, (assignment, student, linenumber))
-        stripping = c.fetchall()
-        stripped = []
-        for strip in stripping:
-            stripped.append(strip[0])
-        return stripped
+        return c.fetchall()
 
 def get_student_commentids(student, assignment):
     """Returns the the linenumber, commentid associated with the given
@@ -338,15 +334,15 @@ def delete_comment(commentid):
         conn.commit()
         c.close()
 
-def delete_commentsolution(student, assignment, text, linenumber):
+def delete_commentsolution(student, assignment, commentid, linenumber):
     with sqlite3.connect(THEDB) as conn:
         c = conn.cursor()
         sql = ("""delete from CommentSolution
                where username=? 
                and assignmentid=?  
                and linenumber=?
-               and commentid=(SELECT commentid from Comment where text=?)""")
-        param = (student, assignment, linenumber, text)
+               and commentid=?""")
+        param = (student, assignment, linenumber, commentid)
         c.execute(sql, param)
         conn.commit()
         c.close()

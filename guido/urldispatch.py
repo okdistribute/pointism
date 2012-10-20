@@ -205,9 +205,9 @@ def commentdelete():
     """deleting a comment"""
     student = request.POST.get('student')
     assignment = request.POST.get('assignment')
-    text = request.POST.get('comment')
+    commentid = request.POST.get('commentid')
     linenumber = request.POST.get('linenumber')
-    queries.delete_commentsolution(student, assignment, text, linenumber)
+    queries.delete_commentsolution(student, assignment, commentid, linenumber)
     redirect("/grade_whole/{0}/{1}".format(assignment, student))
 
                 #################
