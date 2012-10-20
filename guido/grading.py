@@ -67,11 +67,12 @@ def whole_submission(assignment, username, by_section):
     else:
         students = queries.who_turned_in(assignment)
     p,n = find_prev_next(students, username)
-    
+
+    thecomments = dictify(queries.get_student_commentids(username, assignment))
     return template("grade_whole",
                     source=studentsolution,
                     past_comments=list(map(lambda pair: pair[1], fullprevcomments)),
-                    existingcomments=dictify(queries.get_student_commentids(username, assignment)),
+                    existingcomments=thecomments,
                     linenumbers=linenumbers,
                     autograder=autograder_output,
                     student=username,

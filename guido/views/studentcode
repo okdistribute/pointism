@@ -1,6 +1,6 @@
 <div id="code" class="code"><div class="existingcomments">
 %for line in linenumbers:
-    %if existingcomments and type(line) is int and existingcomments.get(int(line)):
+    %if existingcomments and existingcomments.get(int(line)):
         <a class="existingcomment" value="{{line}}" href="#"><img src="/static/images/speech_bubble_icon.png"></img></a>
     %else:
 

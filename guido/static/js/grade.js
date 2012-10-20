@@ -30,64 +30,64 @@ $(function() {
     problem = $("#problem").attr("value");
     
     $(".existingcomment").each(function() {
-	linenumber = $(this).attr("value");
-	$(this).qtip({
-	    content: { prerender: false,
-		       url: '/grading/viewcomments',
-		       data: { linenumber: linenumber,
-			       student: student,
-			       assignment: assignment,
-			       problem: problem
-			     },
-		       title: { text: linenumber + ": view comments",
-				button: 'close' },
-		     },
-	    show: { solo: true, when: { event: 'mousedown' } },
-	    hide: { when: {event: 'unfocus' } },
-	    position: {
+        linenumber = $(this).attr("value");
+        $(this).qtip({
+            content: { prerender: false,
+                       url: '/grading/viewcomments',
+                       data: { linenumber: linenumber,
+                               student: student,
+                               assignment: assignment,
+                               problem: problem
+                             },
+                       title: { text: linenumber + ": view comments",
+                                button: 'close' },
+                     },
+            show: { solo: true, when: { event: 'mousedown' } },
+            hide: { when: {event: 'unfocus' } },
+            position: {
                 corner: {
                     target:'bottomLeft',
                     tooltip: 'rightMiddle',
                 },
-		adjust: { mouse: false }
-	    },
-	    style: {
-		width: 600,
-		padding: 5,
-	    }
-	});
+                adjust: { mouse: false }
+            },
+            style: {
+                width: 600,
+                padding: 5,
+            }
+        });
     });
-		    
+                    
     $(".linenumber").each(function() {
-	linenumber = $(this).html();
-	$(this).qtip({
-	content: { prerender: false, 
-		   url: '/grading/entercomment', 
-		   method:'get',
-		   data: { student: student,
-			   assignment: assignment,
-			   problem: problem,
-			   linenumber: linenumber
-			 },
-		   title: { text : linenumber + ": enter comment",
-			    button : "close" }
-		 },
-	show: { solo: true, when: { event: 'mousedown' } },
-	hide: { when: { event: 'unfocus' } },
-	position: {
+        linenumber = $(this).html();
+        $(this).qtip({
+        content: { prerender: false, 
+                   url: '/grading/entercomment', 
+                   method:'get',
+                   data: { student: student,
+                           assignment: assignment,
+                           problem: problem,
+                           linenumber: linenumber
+                         },
+                   title: { text : linenumber + ": enter comment",
+                            button : "close" }
+                 },
+        show: { solo: true, when: { event: 'mousedown' } },
+        hide: { when: { event: 'unfocus' } },
+        position: {
             corner: {
                 target: 'bottomLeft',
                 tooltip: 'rightMiddle'
             },
-	    target: 'mouse',
-	    adjust: { mouse: false }
-	},
-	style: {
-	    width: 600,
+            target: 'mouse',
+            adjust: { mouse: false }
+        },
+        style: {
+            width: 600,
             tip: 'rightMiddle'
-	}
-	
-	});
+        }
+        
+        });
     });
 
     $( "#formGrade" ).submit(function() {
@@ -97,12 +97,12 @@ $(function() {
     });
 
     $( "#grades" ).selectable({
-	stop: function() {
+        stop: function() {
             var result = $("input:#submit_grade");
-            $(".ui-selected", this).each(function() {	
-		grade = $(this).text();
-		result.attr("value" , grade);
-		$(this).siblings().removeClass("ui-selected");
+            $(".ui-selected", this).each(function() {   
+                grade = $(this).text();
+                result.attr("value" , grade);
+                $(this).siblings().removeClass("ui-selected");
             });
         }
     });

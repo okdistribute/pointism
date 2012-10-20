@@ -249,12 +249,12 @@ def iucas_url(assignment):
 @route('/gradingreport/:assignment/:username')
 def submission_report(assignment, username):
     logged_in = request.get_cookie('account', secret='some-secret-key')
-    if(logged_in == username):
-        return reports.submission_report(assignment, username)
-    if(logged_in == None):
-        iucas_url(assignment)
+    # if(logged_in == username):
+    return reports.submission_report(assignment, username)
+    # if(logged_in == None):
+    #     iucas_url(assignment)
     ##now, we need a way to authenticate if its an instructor that is logged in
-    abort(403)
+    # abort(403)
 
 @route('/login/getreport/:assignment', method='GET')
 def iucas(assignment):
