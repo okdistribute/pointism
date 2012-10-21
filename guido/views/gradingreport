@@ -15,6 +15,7 @@ function highlight(linenumber) {
     $(".reportcomment."+linenumber).addClass("highlighted");
     $('#report').animate({
              scrollTop: $(line).offset().top -  $("#reportheader").height() - 20
+             // XXX(everybody): magic numbers.
     }, 300);
   });
 }
