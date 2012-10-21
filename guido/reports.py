@@ -28,7 +28,7 @@ def submission_report(assignment, username):
                     grade=grade,
                     autograder=autograder,
                     linenumbers=grading.makelinenumbers(submission),
-                    existingcomments=grading.dictify(comments))
+                    existingcomments=comments)
 
 def send_report(aid, username):
     """sends the most current report for the given assignment to the

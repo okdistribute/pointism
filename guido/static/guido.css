@@ -192,7 +192,6 @@ a:hover, a:active, a:focus {
 }
 
 .section-title {
-   margin:0;
    color: #c77405;
    background-color: #ddd;
    border-bottom: 1px black solid;
@@ -452,21 +451,46 @@ a.ui-selectee {
 {
   font-family: 'Mono', arial, serif;
   font-size: 10pt;
-  background-color: #DDD;
   white-space: pre;
-  position: relative;
-  overflow: visible;
-  margin-left:300px;
+  overflow: scroll;
   margin-bottom: 100px;
+  float: right;
+  width: 80%;
+  height: 100%;
 }
+
+#reportheader {
+    position: relative;
+    margin: auto;
+    margin-bottom: 10px;
+    height: 20%;
+    width: 80%;
+    background-color: #DDD;
+}
+
 #reportContainer
 {
     position: relative;
-    width: 95%;
     margin: auto;
     margin-bottom: 10px;
+    height: 75%;
+    width: 80%;
+    background-color: #DDD;
 }
 
 .submitbutton {
-   cursor: pointer;
+    cursor: pointer;
+}
+
+.reportcomments {
+    width: 20%;
+    height: 100%;
+    float: left;
+    overflow:scroll;
+}
+
+.reportcomment {
+    cursor: pointer;
+    border: 1px solid #666;
+    padding: 1em;
 }

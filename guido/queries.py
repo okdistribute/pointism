@@ -85,7 +85,8 @@ def get_submission_comments(assignment, username):
         commentsql = """select CS.linenumber, C.text from Comment C,CommentSolution CS
                          where CS.assignmentid=?
                            and CS.username=?
-                           and CS.commentid = C.commentid"""
+                           and CS.commentid = C.commentid
+                      order by CS.linenumber"""
         c.execute(commentsql, (assignment, username))
         return c.fetchall()
         
