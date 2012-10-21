@@ -15,16 +15,20 @@ THEDB = "guidodb"
 def submission_report(assignment, username):
     submission,autograder,grade = queries.get_report(assignment, username)
     comments = queries.get_submission_comments(assignment, username)
-    
+
     students = queries.who_turned_in(assignment)
     p,n = grading.find_prev_next(students, username)
-    
+
+    ## just in case.
+    submission.replace("\r", "")
+    sourcelines = submission.split("\n")
+
     return template("gradingreport",
                     prevstudent=p,
                     nextstudent=n,
                     student=username,
                     assignment=assignment,
-                    source=submission,
+                    sourcelines=sourcelines,
                     grade=grade,
                     autograder=autograder,
                     linenumbers=grading.makelinenumbers(submission),

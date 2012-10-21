@@ -494,3 +494,7 @@ a.ui-selectee {
     border: 1px solid #666;
     padding: 1em;
 }
+
+.highlighted {
+    background-color:#fff;
+}

@@ -4,6 +4,22 @@
     <title> {{assignment}} report for {{student}}</title>
 <link type="text/css" href="/static/guido.css" rel="Stylesheet" />
 <link type="text/css" href="/static/css/ui-lightness/jquery-ui-1.8.12.custom.css" rel="Stylesheet" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+<script type="text/javascript">
+function highlight(linenumber) {
+ $(function() {
+    var line = "#line" + linenumber;
+    $(".line").removeClass("highlighted");
+    $(line).addClass("highlighted");
+    $(".reportcomment").removeClass("highlighted")
+    $(".reportcomment."+linenumber).addClass("highlighted");
+    $('#report').animate({
+             scrollTop: $(line).offset().top -  $("#reportheader").height() - 20
+    }, 300);
+  });
+}
+</script>
+
 </head>
 <body>
 
@@ -18,7 +34,8 @@
   <div class="reportcomments">
     <h4 class="section-title">Instructor Comments</h4>
     %for linenumber, commenttext in existingcomments:
-      <div class="reportcomment">
+      <div class="reportcomment {{linenumber}}" 
+           onclick=highlight({{linenumber}});>
       {{linenumber}}:
       {{commenttext}}
       </div>
@@ -41,7 +58,9 @@
       {{line}}
       %end
     </div>
-{{source}}
+%for num,sourceline in enumerate(sourcelines):
+<span id="line{{num+1}}" class="line">{{sourceline}}</span>
+%end
   </div>
 </div>
 
