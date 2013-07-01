@@ -8,7 +8,7 @@ there.
 import sqlite3
 import datetime
 
-THEDB = "guidodb"
+THEDB = "pointismdb"
 
 ## table schemas!
 Student = """\
@@ -105,7 +105,7 @@ def main():
     c = conn.cursor()
 
     # Create tables that we'll need.
-    print("Creating guido tables...")
+    print("Creating tables...")
     for sql in tables:
         print("  creating", sql.split("\n")[0].split()[-2])
         try:

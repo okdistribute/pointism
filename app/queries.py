@@ -12,7 +12,7 @@ import sort_probs
 import grading
 ## from grading import letter_grades_to_numbers
 
-THEDB = 'guidodb'
+THEDB = 'pointismdb'
 
 def get_solution(student, assignment, problem):
     """Returns the solution associated with the given student's assignment

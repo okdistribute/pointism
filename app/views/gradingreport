@@ -2,7 +2,7 @@
 <html>
 <head>
     <title> {{assignment}} report for {{student}}</title>
-<link type="text/css" href="/static/guido.css" rel="Stylesheet" />
+<link type="text/css" href="/static/pointism.css" rel="Stylesheet" />
 <link type="text/css" href="/static/css/ui-lightness/jquery-ui-1.8.12.custom.css" rel="Stylesheet" />
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
 <script type="text/javascript">

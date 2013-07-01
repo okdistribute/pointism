@@ -2,7 +2,7 @@
 
 import sys, sqlite3
 
-THEDB = "guidodb"
+THEDB = "pointismdb"
 
 def main():
     assignment_name = sys.argv[1]

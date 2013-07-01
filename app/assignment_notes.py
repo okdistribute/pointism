@@ -2,7 +2,7 @@ from bottle import request
 from bottle import template
 import sqlite3
 
-THEDB = "guidodb"
+THEDB = "pointismdb"
 
 def notes_update(name):
     query = request.forms.get('query')

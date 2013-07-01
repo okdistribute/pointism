@@ -114,7 +114,7 @@ select.prevcomments {
 /* layout */
 
 .logo {
-    background: #777 url("/static/images/guido.gif") no-repeat top left;
+    background: #777 url("/static/images/pointism.gif") no-repeat top left;
     width: 1000px;
     height: 95px;
     top: -3%;
@@ -136,7 +136,7 @@ body {
     width: 100%;
 }
 
-#guido {
+#container {
     width:950px;
     height: 500px;
     margin: 0 auto;

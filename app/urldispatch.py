@@ -7,7 +7,7 @@ from bottle import template
 from bottle import abort
 
 """
-This module handles all of the URL dispatching for Guido, mapping from URLs to
+This module handles all of the URL dispatching, mapping from URLs to
 the functions that will be called in response.
 """
 
@@ -21,7 +21,7 @@ import csv_grades
 import model
 import urllib.request
 
-guidourl = "localhost:8084"
+URL = "localhost:8084"
 
 @route('/')
 def index():
@@ -243,7 +243,7 @@ def submission_report(assignment):
     redirect("/gradingreport/%s/%s" % (assignment, username))
 
 def iucas_url(assignment):
-    redirect("https://cas.iu.edu/cas/login?cassvc=IU&casurl=http://{0}/login/getreport/{1}".format(guidourl, assignment))
+    redirect("https://cas.iu.edu/cas/login?cassvc=IU&casurl=http://{0}/login/getreport/{1}".format(URL, assignment))
 
 # Viewing the report #
 @route('/gradingreport/:assignment/:username')

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Main upload script for Guido.
+Main upload script.
 
 Finds both the student submission and the autograder output for each problem in
 this assignment.
@@ -13,7 +13,7 @@ import sqlite3
 import magsautograder
 import parseassignment
 
-THEDB = "../guidodb"
+THEDB = "../pointismdb"
 USAGE = "uploader.py <username> <assignment> <filename> <section> [nodraft]"
 
 def insert_submission(c, username, aid, section, text, autograder):

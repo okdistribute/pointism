@@ -1,4 +1,4 @@
-%include header title="Guido"
+%include header title="Pointism"
 
 <!DOCTYPE HTML>
 <html>
@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
 <body>
-<div id="guido">
+<div id="container">
 <div class="logo">
 <span class="logo"></span>
  </div>
@@ -38,9 +38,9 @@
     </ul>
   </li>
   <li>
-  <h3 class="section-title">Guido</h3>
+  <h3 class="section-title">pointism</h3>
     <ul class="nav">
-      <li><a href="http://code.google.com/p/iucs-guido/" target="_blank">about</a></li>
+      <li><a href="http://code.google.com/p/iucs-pointism/" target="_blank">about</a></li>
       <li><a href="/settings">settings</a></li>
       <li><a href="/none">help</a></li>
     </ul>

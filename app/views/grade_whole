@@ -10,7 +10,7 @@
 <h4 class="section-title">{{assignment}} :: {{student}}</h4>    
 %include studentcode linenumbers=linenumbers, source=source, existingcomments=existingcomments
     <div id="tools">
-      <form method="GET" action="/guido/codesearch/">
+      <form method="GET" action="/pointism/codesearch/">
         <input type="hidden" id="student" name="student" value="{{student}}"/>
         <input type="hidden" id="assignment" name="assignment" value="{{assignment}}"/>
         <input name="query" type="textbox" /> 

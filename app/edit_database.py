@@ -6,8 +6,6 @@ from bottle import redirect
 import model
 import queries
 
-THEDB = "guidodb"
-
 def choice():
     return template("edit_database")
 

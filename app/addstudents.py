@@ -11,7 +11,7 @@ follows:
 import sys, sqlite3
 
 USAGE = "addstudents.py <filename>"
-THEDB = "guidodb" 
+THEDB = "pointismdb" 
 
 def main():
 

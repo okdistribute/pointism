@@ -9,7 +9,7 @@
             src="/solutionframe/{{assignment}}/{{problem}}/{{student}}">
     </iframe>
      <div id="tools">
-      <form method="GET" action="/guido/codesearch/">
+      <form method="GET" action="/pointism/codesearch/">
         <input type="hidden" id="student" name="student" value="{{student}}"/>
         <input type="hidden" id="problem" name="problem" value="{{problem}}"/>
         <input type="hidden" id="assignment" name="assignment" value="{{assignment}}"/>

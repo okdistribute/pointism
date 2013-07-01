@@ -10,7 +10,7 @@ import sqlite3
 import model
 from collections import defaultdict
 
-THEDB = "guidodb"
+THEDB = "pointism"
 
 def submission_report(assignment, username):
     submission,autograder,grade = queries.get_report(assignment, username)
