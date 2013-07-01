@@ -11,9 +11,10 @@ prototype/	the prototype from Fall 2010
 
 How to install
 ---------------------
+
 1.  tar -xvf anonymized.tgz
-#.  cd guido
-#.  ./initdb.py
-#.  cd uploader
-#.  ./uploadthemall
+2.  cd guido
+3.  ./initdb.py
+4.  cd uploader
+5.  ./uploadthemall
 
