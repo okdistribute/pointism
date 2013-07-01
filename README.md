@@ -1,4 +1,4 @@
-README for guido.
+README.
 
 In this directory, you should find:
 
