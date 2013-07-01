@@ -27,25 +27,25 @@
         % end
         % end
       </ul>
-        <input type="hidden" id="submit_grade" name="grade" value="None" />
-        <button id="gradebutton">grade</button>
+        <input class="btn" type="hidden" id="submit_grade" name="grade" value="None" />
+        <button class="btn" id="gradebutton">grade</button>
     </form>
   </div>
   <div id="gradingnav">
     <ul class="nav">
       % if prevstudent != None:
-      <a id="prevstudentbutton" >previous student</a>
+      <a  class="btn" id="prevstudentbutton" >previous student</a>
       % else:
       <span class="notalink">previous student</span>
       %end
       % if nextstudent != None:
-      <a id="nextstudentbutton" >next student</a>
+      <a class="btn" id="nextstudentbutton" >next student</a>
       % else:
-      <span class="notalink">next student</span>
+      <a class="btn btn-disabled">next student</a>
       % end
     </ul>
     <ul class="nav">
-      <a id="menu" href="/">main menu</a>
+      <a class="btn" id="menu" href="/">main menu</a>
     </ul>
   </div>
 </div>

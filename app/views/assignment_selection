@@ -4,14 +4,14 @@
 <form method="POST" action={{target}}>
       <select class="input" name="assignment">
       % for assignment in assignments:
- 	       <option value={{assignment}}>{{assignment}}</option>
+         <option value={{assignment}}>{{assignment}}</option>
       % end
       
       </select>
       %if sections:
        %include section_selection sections=sections
        %end
-      <input type="submit" value="select"/>
+      <input class="btn" type="submit" value="select"/>
       <br/>
 </form>
 </div>

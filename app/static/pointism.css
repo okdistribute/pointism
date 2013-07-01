@@ -152,9 +152,6 @@ ul, ol, dl {
     margin: 0;
 }
 
-h1, h2, h3, h4, h5, h6, p {
-   margin-top: 0;
-}
 
 a img { 
    border: none;
@@ -162,12 +159,6 @@ a img {
 
 a:hover, a:active, a:focus { 
    color: #c77405;
-}
-
-.container {
-   width: 60%;
-   margin: 0px auto;
-   overflow: auto;
 }
 
 .sidebar1 {
@@ -191,35 +182,6 @@ a:hover, a:active, a:focus {
    min-height: 200px;
 }
 
-.section-title {
-   color: #c77405;
-   background-color: #ddd;
-   border-bottom: 1px black solid;
-   padding: 6px 10px;
-}
-
- h3 {
-   color: white;
-   font-size: .9em;
-   text-align: center;
-}
-
- h2 {
-   font-size: 1.2em;
-   color: black;
-}
-
- h1 {
-   font-size: 1.4em;
-   color: white;
-}
-
-.content_header {
-   text-align: left;
-   font-weight: bold;
-   font-style: italic;
-}
-
 .content {
     margin: 10px 20px 0px 20px;
     color: black;
@@ -227,40 +189,6 @@ a:hover, a:active, a:focus {
 
 .content ul, .content ol { 
     padding: 0 15px 15px 40px;
-}
-
-.nav_section {
-      padding: 5px 20px 15px 20px;
-      background: #ddd;
-}
-
-ul.nav {
-    list-style: none;
-    float: left;
-}
-
-ul.nav_container li {
-   margin: 10px;
-   float: left;
-   list-style: none;
-   position:relative;
-}
-
-ul.nav li {
-    font-size: .9em;
-    float: none;
-    margin:3px;
-}
-
-ul.nav a, ul.nav a:visited a:link {
-    margin:0;
-    text-decoration: none;
-    display: block;
-}
-
-ul.nav a:hover, ul.nav a:active, ul.nav a:focus { 
-    color: #c77405;
-    font-style: none;
 }
 
 #byline { 

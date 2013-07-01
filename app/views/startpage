@@ -1,2 +1,2 @@
-%rebase layout title='Welcome to Guido'
-<br><br><center><a href="/grade_whole/pick"> Grade  </a></center>
+%rebase layout title='Welcome to Pointism'
+<br><br><center><a class="btn" href="/grade_whole/pick"> Grade  </a></center>
